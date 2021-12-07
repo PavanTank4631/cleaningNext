@@ -78,8 +78,8 @@ import { store, persistor } from 'src/___redux/store';
 import { AuthProvider } from 'src/contexts/FirebaseContext';
 // import { AuthProvider } from 'src/contexts/AwsCognitoContext';
 //! below is from App.js within javascript version...
-import GoogleAnalytics from 'src/minimalComponents/GoogleAnalytics';
-import NotistackProvider from 'src/minimalComponents/NotistackProvider';
+import GoogleAnalytics from 'src/utils/GoogleAnalytics';
+import NotistackProvider from 'src/utils/NotistackProvider';
 import ThemeLocalization from 'src/minimalComponents/ThemeLocalization';
 import { BaseOptionChartStyle } from 'src/minimalComponents/charts/BaseOptionChart';
 

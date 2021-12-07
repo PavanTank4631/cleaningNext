@@ -20,11 +20,8 @@ import {
   useState as useStateRedux,
 } from 'react-redux';
 import { PATH_DASHBOARD } from 'src/routes/paths';
-import {
-  getProducts,
-  getAllProductGraphQl,
-  filterProducts,
-} from 'src/___redux/slices/product';
+import { getProducts, filterProducts } from 'src/___redux/slices/product';
+
 // routes
 // utils
 import fakeRequest from 'src/utils/fakeRequest';
