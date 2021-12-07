@@ -31,7 +31,7 @@ import {
   ShopProductList,
   ShopFilterSidebar,
 } from 'src/minimalComponents/_dashboard/e-commerce/shop';
-import CartWidget from 'src/minimalComponents/_dashboard/e-commerce/CartWidget';
+// import CartWidget from 'src/minimalComponents/_dashboard/e-commerce/CartWidget';
 import DashboardLayout from 'src/layouts/dashboard';
 import AuthLayout from 'src/layouts/AuthLayout';
 import GuestGuard from 'src/guards/GuestGuard';
@@ -98,24 +98,26 @@ function applyFilter(products, sortBy, filters) {
   return products;
 }
 
-const EcommerceShop = () => {
+const EcommerceShop = (props) => {
   const { themeStretch } = useSettings();
   const dispatch = useDispatch();
   const [openFilter, setOpenFilter] = useState(false);
-  const myselector = useSelector((state) => state.product);
 
-  const stat = useSelector((state) => state);
-  console.log(stat);
-  console.log('State on render', useStore().getState());
-  return <></>;
-  const { products, sortBy, filters } = useSelector((state) => state.product);
-
+  const state_products = useSelector((state) => state.product);
   console.log(
-    '🚀 ~ file: index.js ~ line 101 ~ EcommerceShop ~ selector',
-    myselector
+    'This 🧘‍♂️🧘‍♂️🧘‍♂️🧘‍♂️🧘‍♂️🧘‍♂️🧘‍♂️ is state_products = useSelecotr ((state) => state.product) from pages/dashboard/shop/index.js, view https://bit.ly/next12_10 : ',
+    state_products
   );
+
+  const { products, sortBy, filters } = state_products.products.length
+    ? state_products
+    : props.initialReduxState.product;
   const filteredProducts = applyFilter(products, sortBy, filters);
 
+  console.log(
+    'This 🧖‍♂️🧖‍♂️🧖‍♂️🧖‍♂️🧖‍♂️ is filteredProducts = applyFilter(products, sortBy, filters); from pages/dashboard/shop/index.js, view https://bit.ly/next12_11 : ',
+    filteredProducts
+  );
   const formik = useFormik({
     initialValues: {
       gender: filters.gender,
@@ -146,12 +148,16 @@ const EcommerceShop = () => {
     values.category === 'All';
 
   useEffect(() => {
-    // dispatch(getProducts());
+    dispatch(getProducts());
     // dispatch(getProducts());
   }, [dispatch]);
 
   useEffect(() => {
     dispatch(filterProducts(values));
+    console.log(
+      'This is the dispatch of filterProducts action slice within pages/dashboard/shop/index.js : ',
+      dispatch(filterProducts(values))
+    );
   }, [dispatch, values]);
 
   const handleOpenFilter = () => {
@@ -177,7 +183,7 @@ const EcommerceShop = () => {
         justifyContent="flex-end"
         sx={{ mb: 0, mt: 0, px: 15 }}
       >
-        <CartWidget />
+        {/* <CartWidget /> */}
       </Stack>
       {/* {!filteredProducts && SkeletonLoad} */}
       <GuestGuard>
@@ -249,44 +255,19 @@ const EcommerceShop = () => {
   );
 };
 
-// export const getStaticProps = async (ctx) =>
-//   // const { products, sortBy, filters } = useSelector((state) => state.product);
-//   // const { data } = await
-
-//   ({
-//     props: {
-//       products,
-//     },
-//   });
-
 export const getServerSideProps = wrapperStore.getServerSideProps(
   (store) =>
     async ({ params }) => {
-      console.log(
-        'This 🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️  is params from getServerSideProps: ',
-        params
-      );
-
       await store.dispatch(getProducts());
+      const redux_store = store.getState();
       console.log(
-        'This 🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️  is store.dispatch(getProducts()) from getServerSideProps: ',
-        store.dispatch(getProducts())
+        'This 🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️ is from the wrapper.getServerSideProps() within the redux_store = store.getState() from dashboard/shop/index.js, view https://bit.ly/next12_12 : ',
+        redux_store
       );
-      // await store.dispatch(getAllProductGraphQl());
-
-      console.log('State on server', store.getState());
-
-      // const { products, sortBy, filters } = store.getState().product;
-      const theproducts = store.getState().product;
 
       return {
         props: {
-          products: null,
-          // products: id,
-          // products: store.getState().product,
-          // products: store.getState().product.products,
-          // sortBy: store.getState().product.sortBy,
-          // filters: store.getState().product.filters,
+          initialReduxState: redux_store,
         },
       };
     }

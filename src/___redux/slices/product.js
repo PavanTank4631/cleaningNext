@@ -41,42 +41,41 @@ const initialState = {
 const slice = createSlice({
   name: 'product',
   initialState,
-
   reducers: {
     // START LOADING
-    startLoading(state) {
+    startLoading: (state) => {
       state.isLoading = true;
     },
 
     // HAS ERROR
-    hasError(state, action) {
+    hasError: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
 
     // GET PRODUCTS
-    getProductsSuccess(state, action) {
+    getProductsSuccess: (state, action) => {
       state.isLoading = false;
       state.products = action.payload;
     },
 
     // GET PRODUCT
-    getProductSuccess(state, action) {
+    getProductSuccess: (state, action) => {
+      console.log('getProductSuccess 🌜🌜🌜🌜🌜🌜🌜', action);
       state.isLoading = false;
       state.product = action.payload;
     },
-
     // DELETE PRODUCT
-    deleteProduct(state, action) {
+    deleteProduct: (state, action) => {
       state.products = reject(state.products, { id: action.payload });
     },
 
     //  SORT & FILTER PRODUCTS
-    sortByProducts(state, action) {
+    sortByProducts: (state, action) => {
       state.sortBy = action.payload;
     },
 
-    filterProducts(state, action) {
+    filterProducts: (state, action) => {
       state.filters.gender = action.payload.gender;
       state.filters.category = action.payload.category;
       state.filters.colors = action.payload.colors;
@@ -85,7 +84,7 @@ const slice = createSlice({
     },
 
     // CHECKOUT
-    getCart(state, action) {
+    getCart: (state, action) => {
       const cart = action.payload;
 
       const subtotal = sum(
@@ -103,7 +102,7 @@ const slice = createSlice({
       state.checkout.total = subtotal - discount;
     },
 
-    addCart(state, action) {
+    addCart: (state, action) => {
       const product = action.payload;
       const isEmptyCart = state.checkout.cart.length === 0;
 
@@ -124,7 +123,7 @@ const slice = createSlice({
       state.checkout.cart = uniqBy([...state.checkout.cart, product], 'id');
     },
 
-    deleteCart(state, action) {
+    deleteCart: (state, action) => {
       const updateCart = filter(
         state.checkout.cart,
         (item) => item.id !== action.payload
@@ -133,7 +132,7 @@ const slice = createSlice({
       state.checkout.cart = updateCart;
     },
 
-    resetCart(state) {
+    resetCart: (state) => {
       state.checkout.activeStep = 0;
       state.checkout.cart = [];
       state.checkout.total = 0;
@@ -143,20 +142,20 @@ const slice = createSlice({
       state.checkout.billing = null;
     },
 
-    onBackStep(state) {
+    onBackStep: (state) => {
       state.checkout.activeStep -= 1;
     },
 
-    onNextStep(state) {
+    onNextStep: (state) => {
       state.checkout.activeStep += 1;
     },
 
-    onGotoStep(state, action) {
+    onGotoStep: (state, action) => {
       const goToStep = action.payload;
       state.checkout.activeStep = goToStep;
     },
 
-    increaseQuantity(state, action) {
+    increaseQuantity: (state, action) => {
       const productId = action.payload;
       const updateCart = map(state.checkout.cart, (product) => {
         if (product.id === productId) {
@@ -171,7 +170,7 @@ const slice = createSlice({
       state.checkout.cart = updateCart;
     },
 
-    decreaseQuantity(state, action) {
+    decreaseQuantity: (state, action) => {
       const productId = action.payload;
       const updateCart = map(state.checkout.cart, (product) => {
         if (product.id === productId) {
@@ -186,17 +185,17 @@ const slice = createSlice({
       state.checkout.cart = updateCart;
     },
 
-    createBilling(state, action) {
+    createBilling: (state, action) => {
       state.checkout.billing = action.payload;
     },
 
-    applyDiscount(state, action) {
+    applyDiscount: (state, action) => {
       const discount = action.payload;
       state.checkout.discount = discount;
       state.checkout.total = state.checkout.subtotal - discount;
     },
 
-    applyShipping(state, action) {
+    applyShipping: (state, action) => {
       const shipping = action.payload;
       state.checkout.shipping = shipping;
       state.checkout.total =
@@ -214,8 +213,13 @@ const slice = createSlice({
   },
 });
 
+console.log(
+  'The slice containing all reducer actions from ___redux/slices/product.js, view at https://bit.ly/next12_20 : ',
+  slice
+);
+
 // Reducer
-export default slice.reducer;
+export default slice;
 
 // Actions
 export const {
@@ -236,71 +240,40 @@ export const {
   decreaseQuantity,
 } = slice.actions;
 
-// ----------------------------------------------------------------------
-
-export function getProducts() {
-  return async (dispatch) => {
-    dispatch(slice.actions.startLoading());
-    try {
-      // const response = await axios.get(
-      //   '/api/strapi-graphql/query-allProducts/'
-      // );
-      const response = await client.query({
-        query: ALLCARSQUERY,
-      });
-      console.log(
-        '👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 🚀 👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 ~ file:query-allProducts.js and ___redux/slices/product.js~ from getProducts() function! On line 233 ~ return ~ response',
-        response
-      );
-      dispatch(slice.actions.getProductsSuccess(response.data.variants));
-    } catch (error) {
-      dispatch(slice.actions.hasError(error));
-    }
-  };
-}
-
-// ----------------------------------------------------------------------
-
-export function getProduct(id) {
-  return async (dispatch) => {
-    dispatch(slice.actions.startLoading());
-    try {
-      // const response = await axios.get('/api/products/product', {
-      const response = await axios.get(
-        '/api/strapi-graphql/query-singleProduct',
-        {
-          params: { id },
-        }
-      );
-      //! Below are two console logs!
-      console.log(
-        '👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 🚀 👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 ~ ~ file: ___redux/slices/product.js ~ from getProduct(id) function! On line 254 ~ return ~ id',
-        id
-      );
-      console.log(
-        '👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 🚀 👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 ~ ~ file: ___redux/slices/product.js ~ from getProduct(id) function! On line 254 ~ return ~ response',
-        response
-      );
-      dispatch(slice.actions.getProductSuccess(response.data.product));
-    } catch (error) {
-      console.error(error);
-      dispatch(slice.actions.hasError(error));
-    }
-  };
-}
-
 //! MOVING GRAPHQL HERE
+
 const ALLCARSQUERY = gql`
   query Variants {
-    # variants(where: {product: {name_contains: "Jeep"}}) {
+    #    variants(where: { product: { name_contains: "Chrysler" } }) {
     variants {
       id
       qty
       # color
-      size
+      # size
       style
       price
       car_name
+      car_make_name
+      car_info
+      car_info2
+      car_stock
+      car_url
+      car_vin
+      model
+      year
+      description
+      dealership
+      vehicle_status
+      image_url
+      car_price
+      car_year
+      car_special
+      car_fuel_economy
+      car_exterior_color
+      car_interior_color
+      car_transmission
+      car_drivetrain
+      car_engine
       product {
         id
         name
@@ -315,15 +288,306 @@ const ALLCARSQUERY = gql`
       }
       images {
         id
-        url
-        height
-        width
         name
+        url
+        width
+        height
       }
+      image_source_1 {
+        id
+        url
+      }
+      image_source_list {
+        id
+        url
+      }
+      car_highlighted_features_1_feature
+      car_highlighted_features_2_feature
+      car_highlighted_features_3_feature
+      car_highlighted_features_4_feature
+      car_highlighted_features_5_feature
+      car_highlighted_features_6_feature
+      car_highlighted_features_7_feature
+      car_highlighted_features_8_feature
+      car_package_options_1_name
+      car_package_options_1_price
+      car_package_options_1_attribute_1
+      car_package_options_1_attribute_2
+      car_package_options_1_attribute_3
+      car_package_options_1_attribute_10
+      car_package_options_1_attribute_11
+      car_package_options_1_attribute_12
+      car_package_options_2_name
+      car_package_options_2_attribute_1
+      car_package_options_2_attribute_2
+      car_package_options_2_attribute_3
+      car_package_options_2_attribute_10
+      car_package_options_2_attribute_11
+      car_package_options_2_attribute_12
+      car_package_options_3_name
+      car_package_options_3_attribute_1
+      car_package_options_3_attribute_2
+      car_package_options_3_attribute_3
+      car_package_options_3_attribute_10
+      car_package_options_3_attribute_11
+      car_package_options_3_attribute_12
+      car_package_options_4_name
+      car_package_options_4_attribute_1
+      car_package_options_4_attribute_2
+      car_package_options_4_attribute_3
+      car_package_options_4_attribute_10
+      car_package_options_4_attribute_11
+      car_package_options_4_attribute_12
+      car_package_options_5_name
+      car_package_options_5_attribute_1
+      car_package_options_5_attribute_2
+      car_package_options_5_attribute_3
+      car_package_options_5_attribute_10
+      car_package_options_5_attribute_11
+      car_package_options_5_attribute_12
+      car_package_options_6_name
+      car_package_options_6_attribute_1
+      car_package_options_6_attribute_2
+      car_package_options_6_attribute_3
+      car_package_options_3_price
+      car_package_options_4_price
+      car_package_options_2_price
+      car_package_options_5_price
+      car_package_options_6_price
+    }
+  }
+`;
+const CARSMAKEQUERY = gql`
+  query VariantsMake($where: JSON) {
+    variants(where: $where) {
+      # variants {
+      id
+      qty
+      # color
+      # size
+      style
+      price
+      car_name
+      car_make_name
+      car_info
+      car_info2
+      car_stock
+      car_url
+      car_vin
+      model
+      year
+      description
+      dealership
+      vehicle_status
+      image_url
+      car_price
+      car_year
+      car_special
+      car_fuel_economy
+      car_exterior_color
+      car_interior_color
+      car_transmission
+      car_drivetrain
+      car_engine
+      product {
+        id
+        name
+        category {
+          id
+          name
+          description
+        }
+        promo
+        featured
+        description
+      }
+      images {
+        id
+        name
+        url
+        width
+        height
+      }
+      image_source_1 {
+        id
+        url
+      }
+      image_source_list {
+        id
+        url
+      }
+      car_highlighted_features_1_feature
+      car_highlighted_features_2_feature
+      car_highlighted_features_3_feature
+      car_highlighted_features_4_feature
+      car_highlighted_features_5_feature
+      car_highlighted_features_6_feature
+      car_highlighted_features_7_feature
+      car_highlighted_features_8_feature
+      car_package_options_1_name
+      car_package_options_1_price
+      car_package_options_1_attribute_1
+      car_package_options_1_attribute_2
+      car_package_options_1_attribute_3
+      car_package_options_1_attribute_10
+      car_package_options_1_attribute_11
+      car_package_options_1_attribute_12
+      car_package_options_2_name
+      car_package_options_2_attribute_1
+      car_package_options_2_attribute_2
+      car_package_options_2_attribute_3
+      car_package_options_2_attribute_10
+      car_package_options_2_attribute_11
+      car_package_options_2_attribute_12
+      car_package_options_3_name
+      car_package_options_3_attribute_1
+      car_package_options_3_attribute_2
+      car_package_options_3_attribute_3
+      car_package_options_3_attribute_10
+      car_package_options_3_attribute_11
+      car_package_options_3_attribute_12
+      car_package_options_4_name
+      car_package_options_4_attribute_1
+      car_package_options_4_attribute_2
+      car_package_options_4_attribute_3
+      car_package_options_4_attribute_10
+      car_package_options_4_attribute_11
+      car_package_options_4_attribute_12
+      car_package_options_5_name
+      car_package_options_5_attribute_1
+      car_package_options_5_attribute_2
+      car_package_options_5_attribute_3
+      car_package_options_5_attribute_10
+      car_package_options_5_attribute_11
+      car_package_options_5_attribute_12
+      car_package_options_6_name
+      car_package_options_6_attribute_1
+      car_package_options_6_attribute_2
+      car_package_options_6_attribute_3
+      car_package_options_3_price
+      car_package_options_4_price
+      car_package_options_2_price
+      car_package_options_5_price
+      car_package_options_6_price
     }
   }
 `;
 
+const MYCARQUERY = gql`
+  query Variant($id: ID!) {
+    variant(id: $id) {
+      # variants {
+      id
+      qty
+      # color
+      # size
+      style
+      price
+      car_name
+      car_make_name
+      car_info
+      car_info2
+      car_stock
+      car_url
+      car_vin
+      model
+      year
+      description
+      dealership
+      vehicle_status
+      image_url
+      car_price
+      car_year
+      car_special
+      car_fuel_economy
+      car_exterior_color
+      car_interior_color
+      car_transmission
+      car_drivetrain
+      car_engine
+      product {
+        id
+        name
+        category {
+          id
+          name
+          description
+        }
+        promo
+        featured
+        description
+      }
+      images {
+        id
+        name
+        url
+        width
+        height
+      }
+      image_source_1 {
+        id
+        url
+      }
+      image_source_list {
+        id
+        url
+      }
+      car_highlighted_features_1_feature
+      car_highlighted_features_2_feature
+      car_highlighted_features_3_feature
+      car_highlighted_features_4_feature
+      car_highlighted_features_5_feature
+      car_highlighted_features_6_feature
+      car_highlighted_features_7_feature
+      car_highlighted_features_8_feature
+      car_package_options_1_name
+      car_package_options_1_price
+      car_package_options_1_attribute_1
+      car_package_options_1_attribute_2
+      car_package_options_1_attribute_3
+      car_package_options_1_attribute_10
+      car_package_options_1_attribute_11
+      car_package_options_1_attribute_12
+      car_package_options_2_name
+      car_package_options_2_attribute_1
+      car_package_options_2_attribute_2
+      car_package_options_2_attribute_3
+      car_package_options_2_attribute_10
+      car_package_options_2_attribute_11
+      car_package_options_2_attribute_12
+      car_package_options_3_name
+      car_package_options_3_attribute_1
+      car_package_options_3_attribute_2
+      car_package_options_3_attribute_3
+      car_package_options_3_attribute_10
+      car_package_options_3_attribute_11
+      car_package_options_3_attribute_12
+      car_package_options_4_name
+      car_package_options_4_attribute_1
+      car_package_options_4_attribute_2
+      car_package_options_4_attribute_3
+      car_package_options_4_attribute_10
+      car_package_options_4_attribute_11
+      car_package_options_4_attribute_12
+      car_package_options_5_name
+      car_package_options_5_attribute_1
+      car_package_options_5_attribute_2
+      car_package_options_5_attribute_3
+      car_package_options_5_attribute_10
+      car_package_options_5_attribute_11
+      car_package_options_5_attribute_12
+      car_package_options_6_name
+      car_package_options_6_attribute_1
+      car_package_options_6_attribute_2
+      car_package_options_6_attribute_3
+      car_package_options_3_price
+      car_package_options_4_price
+      car_package_options_2_price
+      car_package_options_5_price
+      car_package_options_6_price
+    }
+  }
+`;
 const CARQUERY = gql`
   query Variant($id: ID!) {
     variant(id: $id) {
@@ -336,7 +600,7 @@ const CARQUERY = gql`
       car_style: style
       car_url
       car_colorLabel: colorLabel
-
+      car_make_name
       car_vin
       car_drivetrain
       car_exteriorColor: car_exterior_color
@@ -379,23 +643,51 @@ const CARQUERY = gql`
 const client = new ApolloClient({
   uri: `https://admin.shopcarx.com/graphql`,
   cache: new InMemoryCache(),
-  // cache: 'no-cache',
 });
 
-export function getAllProductGraphQl() {
+// ----------------------------------------------------------------------
+
+export async function getProductsJson() {
+  try {
+    const response = await client.query({
+      query: ALLCARSQUERY,
+    });
+    return response.data.variants;
+  } catch (error) {}
+}
+
+export function getProducts() {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
+      // const response = await axios.get(
+      //   '/api/strapi-graphql/query-allProducts/'
+      // );
       const response = await client.query({
         query: ALLCARSQUERY,
       });
-      console.log(
-        '👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 🚀 👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 ~ ~ file: ___redux/slices/product.js ~ from getAllProductGraphQl() function! On line 254 ~ return ~ response',
-        response
+
+      dispatch(slice.actions.getProductsSuccess([...response.data.variants]));
+    } catch (error) {
+      dispatch(slice.actions.hasError(error));
+    }
+  };
+}
+
+// ----------------------------------------------------------------------
+
+export function getProduct(id) {
+  return async (dispatch) => {
+    dispatch(slice.actions.startLoading());
+    try {
+      const response = await axios.get(
+        '/api/strapi-graphql/query-singleProduct',
+        {
+          params: { id },
+        }
       );
-      dispatch(
-        slice.actions.getAllProductGraphQlSuccess(response.data.products)
-      );
+
+      dispatch(slice.actions.getProductSuccess(response.data.product));
     } catch (error) {
       console.error(error);
       dispatch(slice.actions.hasError(error));
@@ -408,38 +700,35 @@ export function getProductGraphQl(id) {
     dispatch(slice.actions.startLoading());
     try {
       const response = await client.query({
-        query: CARQUERY,
+        // query: CARQUERY,
+        query: MYCARQUERY,
         variables: { id },
       });
-      console.log(
-        '👖👖👖👖👖👖👖👖👖👖👖👖👖 ~ ~ file: ___redux/slices/product.js ~ from getProductGraphQl(id) function! On line 254 ~ return ~ id',
-        id
-      );
-      console.log(
-        '👖👖👖👖👖👖👖👖👖👖👖👖👖~ ~ file: ___redux/slices/product.js ~ from getProductGraphQl(id) function! On line 254 ~ return ~ response',
-        response
-      );
-
       dispatch(slice.actions.getProductSuccess(response.data));
-      console.log(
-        '👖👖👖👖👖👖👖👖👖👖👖👖👖 ~ file: product.js ~ line 325 ~ return ~ response.data',
-        response.data
-      );
     } catch (error) {
       console.error(error);
       dispatch(slice.actions.hasError(error));
     }
   };
 }
-
-//! Next Attempt to fix...
-
-export function getProductGraphQlTRIAL(id) {
+export function getProductMakeGraphQl(id) {
   return async (dispatch) => {
+    dispatch(slice.actions.startLoading());
     try {
-      const { data } = useQuery({ query: CARQUERY, variables: { id } });
+      const where = {
+        car_make_name_contains: id,
+      };
+      // const where = {
+      //   product: {
+      //     name_contains: id,
+      //   },
+      // };
+      const response = await client.query({
+        query: CARSMAKEQUERY,
+        variables: { where },
+      });
 
-      dispatch(slice.actions.getProductSuccess(data));
+      dispatch(slice.actions.getProductSuccess(response.data.variants));
     } catch (error) {
       console.error(error);
       dispatch(slice.actions.hasError(error));

@@ -5,7 +5,7 @@ import chevronDownFill from '@iconify/icons-eva/chevron-down-fill';
 // material
 import { Menu, Button, MenuItem, Typography } from '@mui/material';
 // redux
-import { useDispatch, useSelector } from '../../../../___redux/store';
+import { useSelector, useDispatch } from 'react-redux';
 import { sortByProducts } from '../../../../___redux/slices/product';
 
 // ----------------------------------------------------------------------
@@ -14,7 +14,7 @@ const SORT_BY_OPTIONS = [
   { value: 'featured', label: 'Featured' },
   { value: 'newest', label: 'Newest' },
   { value: 'priceDesc', label: 'Price: High-Low' },
-  { value: 'priceAsc', label: 'Price: Low-High' }
+  { value: 'priceAsc', label: 'Price: Low-High' },
 ];
 
 function renderLabel(label) {
@@ -57,7 +57,11 @@ export default function ShopProductSort() {
         endIcon={<Icon icon={open ? chevronUpFill : chevronDownFill} />}
       >
         Sort By:&nbsp;
-        <Typography component="span" variant="subtitle2" sx={{ color: 'text.secondary' }}>
+        <Typography
+          component="span"
+          variant="subtitle2"
+          sx={{ color: 'text.secondary' }}
+        >
           {renderLabel(sortBy)}
         </Typography>
       </Button>
