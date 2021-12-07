@@ -14,17 +14,17 @@ import {
   Typography,
   Button,
 } from '@mui/material';
-import useAuth from 'src/hooks/useAuth';
+import useAuth from 'src/otherComponents/hooks/useAuth';
 import Page from 'src/allTemplateComponents/Page';
-import DashboardLayout from 'src/layouts/dashboard';
+import DashboardLayout from 'src/otherComponents/layouts/dashboard';
 import Image from 'next/image';
-import LogoOnlyLayout from 'src/layouts/LogoOnlyLayout';
+import LogoOnlyLayout from 'src/otherComponents/layouts/LogoOnlyLayout';
 import { MHidden } from 'src/allTemplateComponents/@material-extend';
 import { LoginForm } from 'src/allTemplateComponents/authentication/login';
 import { Icon } from '@iconify/react';
 import arrowIosBackFill from '@iconify/icons-eva/arrow-ios-back-fill';
 import { ResetPasswordForm } from 'src/allTemplateComponents/authentication/reset-password';
-import { SentIcon } from 'src/assets';
+import { SentIcon } from 'src/otherComponents/assets';
 
 // ----------------------------------------------------------------------
 

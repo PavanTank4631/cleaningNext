@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { addDays } from 'date-fns';
 // utils
-import mockData from '../utils/mock-data';
+import mockData from 'src/otherComponents/utils/mock-data';
 //
 import mock from './mock';
 
@@ -13,7 +13,7 @@ const columnIds = {
   column1: '8cd887ec-b3bc-11eb-8529-0242ac130003',
   column2: '23008a1f-ad94-4771-b85c-3566755afab7',
   column3: '37a9a747-f732-4587-a866-88d51c037641',
-  column4: '4ac3cd37-b3e1-466a-8e3b-d7d88f6f5d4f'
+  column4: '4ac3cd37-b3e1-466a-8e3b-d7d88f6f5d4f',
 };
 
 const cardIds = {
@@ -26,7 +26,7 @@ const cardIds = {
   card7: '0f71fb1f-9fce-419c-a525-46aeeb9b3e83',
   card8: '534fac32-cae1-4d77-965a-062d2114bc29',
   card9: 'dc0fa705-1740-46a4-a3ec-5c6d67b6f402',
-  card10: '5b323625-c53b-4d06-86df-b59e180657a0'
+  card10: '5b323625-c53b-4d06-86df-b59e180657a0',
 };
 
 const memberIds = {
@@ -34,7 +34,7 @@ const memberIds = {
   member2: 'b8395203-887c-46f5-a85f-339b2d75c98b',
   member3: '048f6343-7a65-4873-a570-eb6ff4eb1ba3',
   member4: '18e23ac9-c874-43e4-8163-2d37f15f3367',
-  member5: 'a3be5485-03bf-47a6-b553-a9cf9f070ed8'
+  member5: 'a3be5485-03bf-47a6-b553-a9cf9f070ed8',
 };
 
 const COMMENTS = [...Array(8)].map((_, index) => ({
@@ -44,7 +44,9 @@ const COMMENTS = [...Array(8)].map((_, index) => ({
   createdAt: mockData.time(index),
   messageType: index === 3 || index === 5 ? 'image' : 'text',
   message:
-    (index === 3 && mockData.image.feed(6)) || (index === 5 && mockData.image.feed(8)) || mockData.text.sentence(index)
+    (index === 3 && mockData.image.feed(6)) ||
+    (index === 5 && mockData.image.feed(8)) ||
+    mockData.text.sentence(index),
 }));
 
 // ----------------------------------------------------------------------
@@ -55,100 +57,155 @@ const cardList = [
     name: 'Call with sales of HubSpot',
     description:
       'Duis condimentum lacus finibus felis pellentesque, ac auctor nibh fermentum. Duis sed dui ante. Phasellus id eros tincidunt, dictum lorem vitae, pellentesque sem. Aenean eu enim sit amet mauris rhoncus mollis. Sed enim turpis, porta a felis et, luctus faucibus nisi. Phasellus et metus fermentum, ultrices arcu aliquam, facilisis justo. Cras nunc nunc, elementum sed euismod ut, maximus eget nibh. Phasellus condimentum lorem neque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce sagittis pharetra eleifend. Suspendisse potenti.',
-    assignee: [{ id: memberIds.member1, avatar: mockData.image.avatar(1), name: mockData.name.fullName(1) }],
+    assignee: [
+      {
+        id: memberIds.member1,
+        avatar: mockData.image.avatar(1),
+        name: mockData.name.fullName(1),
+      },
+    ],
     due: [addDays(now, 6).getTime(), addDays(now, 7).getTime()],
     attachments: [],
     comments: COMMENTS,
-    completed: true
+    completed: true,
   },
   {
     id: cardIds.card2,
     name: 'Interview for the Asis. Sales Manager',
-    description: 'We are looking for vue experience and of course node js strong knowledge',
+    description:
+      'We are looking for vue experience and of course node js strong knowledge',
     assignee: [
-      { id: memberIds.member1, avatar: mockData.image.avatar(1), name: mockData.name.fullName(2) },
-      { id: memberIds.member2, avatar: mockData.image.avatar(2), name: mockData.name.fullName(3) },
-      { id: memberIds.member4, avatar: mockData.image.avatar(3), name: mockData.name.fullName(4) },
-      { id: memberIds.member5, avatar: mockData.image.avatar(4), name: mockData.name.fullName(5) },
-      { id: memberIds.member3, avatar: mockData.image.avatar(5), name: mockData.name.fullName(6) }
+      {
+        id: memberIds.member1,
+        avatar: mockData.image.avatar(1),
+        name: mockData.name.fullName(2),
+      },
+      {
+        id: memberIds.member2,
+        avatar: mockData.image.avatar(2),
+        name: mockData.name.fullName(3),
+      },
+      {
+        id: memberIds.member4,
+        avatar: mockData.image.avatar(3),
+        name: mockData.name.fullName(4),
+      },
+      {
+        id: memberIds.member5,
+        avatar: mockData.image.avatar(4),
+        name: mockData.name.fullName(5),
+      },
+      {
+        id: memberIds.member3,
+        avatar: mockData.image.avatar(5),
+        name: mockData.name.fullName(6),
+      },
     ],
     due: [addDays(now, 6).getTime(), addDays(now, 7).getTime()],
     attachments: [mockData.image.feed(1)],
     comments: [],
-    completed: false
+    completed: false,
   },
   {
     id: cardIds.card3,
     name: 'Change the height of the top bar because it looks too chunky',
-    description: 'We nede to make it aggressive with pricing because it’s in their interest to acquire us',
+    description:
+      'We nede to make it aggressive with pricing because it’s in their interest to acquire us',
     assignee: [],
     due: [null, null],
     attachments: [],
     comments: [],
-    completed: true
+    completed: true,
   },
   {
     id: cardIds.card4,
     name: 'Integrate Stripe API',
-    description: 'We nede to make it aggresive with pricing because it’s in their interest to acquire us',
+    description:
+      'We nede to make it aggresive with pricing because it’s in their interest to acquire us',
     assignee: [
-      { id: memberIds.member2, avatar: mockData.image.avatar(2), name: mockData.name.fullName(7) },
-      { id: memberIds.member5, avatar: mockData.image.avatar(5), name: mockData.name.fullName(8) }
+      {
+        id: memberIds.member2,
+        avatar: mockData.image.avatar(2),
+        name: mockData.name.fullName(7),
+      },
+      {
+        id: memberIds.member5,
+        avatar: mockData.image.avatar(5),
+        name: mockData.name.fullName(8),
+      },
     ],
     due: [null, null],
     attachments: [mockData.image.feed(3)],
     comments: [],
-    completed: false
+    completed: false,
   },
   {
     id: cardIds.card5,
     name: 'Update the customer API for payments',
-    description: 'We need to make it aggresive with pricing because it’s in their interest to acquire us',
-    assignee: [{ id: memberIds.member1, avatar: mockData.image.avatar(1), name: mockData.name.fullName(9) }],
+    description:
+      'We need to make it aggresive with pricing because it’s in their interest to acquire us',
+    assignee: [
+      {
+        id: memberIds.member1,
+        avatar: mockData.image.avatar(1),
+        name: mockData.name.fullName(9),
+      },
+    ],
     due: [null, null],
     attachments: [],
     comments: [],
-    completed: true
+    completed: true,
   },
   {
     id: cardIds.card6,
     name: 'Release minimals DS',
     description: 'Production',
-    assignee: [{ id: memberIds.member1, avatar: mockData.image.avatar(1), name: mockData.name.fullName(10) }],
+    assignee: [
+      {
+        id: memberIds.member1,
+        avatar: mockData.image.avatar(1),
+        name: mockData.name.fullName(10),
+      },
+    ],
     due: [null, null],
     attachments: [],
     comments: [],
-    completed: true
-  }
+    completed: true,
+  },
 ];
 
 const columnList = [
   {
     id: columnIds.column1,
     name: 'Backlog',
-    cardIds: [cardIds.card1, cardIds.card2, cardIds.card3]
+    cardIds: [cardIds.card1, cardIds.card2, cardIds.card3],
   },
   {
     id: columnIds.column2,
     name: 'Progress',
-    cardIds: [cardIds.card4, cardIds.card5]
+    cardIds: [cardIds.card4, cardIds.card5],
   },
   {
     id: columnIds.column3,
     name: 'Q&A',
-    cardIds: []
+    cardIds: [],
   },
   {
     id: columnIds.column4,
     name: 'Production',
-    cardIds: [cardIds.card6]
-  }
+    cardIds: [cardIds.card6],
+  },
 ];
 
 const board = {
   cards: cardList,
   columns: columnList,
-  columnOrder: [columnIds.column1, columnIds.column2, columnIds.column3, columnIds.column4]
+  columnOrder: [
+    columnIds.column1,
+    columnIds.column2,
+    columnIds.column3,
+    columnIds.column4,
+  ],
 };
 
 // ----------------------------------------------------------------------
@@ -163,7 +220,7 @@ mock.onPost('/api/kanban/columns/new').reply((request) => {
     const column = {
       id: uuidv4(),
       name,
-      cardIds: []
+      cardIds: [],
     };
     board.columns.push(column);
     board.columnOrder.push(column.id);
@@ -179,11 +236,13 @@ mock.onPost('/api/kanban/columns/new').reply((request) => {
 mock.onPost('/api/kanban/columns/update').reply((request) => {
   try {
     const { columnId, updateColumn } = JSON.parse(request.data);
-    const columnIndex = board.columns.findIndex((column) => column.id === columnId);
+    const columnIndex = board.columns.findIndex(
+      (column) => column.id === columnId
+    );
 
     board.columns[columnIndex] = {
       ...board.columns[columnIndex],
-      ...updateColumn
+      ...updateColumn,
     };
 
     return [200, { column: board.columns[columnIndex] }];
@@ -202,7 +261,9 @@ mock.onPost('/api/kanban/columns/delete').reply((request) => {
     const column = board.columns.find((c) => c.id === columnId);
 
     if (column) {
-      board.cards = board.cards.filter((card) => !column.cardIds.includes(card.id));
+      board.cards = board.cards.filter(
+        (card) => !column.cardIds.includes(card.id)
+      );
     }
 
     board.columns = board.columns.filter((id) => id !== columnId);

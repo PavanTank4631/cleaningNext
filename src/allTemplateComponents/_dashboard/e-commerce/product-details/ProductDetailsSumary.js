@@ -29,7 +29,7 @@ import {
 import { useDispatch, useSelector } from '../../../../___redux/store';
 import { addCart, onGotoStep } from '../../../../___redux/slices/product';
 // routes
-import { PATH_DASHBOARD } from '../../../../routes/paths';
+import { PATH_DASHBOARD } from '../../../../otherComponents/routes/paths';
 // utils
 import { fShortenNumber, fCurrency } from '../../../../utils/formatNumber';
 //

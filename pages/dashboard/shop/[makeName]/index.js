@@ -17,7 +17,7 @@ import {
   useStore,
   useState as useStateRedux,
 } from 'react-redux';
-import { PATH_DASHBOARD } from 'src/routes/paths';
+import { PATH_DASHBOARD } from 'src/otherComponents/routes/paths';
 import {
   getProductMakeGraphQl,
   filterProducts,
@@ -25,25 +25,25 @@ import {
 import { useRouter } from 'next/router';
 // routesuseStore().getState()
 // utils
-import fakeRequest from 'src/utils/fakeRequest';
+import fakeRequest from 'src/otherComponents/utils/fakeRequest';
 // hooks
-import useSettings from 'src/hooks/useSettings';
+import useSettings from 'src/otherComponents/hooks/useSettings';
 // components
-// import Page from 'src/minimalComponents/Page';
-import Page from 'src/minimalComponents/Page';
-import HeaderBreadcrumbs from 'src/minimalComponents/HeaderBreadcrumbs';
+// import Page from 'src/allTemplateComponents/Page';
+import Page from 'src/allTemplateComponents/Page';
+import HeaderBreadcrumbs from 'src/allTemplateComponents/HeaderBreadcrumbs';
 import {
   ShopTagFiltered,
   ShopProductSort,
   ShopProductList,
   ShopFilterSidebar,
-} from 'src/minimalComponents/_dashboard/e-commerce/shop';
-import CarMakeShopProductList from 'src/minimalComponents/_dashboard/e-commerce/shop/_carMake_ShopProductList';
-import CartWidget from 'src/minimalComponents/_dashboard/e-commerce/CartWidget';
-import DashboardLayout from 'src/layouts/dashboard';
-import AuthLayout from 'src/layouts/AuthLayout';
-import GuestGuard from 'src/guards/GuestGuard';
-import AuthGuard from 'src/guards/AuthGuard';
+} from 'src/allTemplateComponents/_dashboard/e-commerce/shop';
+import CarMakeShopProductList from 'src/allTemplateComponents/_dashboard/e-commerce/shop/_carMake_ShopProductList';
+import CartWidget from 'src/allTemplateComponents/_dashboard/e-commerce/CartWidget';
+import DashboardLayout from 'src/otherComponents/layouts/dashboard';
+import AuthLayout from 'src/otherComponents/layouts/AuthLayout';
+import GuestGuard from 'src/otherComponents/guards/GuestGuard';
+import AuthGuard from 'src/otherComponents/guards/AuthGuard';
 import { wrapperStore } from 'src/___redux/store.js';
 
 //* All data here comes from src/___redux/slices/product.js lines 220+ where the getProducts function is being exported!

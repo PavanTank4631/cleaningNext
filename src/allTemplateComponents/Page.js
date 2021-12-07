@@ -6,7 +6,7 @@ import { forwardRef, useEffect, useCallback } from 'react';
 // material
 import { Box } from '@mui/material';
 // utils
-import track from '../utils/analytics';
+import track from 'src/otherComponents/utils/analytics';
 
 // ----------------------------------------------------------------------
 
@@ -14,12 +14,15 @@ const Page = forwardRef(({ children, title = '', ...other }, ref) => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log('🚀  From src/minimalComponents/Page.js where router', router);
+    console.log(
+      '🚀  From src/allTemplateComponents/Page.js where router',
+      router
+    );
   }, [router]);
 
   useEffect(() => {
     console.log(
-      '🚀  From src/minimalComponents/Page.js where router.asPath is as follows:',
+      '🚀  From src/allTemplateComponents/Page.js where router.asPath is as follows:',
       router.asPath
     );
   }, [router.asPath]);

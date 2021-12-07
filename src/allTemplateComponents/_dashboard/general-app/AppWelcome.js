@@ -3,7 +3,7 @@ import { Link as RouterLink } from 'next';
 // material
 import { styled } from '@mui/material/styles';
 import { Typography, Button, Card, CardContent } from '@mui/material';
-import { SeoIllustration } from '../../../assets';
+import { SeoIllustration } from '../../../otherComponents/assets';
 
 // ----------------------------------------------------------------------
 

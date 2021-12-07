@@ -20,10 +20,10 @@ import {
   onToggleFollow,
 } from 'src/___redux/slices/user';
 // routes
-import { PATH_DASHBOARD } from 'src/routes/paths';
+import { PATH_DASHBOARD } from 'src/otherComponents/routes/paths';
 // hooks
-import useAuth from 'src/hooks/useAuth';
-import useSettings from 'src/hooks/useSettings';
+import useAuth from 'src/otherComponents/hooks/useAuth';
+import useSettings from 'src/otherComponents/hooks/useSettings';
 // components
 import Page from 'src/allTemplateComponents/Page';
 import HeaderBreadcrumbs from 'src/allTemplateComponents/HeaderBreadcrumbs';

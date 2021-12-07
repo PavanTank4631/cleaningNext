@@ -1,7 +1,7 @@
 import { map, filter } from 'lodash';
 import { createSlice } from '@reduxjs/toolkit';
 // utils
-import axios from '../../utils/axios';
+import axios from 'src/otherComponents/utils/axios';
 
 // ----------------------------------------------------------------------
 

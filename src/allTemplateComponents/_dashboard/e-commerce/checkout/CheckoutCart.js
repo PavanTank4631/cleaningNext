@@ -15,7 +15,7 @@ import {
   decreaseQuantity,
 } from '../../../../___redux/slices/product';
 // routes
-import { PATH_DASHBOARD } from '../../../../routes/paths';
+import { PATH_DASHBOARD } from '../../../../otherComponents/routes/paths';
 //
 import Scrollbar from '../../../Scrollbar';
 import EmptyContent from '../../../EmptyContent';

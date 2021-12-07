@@ -7,7 +7,7 @@ import roundClearAll from '@iconify/icons-ic/round-clear-all';
 import { useTheme, styled } from '@mui/material/styles';
 import { Chip, Typography, Stack, Button } from '@mui/material';
 // utils
-import getColorName from '../../../../utils/getColorName';
+import getColorName from 'src/otherComponents/utils/getColorName';
 
 // ----------------------------------------------------------------------
 
@@ -15,7 +15,7 @@ const RootStyle = styled('div')({
   flexGrow: 1,
   display: 'flex',
   flexWrap: 'wrap',
-  alignItems: 'center'
+  alignItems: 'center',
 });
 
 const WrapperStyle = styled('div')(({ theme }) => ({
@@ -24,16 +24,18 @@ const WrapperStyle = styled('div')(({ theme }) => ({
   alignItems: 'stretch',
   margin: theme.spacing(0.5),
   borderRadius: theme.shape.borderRadius,
-  border: `solid 1px ${theme.palette.divider}`
+  border: `solid 1px ${theme.palette.divider}`,
 }));
 
-const LabelStyle = styled((props) => <Typography component="span" variant="subtitle2" {...props} />)(({ theme }) => ({
+const LabelStyle = styled((props) => (
+  <Typography component="span" variant="subtitle2" {...props} />
+))(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   padding: theme.spacing(0, 1),
   color: theme.palette.text.secondary,
   backgroundColor: theme.palette.background.neutral,
-  borderRight: `solid 1px ${theme.palette.divider}`
+  borderRight: `solid 1px ${theme.palette.divider}`,
 }));
 
 // ----------------------------------------------------------------------
@@ -53,10 +55,16 @@ ShopTagFiltered.propTypes = {
   filters: PropTypes.object,
   isShowReset: PropTypes.bool,
   isDefault: PropTypes.bool,
-  onResetFilter: PropTypes.func
+  onResetFilter: PropTypes.func,
 };
 
-export default function ShopTagFiltered({ formik, filters, isShowReset, isDefault, onResetFilter }) {
+export default function ShopTagFiltered({
+  formik,
+  filters,
+  isShowReset,
+  isDefault,
+  onResetFilter,
+}) {
   const theme = useTheme();
   const { values, handleSubmit, setFieldValue, initialValues } = formik;
   const { gender, category, colors, priceRange, rating } = filters;
@@ -112,7 +120,12 @@ export default function ShopTagFiltered({ formik, filters, isShowReset, isDefaul
         <WrapperStyle>
           <LabelStyle>Category:</LabelStyle>
           <Stack direction="row" flexWrap="wrap" sx={{ p: 0.75 }}>
-            <Chip size="small" label={category} onDelete={handleRemoveCategory} sx={{ m: 0.5 }} />
+            <Chip
+              size="small"
+              label={category}
+              onDelete={handleRemoveCategory}
+              sx={{ m: 0.5 }}
+            />
           </Stack>
         </WrapperStyle>
       )}
@@ -134,9 +147,9 @@ export default function ShopTagFiltered({ formik, filters, isShowReset, isDefaul
                   ...((color === '#FFFFFF' || color === '#000000') && {
                     border: `solid 1px ${theme.palette.grey[500_32]}`,
                     '& .MuiChip-deleteIcon': {
-                      color: 'text.disabled'
-                    }
-                  })
+                      color: 'text.disabled',
+                    },
+                  }),
                 }}
               />
             ))}
@@ -148,7 +161,12 @@ export default function ShopTagFiltered({ formik, filters, isShowReset, isDefaul
         <WrapperStyle>
           <LabelStyle>Price:</LabelStyle>
           <Stack direction="row" flexWrap="wrap" sx={{ p: 0.75 }}>
-            <Chip size="small" label={labelPriceRange(priceRange)} onDelete={handleRemovePrice} sx={{ m: 0.5 }} />
+            <Chip
+              size="small"
+              label={labelPriceRange(priceRange)}
+              onDelete={handleRemovePrice}
+              sx={{ m: 0.5 }}
+            />
           </Stack>
         </WrapperStyle>
       )}
@@ -157,7 +175,12 @@ export default function ShopTagFiltered({ formik, filters, isShowReset, isDefaul
         <WrapperStyle>
           <LabelStyle>Rating:</LabelStyle>
           <Stack direction="row" flexWrap="wrap" sx={{ p: 0.75 }}>
-            <Chip size="small" label={sentenceCase(rating)} onDelete={handleRemoveRating} sx={{ m: 0.5 }} />
+            <Chip
+              size="small"
+              label={sentenceCase(rating)}
+              onDelete={handleRemoveRating}
+              sx={{ m: 0.5 }}
+            />
           </Stack>
         </WrapperStyle>
       )}

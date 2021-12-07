@@ -1,7 +1,7 @@
 import { sample } from 'lodash';
 // utils
+import mockData from 'src/otherComponents/utils/mock-data';
 import mock from './mock';
-import mockData from '../utils/mock-data';
 
 // ----------------------------------------------------------------------
 
@@ -27,7 +27,7 @@ const createAttachment = (index) => {
       'https://mail.google.com/mail/u/file1.docx',
       'https://mail.google.com/mail/u/file2.xlsx',
       'https://mail.google.com/mail/u/file3.pptx',
-      'https://mail.google.com/mail/u/file7.sketch'
+      'https://mail.google.com/mail/u/file7.sketch',
     ];
   }
   if (index === 5) {
@@ -41,7 +41,7 @@ const createAttachment = (index) => {
       'https://mail.google.com/mail/u/file4.pdf',
       'https://mail.google.com/mail/u/file5.psd',
       'https://mail.google.com/mail/u/file6.esp',
-      'https://mail.google.com/mail/u/file7.sketch'
+      'https://mail.google.com/mail/u/file7.sketch',
     ];
   }
   return [];
@@ -65,22 +65,22 @@ const labels = [
     type: 'custom',
     name: 'social',
     unreadCount: 0,
-    color: '#00AB55'
+    color: '#00AB55',
   },
   {
     id: 'id_promotions',
     type: 'custom',
     name: 'promotions',
     unreadCount: 2,
-    color: '#1890FF'
+    color: '#1890FF',
   },
   {
     id: 'id_forums',
     type: 'custom',
     name: 'forums',
     unreadCount: 1,
-    color: '#FFC107'
-  }
+    color: '#FFC107',
+  },
 ];
 
 const mails = [...Array(9)].map((_, index) => ({
@@ -98,15 +98,17 @@ const mails = [...Array(9)].map((_, index) => ({
     name: mockData.name.fullName(index),
     email: mockData.email(index),
     avatar:
-      index === 1 || index === 2 || index === 5 || index === 6 || index === 8 ? null : mockData.image.avatar(index)
+      index === 1 || index === 2 || index === 5 || index === 6 || index === 8
+        ? null
+        : mockData.image.avatar(index),
   },
   to: [
     {
       name: 'Jaydon Frankie',
       email: 'demo@minimals.cc',
-      avatar: null
-    }
-  ]
+      avatar: null,
+    },
+  ],
 }));
 
 // ----------------------------------------------------------------------
@@ -133,7 +135,11 @@ const filterMails = (mails, labels, systemLabel, customLabel) => {
     }
   }
 
-  if (['inbox', 'sent', 'drafts', 'trash', 'spam', 'starred'].includes(systemLabel)) {
+  if (
+    ['inbox', 'sent', 'drafts', 'trash', 'spam', 'starred'].includes(
+      systemLabel
+    )
+  ) {
     return mails.filter((mail) => mail.folder === systemLabel);
   }
 

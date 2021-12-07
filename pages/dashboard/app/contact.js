@@ -1,10 +1,10 @@
 import { Container, Typography } from '@mui/material';
 // layouts
-import DashboardLayout from 'src/layouts/dashboard';
+import DashboardLayout from 'src/otherComponents/layouts/dashboard';
 // hooks
-import useSettings from 'src/hooks/useSettings';
+import useSettings from 'src/otherComponents/hooks/useSettings';
 // components
-import Page from 'src/components/Page';
+import Page from 'src/otherComponents/components/Page';
 
 // ----------------------------------------------------------------------
 

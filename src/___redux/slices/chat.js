@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 // utils
-import axios from '../../utils/axios';
+import axios from 'src/otherComponents/utils/axios';
 
 // ----------------------------------------------------------------------
 
@@ -18,7 +18,7 @@ const initialState = {
   conversations: { byId: {}, allIds: [] },
   activeConversationId: null,
   participants: [],
-  recipients: []
+  recipients: [],
 };
 
 const slice = createSlice({
@@ -70,7 +70,15 @@ const slice = createSlice({
     // ON SEND MESSAGE
     onSendMessage(state, action) {
       const conversation = action.payload;
-      const { conversationId, messageId, message, contentType, attachments, createdAt, senderId } = conversation;
+      const {
+        conversationId,
+        messageId,
+        message,
+        contentType,
+        attachments,
+        createdAt,
+        senderId,
+      } = conversation;
 
       const newMessage = {
         id: messageId,
@@ -78,7 +86,7 @@ const slice = createSlice({
         contentType,
         attachments,
         createdAt,
-        senderId
+        senderId,
       };
 
       state.conversations.byId[conversationId].messages.push(newMessage);
@@ -106,15 +114,16 @@ const slice = createSlice({
     addRecipients(state, action) {
       const recipients = action.payload;
       state.recipients = recipients;
-    }
-  }
+    },
+  },
 });
 
 // Reducer
 export default slice.reducer;
 
 // Actions
-export const { addRecipients, onSendMessage, resetActiveConversation } = slice.actions;
+export const { addRecipients, onSendMessage, resetActiveConversation } =
+  slice.actions;
 
 // ----------------------------------------------------------------------
 
@@ -137,7 +146,9 @@ export function getConversations() {
     dispatch(slice.actions.startLoading());
     try {
       const response = await axios.get('/api/chat/conversations');
-      dispatch(slice.actions.getConversationsSuccess(response.data.conversations));
+      dispatch(
+        slice.actions.getConversationsSuccess(response.data.conversations)
+      );
     } catch (error) {
       dispatch(slice.actions.hasError(error));
     }
@@ -151,9 +162,11 @@ export function getConversation(conversationKey) {
     dispatch(slice.actions.startLoading());
     try {
       const response = await axios.get('/api/chat/conversation', {
-        params: { conversationKey }
+        params: { conversationKey },
       });
-      dispatch(slice.actions.getConversationSuccess(response.data.conversation));
+      dispatch(
+        slice.actions.getConversationSuccess(response.data.conversation)
+      );
     } catch (error) {
       dispatch(slice.actions.hasError(error));
     }
@@ -167,7 +180,7 @@ export function markConversationAsRead(conversationId) {
     dispatch(slice.actions.startLoading());
     try {
       await axios.get('/api/chat/conversation/mark-as-seen', {
-        params: { conversationId }
+        params: { conversationId },
       });
       dispatch(slice.actions.markConversationAsReadSuccess({ conversationId }));
     } catch (error) {
@@ -183,9 +196,11 @@ export function getParticipants(conversationKey) {
     dispatch(slice.actions.startLoading());
     try {
       const response = await axios.get('/api/chat/participants', {
-        params: { conversationKey }
+        params: { conversationKey },
       });
-      dispatch(slice.actions.getParticipantsSuccess(response.data.participants));
+      dispatch(
+        slice.actions.getParticipantsSuccess(response.data.participants)
+      );
     } catch (error) {
       dispatch(slice.actions.hasError(error));
     }

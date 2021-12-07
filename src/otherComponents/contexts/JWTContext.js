@@ -1,15 +1,15 @@
 import { createContext, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 // utils
-import axios from '../utils/axios';
-import { isValidToken, setSession } from '../utils/jwt';
+import axios from 'src/otherComponents/utils/axios';
+import { isValidToken, setSession } from 'src/otherComponents/utils/jwt';
 
 // ----------------------------------------------------------------------
 
 const initialState = {
   isAuthenticated: false,
   isInitialized: false,
-  user: null
+  user: null,
 };
 
 const handlers = {
@@ -19,7 +19,7 @@ const handlers = {
       ...state,
       isAuthenticated,
       isInitialized: true,
-      user
+      user,
     };
   },
   LOGIN: (state, action) => {
@@ -28,13 +28,13 @@ const handlers = {
     return {
       ...state,
       isAuthenticated: true,
-      user
+      user,
     };
   },
   LOGOUT: (state) => ({
     ...state,
     isAuthenticated: false,
-    user: null
+    user: null,
   }),
   REGISTER: (state, action) => {
     const { user } = action.payload;
@@ -42,23 +42,24 @@ const handlers = {
     return {
       ...state,
       isAuthenticated: true,
-      user
+      user,
     };
-  }
+  },
 };
 
-const reducer = (state, action) => (handlers[action.type] ? handlers[action.type](state, action) : state);
+const reducer = (state, action) =>
+  handlers[action.type] ? handlers[action.type](state, action) : state;
 
 const AuthContext = createContext({
   ...initialState,
   method: 'jwt',
   login: () => Promise.resolve(),
   logout: () => Promise.resolve(),
-  register: () => Promise.resolve()
+  register: () => Promise.resolve(),
 });
 
 AuthProvider.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 function AuthProvider({ children }) {
@@ -79,16 +80,16 @@ function AuthProvider({ children }) {
             type: 'INITIALIZE',
             payload: {
               isAuthenticated: true,
-              user
-            }
+              user,
+            },
           });
         } else {
           dispatch({
             type: 'INITIALIZE',
             payload: {
               isAuthenticated: false,
-              user: null
-            }
+              user: null,
+            },
           });
         }
       } catch (err) {
@@ -97,8 +98,8 @@ function AuthProvider({ children }) {
           type: 'INITIALIZE',
           payload: {
             isAuthenticated: false,
-            user: null
-          }
+            user: null,
+          },
         });
       }
     };
@@ -109,7 +110,7 @@ function AuthProvider({ children }) {
   const login = async (email, password) => {
     const response = await axios.post('/api/account/login', {
       email,
-      password
+      password,
     });
     const { accessToken, user } = response.data;
 
@@ -117,8 +118,8 @@ function AuthProvider({ children }) {
     dispatch({
       type: 'LOGIN',
       payload: {
-        user
-      }
+        user,
+      },
     });
   };
 
@@ -127,7 +128,7 @@ function AuthProvider({ children }) {
       email,
       password,
       firstName,
-      lastName
+      lastName,
     });
     const { accessToken, user } = response.data;
 
@@ -135,8 +136,8 @@ function AuthProvider({ children }) {
     dispatch({
       type: 'REGISTER',
       payload: {
-        user
-      }
+        user,
+      },
     });
   };
 
@@ -158,7 +159,7 @@ function AuthProvider({ children }) {
         logout,
         register,
         resetPassword,
-        updateProfile
+        updateProfile,
       }}
     >
       {children}

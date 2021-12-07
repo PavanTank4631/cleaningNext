@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // hooks
 import useAuth from '../hooks/useAuth';
 // routes
-import { PATH_DASHBOARD } from '../routes/paths';
+import { PATH_DASHBOARD } from '../otherComponents/routes/paths';
 
 // ----------------------------------------------------------------------
 

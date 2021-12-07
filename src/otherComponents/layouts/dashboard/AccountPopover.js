@@ -23,11 +23,11 @@ import {
   Typography,
 } from '@mui/material';
 // components
-import { PATH_DASHBOARD } from 'src/routes/paths';
-import MenuPopover from 'src/components/MenuPopover';
-import { MIconButton } from 'src/components/@material-extend';
-import useAuth from 'src/hooks/useAuth';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
+import { PATH_DASHBOARD } from 'src/otherComponents/routes/paths';
+import MenuPopover from 'src/otherComponents/components/MenuPopover';
+import { MIconButton } from 'src/otherComponents/components/@material-extend';
+import useAuth from 'src/otherComponents/hooks/useAuth';
+import useIsMountedRef from 'src/otherComponents/hooks/useIsMountedRef';
 import MyAvatar from 'src/allTemplateComponents/MyAvatar';
 // ----------------------------------------------------------------------
 

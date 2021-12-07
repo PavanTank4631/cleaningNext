@@ -30,7 +30,7 @@ import {
 // utils
 import fakeRequest from '../../../utils/fakeRequest';
 // routes
-import { PATH_DASHBOARD } from '../../../routes/paths';
+import { PATH_DASHBOARD } from '../../../otherComponents/routes/paths';
 //
 import { QuillEditor } from '../../editor';
 import { UploadMultiFile } from '../../upload';

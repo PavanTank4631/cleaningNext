@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { omit } from 'lodash';
 // utils
-import axios from '../../utils/axios';
+import axios from 'src/otherComponents/utils/axios';
 
 // ----------------------------------------------------------------------
 
@@ -18,8 +18,8 @@ const initialState = {
   board: {
     cards: {},
     columns: {},
-    columnOrder: []
-  }
+    columnOrder: [],
+  },
 };
 
 const slice = createSlice({
@@ -47,7 +47,7 @@ const slice = createSlice({
       state.board = {
         cards,
         columns,
-        columnOrder
+        columnOrder,
       };
     },
 
@@ -57,7 +57,7 @@ const slice = createSlice({
       state.isLoading = false;
       state.board.columns = {
         ...state.board.columns,
-        [newColumn.id]: newColumn
+        [newColumn.id]: newColumn,
       };
       state.board.columnOrder.push(newColumn.id);
     },
@@ -81,7 +81,9 @@ const slice = createSlice({
     deleteTask(state, action) {
       const { cardId, columnId } = action.payload;
 
-      state.board.columns[columnId].cardIds = state.board.columns[columnId].cardIds.filter((id) => id !== cardId);
+      state.board.columns[columnId].cardIds = state.board.columns[
+        columnId
+      ].cardIds.filter((id) => id !== cardId);
       state.board.cards = omit(state.board.cards, [cardId]);
     },
 
@@ -101,9 +103,11 @@ const slice = createSlice({
       state.isLoading = false;
       state.board.columns = omit(state.board.columns, [columnId]);
       state.board.cards = omit(state.board.cards, [...deletedColumn.cardIds]);
-      state.board.columnOrder = state.board.columnOrder.filter((c) => c !== columnId);
-    }
-  }
+      state.board.columnOrder = state.board.columnOrder.filter(
+        (c) => c !== columnId
+      );
+    },
+  },
 });
 
 // Reducer
@@ -147,7 +151,7 @@ export function updateColumn(columnId, updateColumn) {
     try {
       const response = await axios.post('/api/kanban/columns/update', {
         columnId,
-        updateColumn
+        updateColumn,
       });
       dispatch(slice.actions.updateColumnSuccess(response.data.column));
     } catch (error) {

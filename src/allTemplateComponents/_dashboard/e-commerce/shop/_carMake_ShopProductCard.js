@@ -7,7 +7,7 @@ import { Link as RouterLink } from 'next';
 import { Box, Card, Link, Typography, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
 // routes
-import { PATH_DASHBOARD } from '../../../../routes/paths';
+import { PATH_DASHBOARD } from '../../../../otherComponents/routes/paths';
 // utils
 import { fCurrency } from '../../../../utils/formatNumber';
 //

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 // hooks
-import useAuth from 'src/hooks/useAuth';
+import useAuth from 'src/otherComponents/hooks/useAuth';
 // pages
 import Login from 'src/allTemplateComponents/authentication/login/LoginForm';
 

@@ -2,9 +2,9 @@ import { random } from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
 import { paramCase } from 'change-case';
 // utils
+import mockData from 'src/otherComponents/utils/mock-data';
 import mock from './mock';
 // utils
-import mockData from '../utils/mock-data';
 
 // ----------------------------------------------------------------------
 

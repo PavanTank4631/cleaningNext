@@ -6,9 +6,9 @@ import { Link as RouterLink } from 'next/link';
 import { Box, Card, Link, Typography, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
 // routes
-import { PATH_DASHBOARD } from '../../../../routes/paths';
+import { PATH_DASHBOARD } from 'src/otherComponents/routes/paths';
 // utils
-import { fCurrency } from '../../../../utils/formatNumber';
+import { fCurrency } from 'src/otherComponents/utils/formatNumber';
 //
 import Label from '../../../Label';
 // import ColorPreview from '../../../ColorPreview';
@@ -30,25 +30,48 @@ ShopProductCard.propTypes = {
 };
 
 export default function ShopProductCard({ product }) {
-  const { id, name, cover, price, colors, status, priceSale, images } = product;
+  const {
+    id,
+    name,
+    cover,
+    price,
+    colors,
+    status,
+    priceSale,
+    images,
+    car_make_name,
+  } = product;
+
   console.log(
-    '🚀 ~ file: ShopProductCard.js ~ line 34 ~ ShopProductCard ~ images[0]',
-    images[0]
-  );
-  console.log(
-    '🚀 🎠🎠🎠🎠🎠🎠🎠🎠🎠🎠🎠🎠   ~ file: ShopProductCard.js ~ line 34 ~ ShopProductCard ~ product',
+    '🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄 This is from ShopProductCard.js, it is the product which is passed in from props and destructured, view at https://bit.ly/next12_18',
     product
   );
-  // const linkTo = `${PATH_DASHBOARD.shop.root}/product/${paramCase(name)}`;
-  const linkTo = `/dashboard/shop/${id}`;
+  // console.log(
+  //   '🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄 ShopProductCard.js this is the make name: ',
+  //   product.product.name
+  // );
   console.log(
-    '🚀 🎠🎠🎠🎠🎠🎠🎠🎠🎠🎠🎠🎠   ~ file: ShopProductCard.js ~ line 34 ~ ShopProductCard ~ product.product.name',
-    product.product.name
+    '🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄 ShopProductCard.js this is the make name: ',
+    product.car_make_name
   );
+  // const makeName = product.product.name
+  const makeName = car_make_name;
+  const makeNameParamCase = paramCase(makeName);
+  // const makeNameParamCase = makeName;
+  // const linkTo = `/dashboard/shop/${id}`;
+  const linkTo = `/dashboard/shop/${makeNameParamCase}/${id}`;
+  const linkToMakeName = `/dashboard/shop/${makeNameParamCase}`;
+
+  const stringPrice = product.car_price;
+  console.log('This is the stringPrice: ', stringPrice);
+  const intPrice = parseInt(stringPrice);
+  console.log('This is the intPrice: ', intPrice);
+  console.log('This is the price: ', price);
+  console.log('This is the product.image_url : ', product.image_url);
   return (
     <Card>
       <Box sx={{ pt: '100%', position: 'relative' }}>
-        {product.product.category.name && (
+        {product.car_make_name && (
           <Label
             variant="filled"
             color={(status === 'sale' && 'error') || 'info'}
@@ -60,34 +83,35 @@ export default function ShopProductCard({ product }) {
               textTransform: 'uppercase',
             }}
           >
-            {product.product.category.name}
+            {product.vehicle_status}
           </Label>
         )}
-
-        <ProductImgStyle alt={name} src={images[0].url} />
+        <Link href={linkTo} color="inherit" component={RouterLink}>
+          <ProductImgStyle alt={name} src={product.image_url} />
+        </Link>
       </Box>
 
-        <Stack spacing={2} sx={{ p: 1.5 }}>
-            <Stack
+      <Stack spacing={2} sx={{ p: 1.5 }}>
+        <Stack
           direction="row"
           alignItems="center"
           justifyContent="space-between"
         >
+          <Link href={linkToMakeName} color="inherit" component={RouterLink}>
+            <Typography variant="subtitle1">
+              <Typography
+                component="span"
+                variant="body1"
+                sx={{
+                  color: 'text.disabled',
+                  textDecoration: 'line-through',
+                }}
+              />
 
-          <Typography variant="subtitle1">
-            <Typography
-              component="span"
-              variant="body1"
-              sx={{
-                color: 'text.disabled',
-                textDecoration: 'line-through',
-              }}
-            >
-
+              {/* {product.product.name} */}
+              {product.car_make_name}
             </Typography>
-
-{product.product.name}
-          </Typography>
+          </Link>
         </Stack>
         <Link href={linkTo} color="inherit" component={RouterLink}>
           <Typography variant="subtitle2" noWrap>
@@ -95,7 +119,6 @@ export default function ShopProductCard({ product }) {
           </Typography>
         </Link>
 
-  
         <Stack
           direction="row"
           alignItems="center"
@@ -114,7 +137,7 @@ export default function ShopProductCard({ product }) {
               {priceSale && fCurrency(priceSale)}
             </Typography>
             &nbsp;
-            {fCurrency(price)}
+            {fCurrency(intPrice)}
           </Typography>
         </Stack>
       </Stack>

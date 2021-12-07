@@ -2,10 +2,10 @@
 // hooks
 //* useAuth comes from Firebase
 import { useEffect } from 'react';
-import useAuth from '../hooks/useAuth';
+import createAvatar from 'src/otherComponents/utils/createAvatar';
+import useAuth from 'src/otherComponents/hooks/useAuth';
 //
 import { MAvatar } from './@material-extend';
-import createAvatar from '../utils/createAvatar';
 
 // ----------------------------------------------------------------------
 
@@ -14,7 +14,7 @@ export default function MyAvatar({ ...other }) {
 
   useEffect(() => {
     console.log(
-      ' 💾💾💾💾💾💾💾💾💾💾 This is the user from useAuth() hook within minimalComponents/MyAvatar.js : ',
+      ' 💾💾💾💾💾💾💾💾💾💾 This is the user from useAuth() hook within allTemplateComponents/MyAvatar.js : ',
       user
     );
   }, [user]);

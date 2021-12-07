@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 // utils
-import axios from '../../utils/axios';
+import axios from 'src/otherComponents/utils/axios';
 
 // ----------------------------------------------------------------------
 
@@ -12,7 +12,7 @@ const initialState = {
   recentPosts: [],
   hasMore: true,
   index: 0,
-  step: 11
+  step: 11,
 };
 
 const slice = createSlice({
@@ -61,8 +61,8 @@ const slice = createSlice({
     getRecentPostsSuccess(state, action) {
       state.isLoading = false;
       state.recentPosts = action.payload;
-    }
-  }
+    },
+  },
 });
 
 // Reducer
@@ -92,7 +92,7 @@ export function getPostsInitial(index, step) {
     dispatch(slice.actions.startLoading());
     try {
       const response = await axios.get('/api/blog/posts', {
-        params: { index, step }
+        params: { index, step },
       });
       const results = response.data.results.length;
       const { maxLength } = response.data;
@@ -115,7 +115,7 @@ export function getPost(title) {
     dispatch(slice.actions.startLoading());
     try {
       const response = await axios.get('/api/blog/post', {
-        params: { title }
+        params: { title },
       });
       dispatch(slice.actions.getPostSuccess(response.data.post));
     } catch (error) {
@@ -132,7 +132,7 @@ export function getRecentPosts(title) {
     dispatch(slice.actions.startLoading());
     try {
       const response = await axios.get('/api/blog/posts/recent', {
-        params: { title }
+        params: { title },
       });
 
       dispatch(slice.actions.getRecentPostsSuccess(response.data.recentPosts));

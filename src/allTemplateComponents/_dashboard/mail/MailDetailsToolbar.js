@@ -10,7 +10,7 @@ import arrowIosBackFill from '@iconify/icons-eva/arrow-ios-back-fill';
 import { styled } from '@mui/material/styles';
 import { Box, Link, Tooltip, Typography, IconButton } from '@mui/material';
 // routes
-import { PATH_DASHBOARD } from '../../../routes/paths';
+import { PATH_DASHBOARD } from '../../../otherComponents/routes/paths';
 // utils
 import createAvatar from '../../../utils/createAvatar';
 import { fDateTimeSuffix } from '../../../utils/formatTime';

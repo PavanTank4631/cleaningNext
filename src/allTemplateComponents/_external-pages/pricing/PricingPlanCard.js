@@ -6,7 +6,7 @@ import checkmarkFill from '@iconify/icons-eva/checkmark-fill';
 import { styled } from '@mui/material/styles';
 import { Card, Button, Typography, Box, Stack } from '@mui/material';
 // routes
-import { PATH_DASHBOARD } from '../../../routes/paths';
+import { PATH_DASHBOARD } from '../../../otherComponents/routes/paths';
 //
 import Label from '../../Label';
 

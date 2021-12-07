@@ -2,8 +2,8 @@ import { useRouter } from 'next/router';
 import React, { useState, useContext, useEffect } from 'react';
 import * as Yup from 'yup';
 import { Button, TextField, Typography, CardContent } from '@mui/material';
-import { fetchVehicleFromVin } from 'src/carfax/carfaxAPIs/VinAPI';
-import { ContextCarfax } from 'src/carfax/GlobalContextCarfax';
+import { fetchVehicleFromVin } from 'src/otherComponents/carfax/carfaxAPIs/VinAPI';
+import { ContextCarfax } from 'src/otherComponents/carfax/GlobalContextCarfax';
 import styles from '../../../styles/Home.module.css';
 
 function CarfaxForm() {

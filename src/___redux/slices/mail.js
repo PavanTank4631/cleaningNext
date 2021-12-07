@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 // utils
-import axios from '../../utils/axios';
+import axios from 'src/otherComponents/utils/axios';
 
 // ----------------------------------------------------------------------
 
@@ -15,7 +15,7 @@ const initialState = {
   isLoading: false,
   error: false,
   mails: { byId: {}, allIds: [] },
-  labels: []
+  labels: [],
 };
 
 const slice = createSlice({
@@ -56,8 +56,8 @@ const slice = createSlice({
       if (!state.mails.allIds.includes(mail.id)) {
         state.mails.allIds.push(mail.id);
       }
-    }
-  }
+    },
+  },
 });
 
 // Reducer
@@ -98,7 +98,7 @@ export function getMail(mailId) {
     dispatch(slice.actions.startLoading());
     try {
       const response = await axios.get('/api/mail/mail', {
-        params: { mailId }
+        params: { mailId },
       });
       dispatch(slice.actions.getMailSuccess(response.data.mail));
     } catch (error) {

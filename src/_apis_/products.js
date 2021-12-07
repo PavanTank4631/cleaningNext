@@ -1,8 +1,8 @@
 import { random, sample } from 'lodash';
 import { paramCase } from 'change-case';
 // utils
+import mockData from 'src/otherComponents/utils/mock-data';
 import mock from './mock';
-import mockData from '../utils/mock-data';
 
 // ----------------------------------------------------------------------
 
@@ -30,11 +30,25 @@ const PRODUCT_NAME = [
   'Nike Air Zoom SuperRep',
   'NikeCourt Royale',
   'Nike React Art3mis',
-  'Nike React Infinity Run Flyknit A.I.R. Chaz Bear'
+  'Nike React Infinity Run Flyknit A.I.R. Chaz Bear',
 ];
-const PRODUCT_COLOR = ['#00AB55', '#000000', '#FFFFFF', '#FFC0CB', '#FF4842', '#1890FF', '#94D82D', '#FFC107'];
+const PRODUCT_COLOR = [
+  '#00AB55',
+  '#000000',
+  '#FFFFFF',
+  '#FFC0CB',
+  '#FF4842',
+  '#1890FF',
+  '#94D82D',
+  '#FFC107',
+];
 
-const PRODUCT_TAGS = ['Dangal', 'The Sting', '2001: A Space Odyssey', "Singin' in the Rain"];
+const PRODUCT_TAGS = [
+  'Dangal',
+  'The Sting',
+  '2001: A Space Odyssey',
+  "Singin' in the Rain",
+];
 
 const PRODUCT_DESCRIPTION = `
 <p><strong><small> SPECIFICATION</small></strong></p>
@@ -43,7 +57,20 @@ const PRODUCT_DESCRIPTION = `
 <p><strong><small> MATERIAL AND WASHING INSTRUCTIONS</small></strong></p>
 <p>Shoeupper: 54% bovine leather,46% polyurethane. Lining: 65% polyester,35% cotton. Insole: 100% polyurethane. Sole: 100% thermoplastic. Fixing sole: 100% glued.</p>
 `;
-const PRODUCT_SIZE = ['6', '7', '8', '8.5', '9', '9.5', '10', '10.5', '11', '11.5', '12', '13'];
+const PRODUCT_SIZE = [
+  '6',
+  '7',
+  '8',
+  '8.5',
+  '9',
+  '9.5',
+  '10',
+  '10.5',
+  '11',
+  '11.5',
+  '12',
+  '13',
+];
 
 // ----------------------------------------------------------------------
 
@@ -62,7 +89,7 @@ const products = [...Array(24)].map((_, index) => ({
   ratings: [...Array(5)].map((_, index) => ({
     name: `${index + 1} Star`,
     starCount: random(9999),
-    reviewCount: random(9999)
+    reviewCount: random(9999),
   })),
   reviews: [...Array(8)].map((_, index) => ({
     id: mockData.id(index),
@@ -72,7 +99,7 @@ const products = [...Array(24)].map((_, index) => ({
     rating: mockData.number.rating(index),
     isPurchased: mockData.boolean(index),
     helpful: random(9999),
-    postedAt: mockData.time(index)
+    postedAt: mockData.time(index),
   })),
   colors:
     (index === 1 && PRODUCT_COLOR.slice(0, 2)) ||
@@ -90,7 +117,7 @@ const products = [...Array(24)].map((_, index) => ({
   sold: random(999),
   createdAt: mockData.time(index),
   category: sample(['Shose', 'Apparel', 'Accessories']),
-  gender: sample(['Men', 'Women', 'Kids'])
+  gender: sample(['Men', 'Women', 'Kids']),
 }));
 
 // ----------------------------------------------------------------------
@@ -102,7 +129,9 @@ mock.onGet('/api/products').reply(200, { products });
 mock.onGet('/api/products/product').reply((config) => {
   try {
     const { name } = config.params;
-    const product = products.find((_product) => paramCase(_product.name) === name);
+    const product = products.find(
+      (_product) => paramCase(_product.name) === name
+    );
 
     if (!product) {
       return [404, { message: 'product not found' }];

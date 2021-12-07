@@ -22,7 +22,7 @@ import {
   StepLabel,
   Typography,
 } from '@mui/material';
-import { ContextCarfax } from 'src/carfax/GlobalContextCarfax';
+import { ContextCarfax } from 'src/otherComponents/carfax/GlobalContextCarfax';
 
 const defaultComponentStep1Values = {
   exteriorColor: '',
@@ -202,7 +202,7 @@ export default function HorizontalLinearStepper() {
           <Container sx={{ mt: 4 }}>
             <Grid justifyContent="center" container spacing={5}>
               <Grid item>
-                <Card sx={{ minWidth: '400px' }}>
+                <Card sx={{ width: '400px' }}>
                   {/* Below is the vehicle you found. */}
                   <VehicleFoundComponent1 />
                   <FormHeader formtopic="I. CONDITION" />
@@ -327,7 +327,7 @@ export default function HorizontalLinearStepper() {
           <Container sx={{ mt: 4 }}>
             <Grid justifyContent="center" container spacing={5}>
               <Grid item>
-                <Card sx={{ minWidth: '400px' }}>
+                <Card sx={{ width: '400px' }}>
                   {/* Below is the vehicle you found. */}
                   <VehicleFoundComponent2 />
                   <FormHeader formtopic="III. LAST STEPS" />
@@ -476,18 +476,13 @@ export default function HorizontalLinearStepper() {
 const FormHeader = ({ formtopic }) => (
   <>
     <Paper
-      minWidth="100%"
+      width="100%"
       sx={{
         borderRadius: '0px',
         bgcolor: 'grey.50012',
       }}
     >
-      <Box
-        display="flex"
-        minWidth="100%"
-        alignItems="center"
-        flexDirection="row"
-      >
+      <Box display="flex" width="100%" alignItems="center" flexDirection="row">
         <Box sx={{ p: 1.25, backgroundColor: 'grey.300' }}>
           <Typography>
             <strong>{formtopic}</strong>
@@ -521,13 +516,13 @@ function VehicleFoundComponent1() {
           src="/static/carfax.jpg"
           sx={{
             maxWidth: '200px',
-            minWidth: '200px',
+            width: '200px',
           }}
         />
       </Container>
-      <CardHeader title="We found your car!" />
+      <CardHeader title="We found your car with your vin!" />
       <Typography sx={{ mt: 1 }} variant="h6">
-        Confirm details below to continue
+        Complete the details below to continue
       </Typography>
       <Button
         variant="contained"
@@ -563,7 +558,8 @@ function VehicleFoundComponent1() {
               display="flex"
               alignItems="flex-start"
               flexDirection="column"
-              sx={{ my: 0, ml: 2, mr: 10 }}
+              width="100%"
+              sx={{ my: 0, ml: 2, mr: 2 }}
             >
               <Typography>
                 <strong>Make:</strong> {chosenVehicle.make}
@@ -597,7 +593,7 @@ function VehicleFoundComponent2() {
           src="/static/carfax.jpg"
           sx={{
             maxWidth: '200px',
-            minWidth: '200px',
+            width: '200px',
           }}
         />
       </Container>

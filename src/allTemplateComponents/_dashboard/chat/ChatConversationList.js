@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 // material
 import { List } from '@mui/material';
 // routes
-import { PATH_DASHBOARD } from '../../../routes/paths';
+import { PATH_DASHBOARD } from '../../../otherComponents/routes/paths';
 //
 import ChatConversationItem from './ChatConversationItem';
 

@@ -19,9 +19,9 @@ import {
   getNotifications,
 } from 'src/___redux/slices/user';
 // routes
-import { PATH_DASHBOARD } from 'src/routes/paths';
+import { PATH_DASHBOARD } from 'src/otherComponents/routes/paths';
 // hooks
-import useSettings from 'src/hooks/useSettings';
+import useSettings from 'src/otherComponents/hooks/useSettings';
 // components
 import Page from 'src/allTemplateComponents/Page';
 import HeaderBreadcrumbs from 'src/allTemplateComponents/HeaderBreadcrumbs';
@@ -32,7 +32,7 @@ import {
   AccountNotifications,
   AccountChangePassword,
 } from 'src/allTemplateComponents/_dashboard/user/account';
-import DashboardLayout from 'src/layouts/dashboard';
+import DashboardLayout from 'src/otherComponents/layouts/dashboard';
 
 // ----------------------------------------------------------------------
 

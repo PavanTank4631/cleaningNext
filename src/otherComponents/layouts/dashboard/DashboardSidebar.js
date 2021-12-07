@@ -1,5 +1,5 @@
 //* Account important!
-import useAuth from 'src/hooks/useAuth';
+import useAuth from 'src/otherComponents/hooks/useAuth';
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 // next

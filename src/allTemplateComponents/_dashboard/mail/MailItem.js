@@ -22,7 +22,7 @@ import { useSelector } from '../../../___redux/store';
 import { fDate } from '../../../utils/formatTime';
 import createAvatar from '../../../utils/createAvatar';
 // routes
-import { PATH_DASHBOARD } from '../../../routes/paths';
+import { PATH_DASHBOARD } from '../../../otherComponents/routes/paths';
 //
 import { MAvatar, MHidden } from '../../@material-extend';
 import Label from '../../Label';

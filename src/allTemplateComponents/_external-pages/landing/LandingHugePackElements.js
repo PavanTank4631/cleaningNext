@@ -3,7 +3,7 @@ import { Link as RouterLink } from 'next';
 import { alpha, useTheme, styled } from '@mui/material/styles';
 import { Box, Grid, Button, Container, Typography } from '@mui/material';
 // routes
-import { PATH_PAGE } from '../../../routes/paths';
+import { PATH_PAGE } from '../../../otherComponents/routes/paths';
 //
 import { varFadeInUp, MotionInView } from '../../animate';
 

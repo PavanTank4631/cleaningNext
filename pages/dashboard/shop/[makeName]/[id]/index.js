@@ -23,23 +23,23 @@ import {
 } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { useDispatch, useSelector } from 'react-redux';
-import DashboardLayout from 'src/layouts/dashboard';
+import DashboardLayout from 'src/otherComponents/layouts/dashboard';
 import { getProduct, getProductGraphQl } from 'src/___redux/slices/product';
 // routes
-import { PATH_DASHBOARD } from 'src/routes/paths';
+import { PATH_DASHBOARD } from 'src/otherComponents/routes/paths';
 // hooks
-import useSettings from 'src/hooks/useSettings';
+import useSettings from 'src/otherComponents/hooks/useSettings';
 // components
-import Page from 'src/minimalComponents/Page';
-// import Markdown from 'src/minimalComponents/Markdown';
-import HeaderBreadcrumbs from 'src/minimalComponents/HeaderBreadcrumbs';
+import Page from 'src/allTemplateComponents/Page';
+// import Markdown from 'src/allTemplateComponents/Markdown';
+import HeaderBreadcrumbs from 'src/allTemplateComponents/HeaderBreadcrumbs';
 import {
   ProductDetailsSumary,
   ProductDetailsReview,
   ProductDetailsCarousel,
-} from 'src/minimalComponents/_dashboard/e-commerce/product-details';
+} from 'src/allTemplateComponents/_dashboard/e-commerce/product-details';
 import { wrapperStore } from 'src/___redux/store.js';
-import CartWidget from 'src/minimalComponents/_dashboard/e-commerce/CartWidget';
+import CartWidget from 'src/allTemplateComponents/_dashboard/e-commerce/CartWidget';
 
 const PRODUCT_DESCRIPTION = [
   {

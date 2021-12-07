@@ -16,7 +16,7 @@ import {
   resetActiveConversation,
 } from '../../../___redux/slices/chat';
 // routes
-import { PATH_DASHBOARD } from '../../../routes/paths';
+import { PATH_DASHBOARD } from '../../../otherComponents/routes/paths';
 //
 import ChatRoom from './ChatRoom';
 import ChatMessageList from './ChatMessageList';

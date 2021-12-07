@@ -13,11 +13,11 @@ import arrowIosForwardFill from '@iconify/icons-eva/arrow-ios-forward-fill';
 import { useTheme, styled } from '@mui/material/styles';
 import { Box, useMediaQuery, Stack, Drawer, IconButton } from '@mui/material';
 // redux
+import axios from 'src/otherComponents/utils/axios';
+import { PATH_DASHBOARD } from 'src/otherComponents/routes/paths';
 import { useSelector } from '../../../___redux/store';
 // utils
-import axios from '../../../utils/axios';
 // routes
-import { PATH_DASHBOARD } from '../../../routes/paths';
 //
 import { MIconButton, MHidden } from '../../@material-extend';
 import Scrollbar from '../../Scrollbar';

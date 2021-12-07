@@ -21,11 +21,11 @@ import {
   fetchMakes,
   fetchModels,
   fetchYears,
-} from 'src/carfax/carfaxAPIs/MakeAPI';
-import { ContextCarfax } from 'src/carfax/GlobalContextCarfax';
+} from 'src/otherComponents/carfax/carfaxAPIs/MakeAPI';
+import { ContextCarfax } from 'src/otherComponents/carfax/GlobalContextCarfax';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { MHidden } from 'src/components/@material-extend';
+import { MHidden } from 'src/otherComponents/components/@material-extend';
 import styles from '../../styles/Home.module.css';
 import MakeForm from './Make/MakeForm';
 import VINForm from './VIN/VINForm';

@@ -17,8 +17,8 @@ import {
   fetchMakes,
   fetchModels,
   fetchYears,
-} from 'src/carfax/carfaxAPIs/MakeAPI';
-import { ContextCarfax } from 'src/carfax/GlobalContextCarfax';
+} from 'src/otherComponents/carfax/carfaxAPIs/MakeAPI';
+import { ContextCarfax } from 'src/otherComponents/carfax/GlobalContextCarfax';
 import styles from '../../../styles/Home.module.css';
 
 function CarfaxForm() {

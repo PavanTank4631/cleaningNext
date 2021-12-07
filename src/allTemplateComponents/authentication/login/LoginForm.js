@@ -20,10 +20,10 @@ import {
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // routes
-import { PATH_AUTH } from '../../../routes/paths';
+import { PATH_AUTH } from 'src/otherComponents/otherComponents/routes/paths';
 // hooks
-import useAuth from '../../../hooks/useAuth';
-import useIsMountedRef from '../../../hooks/useIsMountedRef';
+import useAuth from 'src/otherComponents/hooks/useAuth';
+import useIsMountedRef from 'src/otherComponents/hooks/useIsMountedRef';
 //
 import { MIconButton } from '../../@material-extend';
 

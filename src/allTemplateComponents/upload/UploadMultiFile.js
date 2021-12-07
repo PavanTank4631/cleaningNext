@@ -24,7 +24,7 @@ import { fData } from '../../utils/formatNumber';
 //
 import { MIconButton } from '../@material-extend';
 import { varFadeInRight } from '../animate';
-import { UploadIllustration } from '../../assets';
+import { UploadIllustration } from '../../otherComponents/assets';
 
 // ----------------------------------------------------------------------
 

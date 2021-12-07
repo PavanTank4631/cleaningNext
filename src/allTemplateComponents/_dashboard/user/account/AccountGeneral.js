@@ -16,11 +16,11 @@ import {
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // hooks
-import useAuth from 'src/hooks/useAuth';
-import useIsMountedRef from 'src/hooks/useIsMountedRef';
+import useAuth from 'src/otherComponents/hooks/useAuth';
+import useIsMountedRef from 'src/otherComponents/hooks/useIsMountedRef';
 import { UploadAvatar } from 'src/allTemplateComponents/upload';
 // utils
-import { fData } from 'src/utils/formatNumber';
+import { fData } from 'src/otherComponents/utils/formatNumber';
 //
 import { countries } from 'src/allTemplateComponents/map/assets/countries';
 

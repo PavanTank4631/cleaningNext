@@ -4,7 +4,7 @@ import { Card, Typography, Box } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../utils/formatNumber';
 //
-import { BookingIllustration } from '../../../assets';
+import { BookingIllustration } from '../../../otherComponents/assets';
 
 // ----------------------------------------------------------------------
 

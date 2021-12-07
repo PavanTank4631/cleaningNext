@@ -1,12 +1,16 @@
 import PropTypes from 'prop-types';
 import { createContext, useCallback, useEffect, useReducer } from 'react';
-import { CognitoUser, CognitoUserPool, AuthenticationDetails } from 'amazon-cognito-identity-js';
+import {
+  CognitoUser,
+  CognitoUserPool,
+  AuthenticationDetails,
+} from 'amazon-cognito-identity-js';
 // utils
-import axios from '../utils/axios';
+import axios from 'src/otherComponents/utils/axios';
 // routes
-import { PATH_AUTH } from '../routes/paths';
+import { PATH_AUTH } from 'src/otherComponents/routes/paths';
 //
-import { cognitoConfig } from '../config';
+import { cognitoConfig } from 'src/otherComponents/config';
 
 // ----------------------------------------------------------------------
 
@@ -14,13 +18,13 @@ import { cognitoConfig } from '../config';
 
 export const UserPool = new CognitoUserPool({
   UserPoolId: cognitoConfig.userPoolId,
-  ClientId: cognitoConfig.clientId
+  ClientId: cognitoConfig.clientId,
 });
 
 const initialState = {
   isAuthenticated: false,
   isInitialized: false,
-  user: null
+  user: null,
 };
 
 const handlers = {
@@ -31,28 +35,29 @@ const handlers = {
       ...state,
       isAuthenticated,
       isInitialized: true,
-      user
+      user,
     };
   },
   LOGOUT: (state) => ({
     ...state,
     isAuthenticated: false,
-    user: null
-  })
+    user: null,
+  }),
 };
 
-const reducer = (state, action) => (handlers[action.type] ? handlers[action.type](state, action) : state);
+const reducer = (state, action) =>
+  handlers[action.type] ? handlers[action.type](state, action) : state;
 
 const AuthContext = createContext({
   ...initialState,
   method: 'cognito',
   login: () => Promise.resolve(),
   register: () => Promise.resolve(),
-  logout: () => Promise.resolve()
+  logout: () => Promise.resolve(),
 });
 
 AuthProvider.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 function AuthProvider({ children }) {
@@ -92,12 +97,12 @@ function AuthProvider({ children }) {
               axios.defaults.headers.common.Authorization = token;
               dispatch({
                 type: 'AUTHENTICATE',
-                payload: { isAuthenticated: true, user: attributes }
+                payload: { isAuthenticated: true, user: attributes },
               });
               resolve({
                 user,
                 session,
-                headers: { Authorization: token }
+                headers: { Authorization: token },
               });
             }
           });
@@ -106,8 +111,8 @@ function AuthProvider({ children }) {
             type: 'AUTHENTICATE',
             payload: {
               isAuthenticated: false,
-              user: null
-            }
+              user: null,
+            },
           });
         }
       }),
@@ -122,8 +127,8 @@ function AuthProvider({ children }) {
         type: 'AUTHENTICATE',
         payload: {
           isAuthenticated: false,
-          user: null
-        }
+          user: null,
+        },
       });
     }
   }, [getSession]);
@@ -140,12 +145,12 @@ function AuthProvider({ children }) {
       new Promise((resolve, reject) => {
         const user = new CognitoUser({
           Username: email,
-          Pool: UserPool
+          Pool: UserPool,
         });
 
         const authDetails = new AuthenticationDetails({
           Username: email,
-          Password: password
+          Password: password,
         });
 
         user.authenticateUser(authDetails, {
@@ -159,7 +164,7 @@ function AuthProvider({ children }) {
           newPasswordRequired: () => {
             // Handle this on login page for update password.
             resolve({ message: 'newPasswordRequired' });
-          }
+          },
         });
       }),
     [getSession]
@@ -181,7 +186,7 @@ function AuthProvider({ children }) {
         password,
         [
           { Name: 'email', Value: email },
-          { Name: 'name', Value: `${firstName} ${lastName}` }
+          { Name: 'name', Value: `${firstName} ${lastName}` },
         ],
         null,
         async (err) => {
@@ -205,12 +210,12 @@ function AuthProvider({ children }) {
         user: {
           displayName: state?.user?.name || 'Minimals',
           role: 'admin',
-          ...state.user
+          ...state.user,
         },
         login,
         register,
         logout,
-        resetPassword
+        resetPassword,
       }}
     >
       {children}

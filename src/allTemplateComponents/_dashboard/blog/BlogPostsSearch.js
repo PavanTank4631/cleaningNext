@@ -17,9 +17,9 @@ import {
   InputAdornment,
 } from '@mui/material';
 // utils
-import axios from '../../../utils/axios';
+import axios from 'src/otherComponents/utils/axios';
 // routes
-import { PATH_DASHBOARD } from '../../../routes/paths';
+import { PATH_DASHBOARD } from 'src/otherComponents/routes/paths';
 //
 import SearchNotFound from '../../SearchNotFound';
 
@@ -133,7 +133,11 @@ export default function BlogPostsSearch({ sx }) {
           const parts = parse(title, matches);
           return (
             <li {...props}>
-              <Link href={linkTo(title)} component={RouterLink} underline="none">
+              <Link
+                href={linkTo(title)}
+                component={RouterLink}
+                underline="none"
+              >
                 {parts.map((part, index) => (
                   <Typography
                     key={index}

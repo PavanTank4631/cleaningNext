@@ -3,8 +3,8 @@ import { sub } from 'date-fns';
 import { dotCase } from 'change-case';
 import { sample, isEmpty, xor } from 'lodash';
 // utils
+import mockData from 'src/otherComponents/utils/mock-data';
 import mock from './mock';
-import mockData from '../utils/mock-data';
 
 // ----------------------------------------------------------------------
 
@@ -12,7 +12,7 @@ const MY_CONTACT = {
   id: '8864c717-587d-472a-929a-8e5f298024da-0',
   avatar: '/static/mock-images/avatars/avatar_15.jpg',
   name: 'Jaydon Frankie',
-  username: 'jaydon.frankie'
+  username: 'jaydon.frankie',
 };
 
 // ----------------------------------------------------------------------
@@ -20,14 +20,15 @@ const MY_CONTACT = {
 const contacts = [...Array(20)].map((_, index) => ({
   id: mockData.id(index),
   name: mockData.name.fullName(index),
-  username: mockData.name.fullName(index) && dotCase(mockData.name.fullName(index)),
+  username:
+    mockData.name.fullName(index) && dotCase(mockData.name.fullName(index)),
   avatar: mockData.image.avatar(index),
   address: mockData.address.fullAddress(index),
   phone: mockData.phoneNumber(index),
   email: mockData.email(index),
   lastActivity: mockData.time(index),
   status: sample(['online', 'offline', 'away', 'busy']) || 'online',
-  position: mockData.role(index)
+  position: mockData.role(index),
 }));
 
 const conversations = [
@@ -43,7 +44,7 @@ const conversations = [
         contentType: 'text',
         attachments: [mockData.image.feed(1)],
         createdAt: sub(new Date(), { hours: 10 }),
-        senderId: contacts[1].id
+        senderId: contacts[1].id,
       },
       {
         id: uuidv4(),
@@ -51,7 +52,7 @@ const conversations = [
         contentType: 'text',
         attachments: [mockData.image.feed(2)],
         createdAt: sub(new Date(), { hours: 2 }),
-        senderId: MY_CONTACT.id
+        senderId: MY_CONTACT.id,
       },
       {
         id: uuidv4(),
@@ -59,7 +60,7 @@ const conversations = [
         contentType: 'text',
         attachments: ['/static/mock-images/avatars/avatar_12.mp4'],
         createdAt: sub(new Date(), { minutes: 8 }),
-        senderId: contacts[1].id
+        senderId: contacts[1].id,
       },
       {
         id: uuidv4(),
@@ -68,10 +69,10 @@ const conversations = [
         attachments: [
           'https://mail.google.com/mail/u/file1.docx',
           'https://mail.google.com/mail/u/file2.xlsx',
-          'https://mail.google.com/mail/u/file3.pptx'
+          'https://mail.google.com/mail/u/file3.pptx',
         ],
         createdAt: sub(new Date(), { minutes: 6 }),
-        senderId: MY_CONTACT.id
+        senderId: MY_CONTACT.id,
       },
       {
         id: uuidv4(),
@@ -81,10 +82,10 @@ const conversations = [
           'https://mail.google.com/mail/u/file4.pdf',
           'https://mail.google.com/mail/u/file5.psd',
           'https://mail.google.com/mail/u/file6.esp',
-          'https://mail.google.com/mail/u/file7.sketch'
+          'https://mail.google.com/mail/u/file7.sketch',
         ],
         createdAt: sub(new Date(), { minutes: 4 }),
-        senderId: contacts[1].id
+        senderId: contacts[1].id,
       },
       {
         id: uuidv4(),
@@ -92,7 +93,7 @@ const conversations = [
         contentType: 'image',
         body: mockData.image.feed(4),
         createdAt: sub(new Date(), { minutes: 2 }),
-        senderId: contacts[1].id
+        senderId: contacts[1].id,
       },
       {
         id: uuidv4(),
@@ -100,7 +101,7 @@ const conversations = [
         body: mockData.text.sentence(6),
         attachments: [],
         createdAt: sub(new Date(), { minutes: 2 }),
-        senderId: MY_CONTACT.id
+        senderId: MY_CONTACT.id,
       },
       {
         id: uuidv4(),
@@ -108,9 +109,9 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { minutes: 2 }),
-        senderId: MY_CONTACT.id
-      }
-    ]
+        senderId: MY_CONTACT.id,
+      },
+    ],
   },
   {
     id: mockData.id(2),
@@ -124,7 +125,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { hours: 8 }),
-        senderId: contacts[2].id
+        senderId: contacts[2].id,
       },
       {
         id: uuidv4(),
@@ -132,7 +133,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { hours: 6 }),
-        senderId: MY_CONTACT.id
+        senderId: MY_CONTACT.id,
       },
       {
         id: uuidv4(),
@@ -140,7 +141,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { hours: 4, minutes: 30 }),
-        senderId: contacts[2].id
+        senderId: contacts[2].id,
       },
       {
         id: uuidv4(),
@@ -148,7 +149,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { hours: 2, minutes: 15 }),
-        senderId: MY_CONTACT.id
+        senderId: MY_CONTACT.id,
       },
       {
         id: uuidv4(),
@@ -156,7 +157,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { hours: 1, minutes: 15 }),
-        senderId: contacts[2].id
+        senderId: contacts[2].id,
       },
       {
         id: uuidv4(),
@@ -164,7 +165,7 @@ const conversations = [
         attachments: [],
         contentType: 'image',
         createdAt: sub(new Date(), { hours: 1 }),
-        senderId: contacts[2].id
+        senderId: contacts[2].id,
       },
       {
         id: uuidv4(),
@@ -172,9 +173,9 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { minutes: 45 }),
-        senderId: MY_CONTACT.id
-      }
-    ]
+        senderId: MY_CONTACT.id,
+      },
+    ],
   },
   {
     id: mockData.id(3),
@@ -188,7 +189,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { hours: 8 }),
-        senderId: contacts[3].id
+        senderId: contacts[3].id,
       },
       {
         id: uuidv4(),
@@ -196,7 +197,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { hours: 6 }),
-        senderId: MY_CONTACT.id
+        senderId: MY_CONTACT.id,
       },
       {
         id: uuidv4(),
@@ -204,7 +205,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { hours: 4, minutes: 30 }),
-        senderId: contacts[3].id
+        senderId: contacts[3].id,
       },
       {
         id: uuidv4(),
@@ -212,7 +213,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { hours: 2, minutes: 15 }),
-        senderId: MY_CONTACT.id
+        senderId: MY_CONTACT.id,
       },
       {
         id: uuidv4(),
@@ -220,7 +221,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { hours: 1, minutes: 15 }),
-        senderId: contacts[3].id
+        senderId: contacts[3].id,
       },
       {
         id: uuidv4(),
@@ -228,7 +229,7 @@ const conversations = [
         contentType: 'image',
         attachments: [],
         createdAt: sub(new Date(), { hours: 1 }),
-        senderId: contacts[3].id
+        senderId: contacts[3].id,
       },
       {
         id: uuidv4(),
@@ -236,9 +237,9 @@ const conversations = [
         contentType: 'image',
         attachments: [],
         createdAt: sub(new Date(), { hours: 1 }),
-        senderId: contacts[3].id
-      }
-    ]
+        senderId: contacts[3].id,
+      },
+    ],
   },
   {
     id: mockData.id(4),
@@ -252,7 +253,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { hours: 10 }),
-        senderId: contacts[4].id
+        senderId: contacts[4].id,
       },
       {
         id: uuidv4(),
@@ -260,7 +261,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { hours: 2 }),
-        senderId: MY_CONTACT.id
+        senderId: MY_CONTACT.id,
       },
       {
         id: uuidv4(),
@@ -268,7 +269,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { minutes: 5 }),
-        senderId: contacts[4].id
+        senderId: contacts[4].id,
       },
       {
         id: uuidv4(),
@@ -276,7 +277,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { minutes: 3 }),
-        senderId: MY_CONTACT.id
+        senderId: MY_CONTACT.id,
       },
       {
         id: uuidv4(),
@@ -284,7 +285,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { minutes: 1 }),
-        senderId: MY_CONTACT.id
+        senderId: MY_CONTACT.id,
       },
       {
         id: uuidv4(),
@@ -292,9 +293,9 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { minutes: 1 }),
-        senderId: contacts[4].id
-      }
-    ]
+        senderId: contacts[4].id,
+      },
+    ],
   },
   {
     id: mockData.id(5),
@@ -308,7 +309,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { minutes: 1 }),
-        senderId: MY_CONTACT.id
+        senderId: MY_CONTACT.id,
       },
       {
         id: uuidv4(),
@@ -316,9 +317,9 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { minutes: 1 }),
-        senderId: contacts[5].id
-      }
-    ]
+        senderId: contacts[5].id,
+      },
+    ],
   },
   {
     id: mockData.id(6),
@@ -332,7 +333,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { minutes: 1 }),
-        senderId: MY_CONTACT.id
+        senderId: MY_CONTACT.id,
       },
       {
         id: uuidv4(),
@@ -340,13 +341,19 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { minutes: 1 }),
-        senderId: contacts[6].id
-      }
-    ]
+        senderId: contacts[6].id,
+      },
+    ],
   },
   {
     id: mockData.id(7),
-    participants: [MY_CONTACT, contacts[1], contacts[2], contacts[4], contacts[3]],
+    participants: [
+      MY_CONTACT,
+      contacts[1],
+      contacts[2],
+      contacts[4],
+      contacts[3],
+    ],
     type: 'GROUP',
     unreadCount: 5,
     messages: [
@@ -359,10 +366,10 @@ const conversations = [
           mockData.image.feed(2),
           mockData.image.feed(3),
           mockData.image.feed(4),
-          'https://mail.google.com/mail/u/file1.docx'
+          'https://mail.google.com/mail/u/file1.docx',
         ],
         createdAt: sub(new Date(), { days: 3, hours: 2, minutes: 30 }),
-        senderId: MY_CONTACT.id
+        senderId: MY_CONTACT.id,
       },
       {
         id: uuidv4(),
@@ -370,7 +377,7 @@ const conversations = [
         contentType: 'text',
         attachments: ['https://mail.google.com/mail/u/file2.xlsx'],
         createdAt: sub(new Date(), { days: 3, hours: 2, minutes: 29 }),
-        senderId: contacts[1].id
+        senderId: contacts[1].id,
       },
       {
         id: uuidv4(),
@@ -378,7 +385,7 @@ const conversations = [
         contentType: 'text',
         attachments: ['https://mail.google.com/mail/u/file3.psd'],
         createdAt: sub(new Date(), { days: 3, hours: 2, minutes: 28 }),
-        senderId: contacts[2].id
+        senderId: contacts[2].id,
       },
       {
         id: uuidv4(),
@@ -386,7 +393,7 @@ const conversations = [
         contentType: 'text',
         attachments: ['https://mail.google.com/mail/u/file3.pptx'],
         createdAt: sub(new Date(), { days: 3, hours: 2, minutes: 27 }),
-        senderId: contacts[4].id
+        senderId: contacts[4].id,
       },
       {
         id: uuidv4(),
@@ -394,7 +401,7 @@ const conversations = [
         contentType: 'text',
         attachments: ['https://mail.google.com/mail/u/file3.ai'],
         createdAt: sub(new Date(), { days: 3, hours: 2, minutes: 26 }),
-        senderId: MY_CONTACT.id
+        senderId: MY_CONTACT.id,
       },
       {
         id: uuidv4(),
@@ -402,9 +409,9 @@ const conversations = [
         contentType: 'text',
         attachments: ['https://mail.google.com/mail/u/file3.mp4'],
         createdAt: sub(new Date(), { days: 3 }),
-        senderId: contacts[3].id
-      }
-    ]
+        senderId: contacts[3].id,
+      },
+    ],
   },
   {
     id: mockData.id(8),
@@ -418,7 +425,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { minutes: 1 }),
-        senderId: MY_CONTACT.id
+        senderId: MY_CONTACT.id,
       },
       {
         id: uuidv4(),
@@ -426,9 +433,9 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { minutes: 1 }),
-        senderId: contacts[7].id
-      }
-    ]
+        senderId: contacts[7].id,
+      },
+    ],
   },
   {
     id: mockData.id(9),
@@ -442,7 +449,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { minutes: 1 }),
-        senderId: MY_CONTACT.id
+        senderId: MY_CONTACT.id,
       },
       {
         id: uuidv4(),
@@ -450,9 +457,9 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { minutes: 1 }),
-        senderId: contacts[8].id
-      }
-    ]
+        senderId: contacts[8].id,
+      },
+    ],
   },
   {
     id: mockData.id(10),
@@ -466,7 +473,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { minutes: 1 }),
-        senderId: MY_CONTACT.id
+        senderId: MY_CONTACT.id,
       },
       {
         id: uuidv4(),
@@ -474,13 +481,20 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { minutes: 1 }),
-        senderId: contacts[9].id
-      }
-    ]
+        senderId: contacts[9].id,
+      },
+    ],
   },
   {
     id: mockData.id(11),
-    participants: [MY_CONTACT, contacts[6], contacts[7], contacts[8], contacts[9], contacts[10]],
+    participants: [
+      MY_CONTACT,
+      contacts[6],
+      contacts[7],
+      contacts[8],
+      contacts[9],
+      contacts[10],
+    ],
     type: 'GROUP',
     unreadCount: 0,
     messages: [
@@ -490,7 +504,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { days: 3, hours: 2, minutes: 30 }),
-        senderId: MY_CONTACT.id
+        senderId: MY_CONTACT.id,
       },
       {
         id: uuidv4(),
@@ -498,7 +512,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { days: 3, hours: 2, minutes: 29 }),
-        senderId: contacts[9].id
+        senderId: contacts[9].id,
       },
       {
         id: uuidv4(),
@@ -506,7 +520,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { days: 3, hours: 2, minutes: 28 }),
-        senderId: contacts[10].id
+        senderId: contacts[10].id,
       },
       {
         id: uuidv4(),
@@ -514,7 +528,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { days: 3, hours: 2, minutes: 27 }),
-        senderId: contacts[8].id
+        senderId: contacts[8].id,
       },
       {
         id: uuidv4(),
@@ -522,7 +536,7 @@ const conversations = [
         body: mockData.text.sentence(10),
         contentType: 'text',
         createdAt: sub(new Date(), { days: 3, hours: 2, minutes: 26 }),
-        senderId: MY_CONTACT.id
+        senderId: MY_CONTACT.id,
       },
       {
         id: uuidv4(),
@@ -530,7 +544,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { days: 3 }),
-        senderId: contacts[6].id
+        senderId: contacts[6].id,
       },
       {
         id: uuidv4(),
@@ -538,9 +552,9 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { days: 3 }),
-        senderId: contacts[7].id
-      }
-    ]
+        senderId: contacts[7].id,
+      },
+    ],
   },
   {
     id: mockData.id(12),
@@ -554,7 +568,7 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { minutes: 1 }),
-        senderId: MY_CONTACT.id
+        senderId: MY_CONTACT.id,
       },
       {
         id: uuidv4(),
@@ -562,10 +576,10 @@ const conversations = [
         contentType: 'text',
         attachments: [],
         createdAt: sub(new Date(), { minutes: 1 }),
-        senderId: contacts[10].id
-      }
-    ]
-  }
+        senderId: contacts[10].id,
+      },
+    ],
+  },
 ];
 
 // ----------------------------------------------------------------------
@@ -576,7 +590,9 @@ const findContactByUsername = (username) => {
 };
 
 const findConversationById = (conversationId) => {
-  const conversation = conversations.find((_conversation) => _conversation.id === conversationId);
+  const conversation = conversations.find(
+    (_conversation) => _conversation.id === conversationId
+  );
   return conversation || null;
 };
 
@@ -585,7 +601,9 @@ const findConversationByOtherParticipantId = (participantId) => {
     if (_conversation.type !== 'ONE_TO_ONE') {
       return false;
     }
-    const participant = _conversation.participants.find((_participant) => _participant.id === participantId);
+    const participant = _conversation.participants.find(
+      (_participant) => _participant.id === participantId
+    );
     return !!participant;
   });
   return conversation || null;
@@ -618,7 +636,9 @@ mock.onGet('/api/chat/search').reply((config) => {
     let results = contacts;
     if (query) {
       const cleanQuery = query.toLowerCase().trim();
-      results = results.filter((contact) => contact.name.toLowerCase().includes(cleanQuery));
+      results = results.filter((contact) =>
+        contact.name.toLowerCase().includes(cleanQuery)
+      );
     }
     return [200, { results }];
   } catch (error) {
@@ -649,7 +669,7 @@ mock.onGet('/api/chat/participants').reply((config) => {
           email: contact.email,
           position: contact.position,
           status: contact.status,
-          lastActivity: contact.lastActivity
+          lastActivity: contact.lastActivity,
         });
       }
     }
@@ -694,7 +714,9 @@ mock.onGet('/api/chat/conversation').reply((config) => {
 mock.onGet('/api/chat/conversation/mark-as-seen').reply((config) => {
   try {
     const { conversationId } = config.params;
-    const conversation = conversations.find((_conversation) => _conversation.id === conversationId);
+    const conversation = conversations.find(
+      (_conversation) => _conversation.id === conversationId
+    );
     if (conversation) {
       conversation.unreadCount = 0;
     }
@@ -732,7 +754,7 @@ mock.onPost('/api/chat/messages/new').reply((request) => {
       body,
       contentType: 'text',
       createdAt: sub(new Date(), { minutes: 1 }),
-      senderId: user.id
+      senderId: user.id,
     };
 
     if (conversation) {
@@ -741,7 +763,9 @@ mock.onPost('/api/chat/messages/new').reply((request) => {
       const participants = [user];
 
       recipientIds.forEach((recipientId) => {
-        const contact = contacts.find((_contact) => _contact.id === recipientId);
+        const contact = contacts.find(
+          (_contact) => _contact.id === recipientId
+        );
 
         if (!contact) {
           throw new Error('Contact not found');
@@ -751,7 +775,7 @@ mock.onPost('/api/chat/messages/new').reply((request) => {
           id: contact.id,
           avatar: contact.avatar,
           name: contact.name,
-          username: contact.username
+          username: contact.username,
         });
       });
 
@@ -760,13 +784,13 @@ mock.onPost('/api/chat/messages/new').reply((request) => {
         messages: [message],
         participants,
         type: participants.length === 2 ? 'ONE_TO_ONE' : 'GROUP',
-        unreadCount: 0
+        unreadCount: 0,
       };
     }
 
     const responseData = {
       conversationId: conversation.id,
-      message
+      message,
     };
 
     return [200, responseData];

@@ -18,8 +18,8 @@ import {
 import {
   fetchVehicleFromVin,
   fetchVinFromLicensePlate,
-} from 'src/carfax/carfaxAPIs/LicensePlateAPI';
-import { ContextCarfax } from 'src/carfax/GlobalContextCarfax';
+} from 'src/otherComponents/carfax/carfaxAPIs/LicensePlateAPI';
+import { ContextCarfax } from 'src/otherComponents/carfax/GlobalContextCarfax';
 import styles from '../../../styles/Home.module.css';
 
 function CarfaxForm() {

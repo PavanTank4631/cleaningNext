@@ -1,4 +1,4 @@
-import { PATH_DASHBOARD } from "src/routes/paths";
+import { PATH_DASHBOARD } from "src/otherComponents/routes/paths";
 
 // ----------------------------------------------------------------------
 

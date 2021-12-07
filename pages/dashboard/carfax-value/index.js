@@ -2,18 +2,18 @@ import { useEffect, useState, useRef } from 'react';
 
 // material
 import { Container, Block, Paper, Stack } from '@mui/material';
-import { PATH_DASHBOARD } from 'src/routes/paths';
+import { PATH_DASHBOARD } from 'src/otherComponents/routes/paths';
 // hooks
-import useSettings from 'src/hooks/useSettings';
+import useSettings from 'src/otherComponents/hooks/useSettings';
 // components
-import Page from 'src/minimalComponents/Page';
-import HeaderBreadcrumbs from 'src/minimalComponents/HeaderBreadcrumbs';
-import DashboardLayout from 'src/layouts/dashboard';
+import Page from 'src/allTemplateComponents/Page';
+import HeaderBreadcrumbs from 'src/allTemplateComponents/HeaderBreadcrumbs';
+import DashboardLayout from 'src/otherComponents/layouts/dashboard';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import ShellForm from 'src/carfax/ShellForm';
-import MakeForm from 'src/carfax/Make/MakeForm';
-import { MHidden } from 'src/components/@material-extend';
+import ShellForm from 'src/otherComponents/carfax/ShellForm';
+import MakeForm from 'src/otherComponents/carfax/Make/MakeForm';
+import { MHidden } from 'src/otherComponents/components/@material-extend';
 
 const CarValueEstimator = () => {
   //* Below is media query
