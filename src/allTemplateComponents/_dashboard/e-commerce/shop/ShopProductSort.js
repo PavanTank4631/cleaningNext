@@ -20,6 +20,7 @@ const SORT_BY_OPTIONS = [
 function renderLabel(label) {
   if (label === 'featured') {
     return 'Featured';
+    w;
   }
   if (label === 'newest') {
     return 'Newest';

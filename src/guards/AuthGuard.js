@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 // hooks
 import useAuth from 'src/hooks/useAuth';
 // pages
-import Login from 'src/minimalComponents/authentication/login/LoginForm';
+import Login from 'src/allTemplateComponents/authentication/login/LoginForm';
 
 // ----------------------------------------------------------------------
 

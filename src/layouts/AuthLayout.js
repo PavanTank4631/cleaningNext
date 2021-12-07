@@ -4,10 +4,10 @@ import { Link as RouterLink } from 'next';
 import { styled } from '@mui/material/styles';
 import { Typography } from '@mui/material';
 // components
-import Logo from 'src/minimalComponents/Logo';
+import Logo from 'src/allTemplateComponents/Logo';
 //
 import Link from 'next/link';
-import { MHidden } from 'src/minimalComponents/@material-extend';
+import { MHidden } from 'src/allTemplateComponents/@material-extend';
 
 // ----------------------------------------------------------------------
 

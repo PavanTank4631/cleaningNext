@@ -18,7 +18,7 @@ import {
   CardActionArea,
 } from '@mui/material';
 // hooks
-import MyAvatar from 'src/minimalComponents/MyAvatar';
+import MyAvatar from 'src/allTemplateComponents/MyAvatar';
 import useCollapseDrawer from '../../hooks/useCollapseDrawer';
 // components
 import Logo from '../../components/Logo';

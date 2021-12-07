@@ -36,7 +36,7 @@ import { AuthProvider } from 'src/contexts/FirebaseContext';
 // import GoogleAnalytics from 'src/minimalComponents/GoogleAnalytics';
 import GoogleAnalytics from 'src/utils/GoogleAnalytics';
 import NotistackProvider from 'src/utils/NotistackProvider';
-import { BaseOptionChartStyle } from 'src/minimalComponents/charts/BaseOptionChart';
+import { BaseOptionChartStyle } from 'src/allTemplateComponents/charts/BaseOptionChart';
 // import {
 //   UserWrapper,
 //   FeedbackWrapper,

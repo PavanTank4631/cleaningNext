@@ -28,7 +28,7 @@ import MenuPopover from 'src/components/MenuPopover';
 import { MIconButton } from 'src/components/@material-extend';
 import useAuth from 'src/hooks/useAuth';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import MyAvatar from 'src/minimalComponents/MyAvatar';
+import MyAvatar from 'src/allTemplateComponents/MyAvatar';
 // ----------------------------------------------------------------------
 
 const MENU_OPTIONS = [

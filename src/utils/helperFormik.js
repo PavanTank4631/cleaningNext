@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { alpha, styled } from '@mui/material/styles';
 import { Typography } from '@mui/material';
 // components
-import Scrollbar from '../minimalComponents/Scrollbar';
+import Scrollbar from '../allTemplateComponents/Scrollbar';
 
 // ----------------------------------------------------------------------
 

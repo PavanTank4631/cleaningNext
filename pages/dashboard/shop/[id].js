@@ -32,15 +32,15 @@ import { PATH_DASHBOARD } from 'src/routes/paths';
 // hooks
 import useSettings from 'src/hooks/useSettings';
 // components
-import Page from 'src/minimalComponents/Page';
+import Page from 'src/allTemplateComponents/Page';
 // import Markdown from 'src/minimalComponents/Markdown';
-import HeaderBreadcrumbs from 'src/minimalComponents/HeaderBreadcrumbs';
+import HeaderBreadcrumbs from 'src/allTemplateComponents/HeaderBreadcrumbs';
 import {
   ProductDetailsSumary,
   ProductDetailsReview,
   ProductDetailsCarousel,
-} from 'src/minimalComponents/_dashboard/e-commerce/product-details';
-import CartWidget from 'src/minimalComponents/_dashboard/e-commerce/CartWidget';
+} from 'src/allTemplateComponents/_dashboard/e-commerce/product-details';
+import CartWidget from 'src/allTemplateComponents/_dashboard/e-commerce/CartWidget';
 
 const PRODUCT_DESCRIPTION = [
   {

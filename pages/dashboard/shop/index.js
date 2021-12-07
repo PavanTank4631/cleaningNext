@@ -23,14 +23,14 @@ import fakeRequest from 'src/utils/fakeRequest';
 // hooks
 import useSettings from 'src/hooks/useSettings';
 // components
-import Page from 'src/minimalComponents/Page';
-import HeaderBreadcrumbs from 'src/minimalComponents/HeaderBreadcrumbs';
+import Page from 'src/allTemplateComponents/Page';
+import HeaderBreadcrumbs from 'src/allTemplateComponents/HeaderBreadcrumbs';
 import {
   ShopTagFiltered,
   ShopProductSort,
   ShopProductList,
   ShopFilterSidebar,
-} from 'src/minimalComponents/_dashboard/e-commerce/shop';
+} from 'src/allTemplateComponents/_dashboard/e-commerce/shop';
 // import CartWidget from 'src/minimalComponents/_dashboard/e-commerce/CartWidget';
 import DashboardLayout from 'src/layouts/dashboard';
 import AuthLayout from 'src/layouts/AuthLayout';

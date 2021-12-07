@@ -3,12 +3,12 @@ import { capitalCase } from 'change-case';
 import { Link as RouterLink } from 'next';
 import { styled } from '@mui/material/styles';
 import { Box, Container, Typography, Button } from '@mui/material';
-import Page from 'src/minimalComponents/Page';
+import Page from 'src/allTemplateComponents/Page';
 import DashboardLayout from 'src/layouts/dashboard';
 import LogoOnlyLayout from 'src/layouts/LogoOnlyLayout';
 import { Icon } from '@iconify/react';
 import arrowIosBackFill from '@iconify/icons-eva/arrow-ios-back-fill';
-import { VerifyCodeForm } from 'src/minimalComponents/authentication/verify-code';
+import { VerifyCodeForm } from 'src/allTemplateComponents/authentication/verify-code';
 
 // ----------------------------------------------------------------------
 

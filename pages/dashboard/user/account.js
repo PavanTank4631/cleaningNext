@@ -23,15 +23,15 @@ import { PATH_DASHBOARD } from 'src/routes/paths';
 // hooks
 import useSettings from 'src/hooks/useSettings';
 // components
-import Page from 'src/minimalComponents/Page';
-import HeaderBreadcrumbs from 'src/minimalComponents/HeaderBreadcrumbs';
+import Page from 'src/allTemplateComponents/Page';
+import HeaderBreadcrumbs from 'src/allTemplateComponents/HeaderBreadcrumbs';
 import {
   AccountGeneral,
   AccountBilling,
   AccountSocialLinks,
   AccountNotifications,
   AccountChangePassword,
-} from 'src/minimalComponents/_dashboard/user/account';
+} from 'src/allTemplateComponents/_dashboard/user/account';
 import DashboardLayout from 'src/layouts/dashboard';
 
 // ----------------------------------------------------------------------

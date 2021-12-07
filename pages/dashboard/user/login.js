@@ -13,13 +13,13 @@ import {
   Button,
 } from '@mui/material';
 import useAuth from 'src/hooks/useAuth';
-import Page from 'src/minimalComponents/Page';
+import Page from 'src/allTemplateComponents/Page';
 import DashboardLayout from 'src/layouts/dashboard';
 import Image from 'next/image';
 import AuthLayout from 'src/layouts/AuthLayout';
-import { MHidden } from 'src/minimalComponents/@material-extend';
-import { LoginForm } from 'src/minimalComponents/authentication/login';
-import AuthFirebaseSocials from 'src/minimalComponents/authentication/AuthFirebaseSocial';
+import { MHidden } from 'src/allTemplateComponents/@material-extend';
+import { LoginForm } from 'src/allTemplateComponents/authentication/login';
+import AuthFirebaseSocials from 'src/allTemplateComponents/authentication/AuthFirebaseSocial';
 // import jwtIcon from '../../../public/static/auth/ic_jwt.png';
 // import loginIcon from '../../../public/static/illustrations/illustration_login.png';
 

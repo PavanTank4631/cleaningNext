@@ -25,15 +25,15 @@ import { PATH_DASHBOARD } from 'src/routes/paths';
 import useAuth from 'src/hooks/useAuth';
 import useSettings from 'src/hooks/useSettings';
 // components
-import Page from 'src/minimalComponents/Page';
-import HeaderBreadcrumbs from 'src/minimalComponents/HeaderBreadcrumbs';
+import Page from 'src/allTemplateComponents/Page';
+import HeaderBreadcrumbs from 'src/allTemplateComponents/HeaderBreadcrumbs';
 import {
   Profile,
   ProfileCover,
   ProfileFriends,
   ProfileGallery,
   ProfileFollowers,
-} from 'src/minimalComponents/_dashboard/user/profile';
+} from 'src/allTemplateComponents/_dashboard/user/profile';
 import DashboardLayout from '../../../src/layouts/dashboard';
 
 // ----------------------------------------------------------------------
