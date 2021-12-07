@@ -5,6 +5,7 @@ import chevronDownFill from '@iconify/icons-eva/chevron-down-fill';
 // material
 import { Menu, Button, MenuItem, Typography } from '@mui/material';
 // redux
+// import { useDispatch } from '../../../../___redux/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { sortByProducts } from '../../../../___redux/slices/product';
 
@@ -20,7 +21,6 @@ const SORT_BY_OPTIONS = [
 function renderLabel(label) {
   if (label === 'featured') {
     return 'Featured';
-    w;
   }
   if (label === 'newest') {
     return 'Newest';

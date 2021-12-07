@@ -1,9 +1,8 @@
 //* Redux
-//* This feeds in the redux store useDispatch and useSelector
+//* This feeds in the redux store useDispatch and useSelector (old way, no longer the case)
 import React from 'react';
 import { Icon } from '@iconify/react';
-import { sentenceCase } from 'change-case';
-// import { useParams } from 'react-router-dom'
+import { paramCase, sentenceCase } from 'change-case';
 import { useEffect, useState } from 'react';
 import clockFill from '@iconify/icons-eva/clock-fill';
 import client from 'src/__graphql/apolloClient_and_queries';
@@ -23,8 +22,7 @@ import {
   Typography,
 } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-
-import { useDispatch, useSelector } from 'src/___redux/store';
+import { useDispatch, useSelector } from 'react-redux';
 import DashboardLayout from 'src/layouts/dashboard';
 import { getProduct, getProductGraphQl } from 'src/___redux/slices/product';
 // routes
@@ -32,15 +30,16 @@ import { PATH_DASHBOARD } from 'src/routes/paths';
 // hooks
 import useSettings from 'src/hooks/useSettings';
 // components
-import Page from 'src/allTemplateComponents/Page';
+import Page from 'src/minimalComponents/Page';
 // import Markdown from 'src/minimalComponents/Markdown';
-import HeaderBreadcrumbs from 'src/allTemplateComponents/HeaderBreadcrumbs';
+import HeaderBreadcrumbs from 'src/minimalComponents/HeaderBreadcrumbs';
 import {
   ProductDetailsSumary,
   ProductDetailsReview,
   ProductDetailsCarousel,
-} from 'src/allTemplateComponents/_dashboard/e-commerce/product-details';
-import CartWidget from 'src/allTemplateComponents/_dashboard/e-commerce/CartWidget';
+} from 'src/minimalComponents/_dashboard/e-commerce/product-details';
+import { wrapperStore } from 'src/___redux/store.js';
+import CartWidget from 'src/minimalComponents/_dashboard/e-commerce/CartWidget';
 
 const PRODUCT_DESCRIPTION = [
   {
@@ -94,7 +93,7 @@ const SkeletonLoad = (
   </Grid>
 );
 
-export default function EcommerceProductDetails() {
+function EcommerceProductDetails(props) {
   const { themeStretch } = useSettings();
   const dispatch = useDispatch();
 
@@ -124,16 +123,9 @@ export default function EcommerceProductDetails() {
     ' 🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼  ~ file: [id].js ~ line 108 ~ EcommerceProductDetails ~ product',
     product
   );
-  // console.log(
-  //   ' 🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼  ~ file: [id].js ~ line 108 ~ EcommerceProductDetails ~ product.variant',
-  //   product.variant
-  // );
-  // console.log(
-  //   ' 🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼  ~ file: [id].js ~ line 108 ~ EcommerceProductDetails ~ product.variant.id',
-  //   product.variant.id
-  // );
-  // const thecarname = product.variant.car_name;
-  const carmake = product && product.variant && product.variant.product.name;
+
+  const carmake = product && product.variant && product.variant.car_make_name;
+  const carMakeParamCase = product && paramCase(carmake);
   console.log('From CarDetail.js page, this is checkout: ', checkout);
   return (
     <DashboardLayout>
@@ -149,7 +141,7 @@ export default function EcommerceProductDetails() {
               },
               {
                 name: carmake,
-                href: `/dashboard/shop/category/${carmake}`,
+                href: `/dashboard/shop/${carMakeParamCase}`,
               },
               {
                 name: `${
@@ -158,8 +150,10 @@ export default function EcommerceProductDetails() {
               },
             ]}
           />
-          {carmake}
-
+          <Container style={{ direction: 'rtl' }}>
+            <CartWidget />
+          </Container>
+          <br />
           <>
             <Card>
               <Grid container>
@@ -230,10 +224,30 @@ export default function EcommerceProductDetails() {
             </Card>
           </>
           {/* )} */}
-
           {/* {error && <Typography variant="h6">404 Product not found</Typography>} */}
         </Container>
       </Page>
     </DashboardLayout>
   );
 }
+
+export const getServerSideProps = wrapperStore.getServerSideProps(
+  (store) =>
+    async ({ params }) => {
+      const { id } = params;
+      await store.dispatch(getProductGraphQl(id));
+      const redux_store = store.getState();
+      console.log(
+        'This 🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️ is from the wrapper.getServerSideProps() within the redux_store = store.getState() from dashboard/shop/index.js, view https://bit.ly/next12_12 : ',
+        redux_store
+      );
+
+      return {
+        props: {
+          initialReduxState: redux_store,
+        },
+      };
+    }
+);
+
+export default EcommerceProductDetails;
