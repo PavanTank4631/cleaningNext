@@ -8,9 +8,6 @@ import {
   Typography,
   CircularProgress,
   Stack,
-  Skeleton,
-  Divider,
-  Grid,
 } from '@mui/material';
 // redux
 import {
@@ -21,14 +18,11 @@ import {
 } from 'react-redux';
 import { PATH_DASHBOARD } from 'src/routes/paths';
 import { getProducts, filterProducts } from 'src/___redux/slices/product';
-
-// routes
 // utils
 import fakeRequest from 'src/utils/fakeRequest';
 // hooks
 import useSettings from 'src/hooks/useSettings';
 // components
-// import Page from 'src/minimalComponents/Page';
 import Page from 'src/minimalComponents/Page';
 import HeaderBreadcrumbs from 'src/minimalComponents/HeaderBreadcrumbs';
 import {
@@ -103,25 +97,6 @@ function applyFilter(products, sortBy, filters) {
   }
   return products;
 }
-
-const SkeletonLoad = (
-  <Grid container spacing={3}>
-    <Grid item xs={12} md={6} lg={7}>
-      <Skeleton
-        variant="rectangular"
-        width="100%"
-        sx={{ paddingTop: '100%', borderRadius: 2 }}
-      />
-    </Grid>
-    <Grid item xs={12} md={6} lg={5}>
-      <Skeleton variant="circular" width={80} height={80} />
-      <Skeleton variant="text" height={240} />
-      <Skeleton variant="text" height={40} />
-      <Skeleton variant="text" height={40} />
-      <Skeleton variant="text" height={40} />
-    </Grid>
-  </Grid>
-);
 
 const EcommerceShop = () => {
   const { themeStretch } = useSettings();
