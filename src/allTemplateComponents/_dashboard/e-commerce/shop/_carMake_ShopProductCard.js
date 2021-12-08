@@ -7,9 +7,9 @@ import { Link as RouterLink } from 'next';
 import { Box, Card, Link, Typography, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
 // routes
-import { PATH_DASHBOARD } from '../../../../otherComponents/routes/paths';
+import { PATH_DASHBOARD } from 'src/otherComponents/routes/paths';
 // utils
-import { fCurrency } from '../../../../utils/formatNumber';
+import { fCurrency } from 'src/otherComponents/utils/formatNumber';
 //
 import Label from '../../../Label';
 // import ColorPreview from '../../../ColorPreview';

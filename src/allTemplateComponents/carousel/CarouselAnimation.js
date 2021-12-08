@@ -4,9 +4,16 @@ import { motion } from 'framer-motion';
 import { useState, useRef } from 'react';
 // material
 import { alpha, useTheme, styled } from '@mui/material/styles';
-import { Box, Card, Paper, Button, Typography, CardContent } from '@mui/material';
+import {
+  Box,
+  Card,
+  Paper,
+  Button,
+  Typography,
+  CardContent,
+} from '@mui/material';
 // utils
-import mockData from '../../utils/mock-data';
+import mockData from 'src/otherComponents/utils/mock-data';
 //
 import { varFadeInRight, MotionContainer } from '../animate';
 import { CarouselControlsArrowsIndex } from './controls';
@@ -17,7 +24,7 @@ const MOCK_CAROUSELS = [...Array(5)].map((_, index) => ({
   id: mockData.id(index),
   title: mockData.text.title(index),
   image: mockData.image.feed(index),
-  description: mockData.text.description(index)
+  description: mockData.text.description(index),
 }));
 
 const CarouselImgStyle = styled('img')({
@@ -25,14 +32,14 @@ const CarouselImgStyle = styled('img')({
   width: '100%',
   height: '100%',
   objectFit: 'cover',
-  position: 'absolute'
+  position: 'absolute',
 });
 
 // ----------------------------------------------------------------------
 
 CarouselItem.propTypes = {
   item: PropTypes.object,
-  isActive: PropTypes.bool
+  isActive: PropTypes.bool,
 };
 
 function CarouselItem({ item, isActive }) {
@@ -43,7 +50,7 @@ function CarouselItem({ item, isActive }) {
     <Paper
       sx={{
         position: 'relative',
-        paddingTop: { xs: '100%', md: '50%' }
+        paddingTop: { xs: '100%', md: '50%' },
       }}
     >
       <CarouselImgStyle alt={title} src={image} />
@@ -53,10 +60,9 @@ function CarouselItem({ item, isActive }) {
           width: '100%',
           height: '100%',
           position: 'absolute',
-          backgroundImage: `linear-gradient(to top, ${theme.palette.grey[900]} 0%,${alpha(
-            theme.palette.grey[900],
-            0
-          )} 100%)`
+          backgroundImage: `linear-gradient(to top, ${
+            theme.palette.grey[900]
+          } 0%,${alpha(theme.palette.grey[900], 0)} 100%)`,
         }}
       />
       <CardContent
@@ -66,7 +72,7 @@ function CarouselItem({ item, isActive }) {
           maxWidth: 480,
           textAlign: 'left',
           position: 'absolute',
-          color: 'common.white'
+          color: 'common.white',
         }}
       >
         <MotionContainer open={isActive}>
@@ -94,7 +100,9 @@ function CarouselItem({ item, isActive }) {
 export default function CarouselAnimation() {
   const theme = useTheme();
   const carouselRef = useRef();
-  const [currentIndex, setCurrentIndex] = useState(theme.direction === 'rtl' ? MOCK_CAROUSELS.length - 1 : 0);
+  const [currentIndex, setCurrentIndex] = useState(
+    theme.direction === 'rtl' ? MOCK_CAROUSELS.length - 1 : 0
+  );
 
   const settings = {
     speed: 800,
@@ -104,7 +112,7 @@ export default function CarouselAnimation() {
     slidesToShow: 1,
     slidesToScroll: 1,
     rtl: Boolean(theme.direction === 'rtl'),
-    beforeChange: (current, next) => setCurrentIndex(next)
+    beforeChange: (current, next) => setCurrentIndex(next),
   };
 
   const handlePrevious = () => {
@@ -119,7 +127,11 @@ export default function CarouselAnimation() {
     <Card>
       <Slider ref={carouselRef} {...settings}>
         {MOCK_CAROUSELS.map((item, index) => (
-          <CarouselItem key={item.title} item={item} isActive={index === currentIndex} />
+          <CarouselItem
+            key={item.title}
+            item={item}
+            isActive={index === currentIndex}
+          />
         ))}
       </Slider>
 

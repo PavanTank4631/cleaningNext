@@ -5,14 +5,21 @@ import { Link as ScrollLink } from 'react-scroll';
 import edit2Fill from '@iconify/icons-eva/edit-2-fill';
 // material
 import { styled } from '@mui/material/styles';
-import { Grid, Rating, Button, Typography, LinearProgress, Stack } from '@mui/material';
+import {
+  Grid,
+  Rating,
+  Button,
+  Typography,
+  LinearProgress,
+  Stack,
+} from '@mui/material';
 // utils
-import { fShortenNumber } from '../../../../utils/formatNumber';
+import { fShortenNumber } from 'src/otherComponents/utils/formatNumber';
 
 // ----------------------------------------------------------------------
 
 const RatingStyle = styled(Rating)(({ theme }) => ({
-  marginBottom: theme.spacing(1)
+  marginBottom: theme.spacing(1),
 }));
 
 const GridStyle = styled(Grid)(({ theme }) => ({
@@ -24,16 +31,16 @@ const GridStyle = styled(Grid)(({ theme }) => ({
   '&:nth-of-type(2)': {
     [theme.breakpoints.up('md')]: {
       borderLeft: `solid 1px ${theme.palette.divider}`,
-      borderRight: `solid 1px ${theme.palette.divider}`
-    }
-  }
+      borderRight: `solid 1px ${theme.palette.divider}`,
+    },
+  },
 }));
 
 // ----------------------------------------------------------------------
 
 ProgressItem.propTypes = {
   star: PropTypes.object,
-  total: PropTypes.number
+  total: PropTypes.number,
 };
 
 function ProgressItem({ star, total }) {
@@ -47,10 +54,13 @@ function ProgressItem({ star, total }) {
         sx={{
           mx: 2,
           flexGrow: 1,
-          bgcolor: 'divider'
+          bgcolor: 'divider',
         }}
       />
-      <Typography variant="body2" sx={{ color: 'text.secondary', minWidth: 64, textAlign: 'right' }}>
+      <Typography
+        variant="body2"
+        sx={{ color: 'text.secondary', minWidth: 64, textAlign: 'right' }}
+      >
         {fShortenNumber(reviewCount)}
       </Typography>
     </Stack>
@@ -59,7 +69,7 @@ function ProgressItem({ star, total }) {
 
 ProductDetailsReviewOverview.propTypes = {
   product: PropTypes.object,
-  onOpen: PropTypes.func
+  onOpen: PropTypes.func,
 };
 
 export default function ProductDetailsReviewOverview({ product, onOpen }) {
@@ -96,7 +106,12 @@ export default function ProductDetailsReviewOverview({ product, onOpen }) {
 
       <GridStyle item xs={12} md={4}>
         <ScrollLink href="move_add_review" spy smooth offset={-200}>
-          <Button size="large" onClick={onOpen} variant="outlined" startIcon={<Icon icon={edit2Fill} />}>
+          <Button
+            size="large"
+            onClick={onOpen}
+            variant="outlined"
+            startIcon={<Icon icon={edit2Fill} />}
+          >
             Write your review
           </Button>
         </ScrollLink>

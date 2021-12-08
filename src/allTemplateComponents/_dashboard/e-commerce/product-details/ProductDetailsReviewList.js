@@ -5,20 +5,31 @@ import roundThumbUp from '@iconify/icons-ic/round-thumb-up';
 import roundVerified from '@iconify/icons-ic/round-verified';
 import checkmarkFill from '@iconify/icons-eva/checkmark-fill';
 // material
-import { Box, List, Button, Rating, Avatar, ListItem, Pagination, Typography, Stack } from '@mui/material';
+import {
+  Box,
+  List,
+  Button,
+  Rating,
+  Avatar,
+  ListItem,
+  Pagination,
+  Typography,
+  Stack,
+} from '@mui/material';
 // utils
-import { fDate } from '../../../../utils/formatTime';
-import { fShortenNumber } from '../../../../utils/formatNumber';
+import { fDate } from 'src/otherComponents/utils/formatTime';
+import { fShortenNumber } from 'src/otherComponents/utils/formatNumber';
 
 // ----------------------------------------------------------------------
 
 ReviewItem.propTypes = {
-  review: PropTypes.object
+  review: PropTypes.object,
 };
 
 function ReviewItem({ review }) {
   const [isHelpful, setHelpfuls] = useState(false);
-  const { name, rating, comment, helpful, postedAt, avatarUrl, isPurchased } = review;
+  const { name, rating, comment, helpful, postedAt, avatarUrl, isPurchased } =
+    review;
 
   const handleClickHelpful = () => {
     setHelpfuls((prev) => !prev);
@@ -31,7 +42,7 @@ function ReviewItem({ review }) {
         sx={{
           mb: 5,
           alignItems: 'flex-start',
-          flexDirection: { xs: 'column', sm: 'row' }
+          flexDirection: { xs: 'column', sm: 'row' },
         }}
       >
         <Box
@@ -42,7 +53,7 @@ function ReviewItem({ review }) {
             mb: { xs: 2, sm: 0 },
             minWidth: { xs: 160, md: 240 },
             textAlign: { sm: 'center' },
-            flexDirection: { sm: 'column' }
+            flexDirection: { sm: 'column' },
           }}
         >
           <Avatar
@@ -51,14 +62,18 @@ function ReviewItem({ review }) {
               mr: { xs: 2, sm: 0 },
               mb: { sm: 2 },
               width: { md: 64 },
-              height: { md: 64 }
+              height: { md: 64 },
             }}
           />
           <div>
             <Typography variant="subtitle2" noWrap>
               {name}
             </Typography>
-            <Typography variant="caption" sx={{ color: 'text.secondary' }} noWrap>
+            <Typography
+              variant="caption"
+              sx={{ color: 'text.secondary' }}
+              noWrap
+            >
               {fDate(postedAt)}
             </Typography>
           </div>
@@ -68,7 +83,15 @@ function ReviewItem({ review }) {
           <Rating size="small" value={rating} precision={0.1} readOnly />
 
           {isPurchased && (
-            <Typography variant="caption" sx={{ my: 1, display: 'flex', alignItems: 'center', color: 'primary.main' }}>
+            <Typography
+              variant="caption"
+              sx={{
+                my: 1,
+                display: 'flex',
+                alignItems: 'center',
+                color: 'primary.main',
+              }}
+            >
               <Icon icon={roundVerified} width={16} height={16} />
               &nbsp;Verified purchase
             </Typography>
@@ -86,10 +109,13 @@ function ReviewItem({ review }) {
             <Button
               size="small"
               color="inherit"
-              startIcon={<Icon icon={!isHelpful ? roundThumbUp : checkmarkFill} />}
+              startIcon={
+                <Icon icon={!isHelpful ? roundThumbUp : checkmarkFill} />
+              }
               onClick={handleClickHelpful}
             >
-              {isHelpful ? 'Helpful' : 'Thank'}({fShortenNumber(!isHelpful ? helpful : helpful + 1)})
+              {isHelpful ? 'Helpful' : 'Thank'}(
+              {fShortenNumber(!isHelpful ? helpful : helpful + 1)})
             </Button>
           </Stack>
         </div>
@@ -99,7 +125,7 @@ function ReviewItem({ review }) {
 }
 
 ProductDetailsReviewList.propTypes = {
-  product: PropTypes.object
+  product: PropTypes.object,
 };
 
 export default function ProductDetailsReviewList({ product }) {

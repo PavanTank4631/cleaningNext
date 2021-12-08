@@ -7,7 +7,7 @@ import moreHorizontalFill from '@iconify/icons-eva/more-horizontal-fill';
 import { alpha, useTheme, styled } from '@mui/material/styles';
 import { Box, Card, Typography } from '@mui/material';
 // utils
-import mockData from '../../utils/mock-data';
+import mockData from 'src/otherComponents/utils/mock-data';
 //
 import { CarouselControlsArrowsBasic2 } from './controls';
 //
@@ -19,7 +19,7 @@ const MOCK_CAROUSELS = [...Array(5)].map((_, index) => ({
   id: mockData.id(index),
   title: mockData.text.title(index),
   image: mockData.image.feed(index),
-  description: mockData.text.description(index)
+  description: mockData.text.description(index),
 }));
 
 const ContentItemStyle = styled('div')(({ theme }) => ({
@@ -36,13 +36,13 @@ const ContentItemStyle = styled('div')(({ theme }) => ({
   borderBottomRightRadius: 16,
   justifyContent: 'space-between',
   backgroundColor: alpha(theme.palette.grey[900], 0.72),
-  flexDirection: theme.direction === 'rtl' ? 'row-reverse' : 'row'
+  flexDirection: theme.direction === 'rtl' ? 'row-reverse' : 'row',
 }));
 
 // ----------------------------------------------------------------------
 
 CarouselItem.propTypes = {
-  item: PropTypes.object
+  item: PropTypes.object,
 };
 
 function CarouselItem({ item }) {
@@ -50,7 +50,12 @@ function CarouselItem({ item }) {
 
   return (
     <Box sx={{ position: 'relative', zIndex: 0 }}>
-      <Box component="img" alt={title} src={image} sx={{ width: '100%', height: 480, objectFit: 'cover' }} />
+      <Box
+        component="img"
+        alt={title}
+        src={image}
+        sx={{ width: '100%', height: 480, objectFit: 'cover' }}
+      />
 
       <ContentItemStyle>
         <Typography variant="h6" sx={{ color: 'common.white' }}>
@@ -61,8 +66,12 @@ function CarouselItem({ item }) {
           sx={{
             color: 'common.white',
             '&:hover': {
-              bgcolor: (theme) => alpha(theme.palette.common.white, theme.palette.action.hoverOpacity)
-            }
+              bgcolor: (theme) =>
+                alpha(
+                  theme.palette.common.white,
+                  theme.palette.action.hoverOpacity
+                ),
+            },
           }}
         >
           <Icon icon={moreHorizontalFill} />
@@ -83,7 +92,7 @@ export default function CarouselBasic4() {
     slidesToShow: 1,
     slidesToScroll: 1,
     fade: Boolean(theme.direction !== 'rtl'),
-    rtl: Boolean(theme.direction === 'rtl')
+    rtl: Boolean(theme.direction === 'rtl'),
   };
 
   const handlePrevious = () => {
@@ -101,7 +110,10 @@ export default function CarouselBasic4() {
           <CarouselItem key={item.title} item={item} />
         ))}
       </Slider>
-      <CarouselControlsArrowsBasic2 onNext={handleNext} onPrevious={handlePrevious} />
+      <CarouselControlsArrowsBasic2
+        onNext={handleNext}
+        onPrevious={handlePrevious}
+      />
     </Card>
   );
 }

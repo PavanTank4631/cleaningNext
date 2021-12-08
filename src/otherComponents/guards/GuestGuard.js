@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 // import { Navigate } from 'react-router-dom';
 // hooks
-import useAuth from '../hooks/useAuth';
+import useAuth from 'src/otherComponents/hooks/useAuth';
 // routes
-import { PATH_DASHBOARD } from '../otherComponents/routes/paths';
+import { PATH_DASHBOARD } from 'src/otherComponents//routes/paths';
 
 // ----------------------------------------------------------------------
 

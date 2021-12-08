@@ -8,7 +8,7 @@ import arrowForwardFill from '@iconify/icons-eva/arrow-forward-fill';
 import { alpha, useTheme, styled } from '@mui/material/styles';
 import { Box, Paper, Link, Typography, CardContent } from '@mui/material';
 // utils
-import mockData from '../../utils/mock-data';
+import mockData from 'src/otherComponents/utils/mock-data';
 //
 import { CarouselControlsArrowsBasic2 } from './controls';
 
@@ -18,7 +18,7 @@ const MOCK_CAROUSELS = [...Array(5)].map((_, index) => ({
   id: mockData.id(index),
   title: mockData.text.title(index),
   image: mockData.image.feed(index),
-  description: mockData.text.description(index)
+  description: mockData.text.description(index),
 }));
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -33,16 +33,17 @@ const RootStyle = styled('div')(({ theme }) => ({
     height: '100%',
     display: 'none',
     position: 'absolute',
-    backgroundImage: 'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)',
+    backgroundImage:
+      'linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)',
     [theme.breakpoints.up(480)]: {
-      display: 'block'
-    }
+      display: 'block',
+    },
   },
   '&:after': {
     right: 0,
     left: 'auto',
-    transform: 'scaleX(-1)'
-  }
+    transform: 'scaleX(-1)',
+  },
 }));
 
 const CarouselImgStyle = styled('img')(({ theme }) => ({
@@ -51,13 +52,13 @@ const CarouselImgStyle = styled('img')(({ theme }) => ({
   height: '100%',
   objectFit: 'cover',
   position: 'absolute',
-  transition: theme.transitions.create('all')
+  transition: theme.transitions.create('all'),
 }));
 
 // ----------------------------------------------------------------------
 
 CarouselItem.propTypes = {
-  item: PropTypes.object
+  item: PropTypes.object,
 };
 
 function CarouselItem({ item }) {
@@ -73,8 +74,8 @@ function CarouselItem({ item }) {
         position: 'relative',
         '&:hover img': {
           width: '120%',
-          height: '120%'
-        }
+          height: '120%',
+        },
       }}
     >
       <CarouselImgStyle alt={title} src={image} />
@@ -87,7 +88,10 @@ function CarouselItem({ item }) {
           position: 'absolute',
           color: 'common.white',
           backgroundImage: (theme) =>
-            `linear-gradient(to top, ${theme.palette.grey[900]} 0%,${alpha(theme.palette.grey[900], 0)} 100%)`
+            `linear-gradient(to top, ${theme.palette.grey[900]} 0%,${alpha(
+              theme.palette.grey[900],
+              0
+            )} 100%)`,
         }}
       >
         <Typography variant="h4" paragraph>
@@ -103,11 +107,15 @@ function CarouselItem({ item }) {
             alignItems: 'center',
             display: 'inline-flex',
             transition: (theme) => theme.transitions.create('opacity'),
-            '&:hover': { opacity: 1 }
+            '&:hover': { opacity: 1 },
           }}
         >
           learn More
-          <Box component={Icon} icon={arrowForwardFill} sx={{ width: 16, height: 16, ml: 1 }} />
+          <Box
+            component={Icon}
+            icon={arrowForwardFill}
+            sx={{ width: 16, height: 16, ml: 1 }}
+          />
         </Link>
       </CardContent>
     </Paper>
@@ -126,17 +134,17 @@ export default function CarouselCenterMode() {
     responsive: [
       {
         breakpoint: 1024,
-        settings: { slidesToShow: 2 }
+        settings: { slidesToShow: 2 },
       },
       {
         breakpoint: 600,
-        settings: { slidesToShow: 2 }
+        settings: { slidesToShow: 2 },
       },
       {
         breakpoint: 480,
-        settings: { slidesToShow: 1, centerPadding: '0' }
-      }
-    ]
+        settings: { slidesToShow: 1, centerPadding: '0' },
+      },
+    ],
   };
 
   const handlePrevious = () => {
@@ -154,7 +162,10 @@ export default function CarouselCenterMode() {
           <CarouselItem key={item.title} item={item} />
         ))}
       </Slider>
-      <CarouselControlsArrowsBasic2 onNext={handleNext} onPrevious={handlePrevious} />
+      <CarouselControlsArrowsBasic2
+        onNext={handleNext}
+        onPrevious={handlePrevious}
+      />
     </RootStyle>
   );
 }

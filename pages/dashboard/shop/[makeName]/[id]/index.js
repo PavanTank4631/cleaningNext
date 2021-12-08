@@ -39,7 +39,7 @@ import {
   ProductDetailsCarousel,
 } from 'src/allTemplateComponents/_dashboard/e-commerce/product-details';
 import { wrapperStore } from 'src/___redux/store.js';
-import CartWidget from 'src/allTemplateComponents/_dashboard/e-commerce/CartWidget';
+// import CartWidget from 'src/allTemplateComponents/_dashboard/e-commerce/CartWidget';
 
 const PRODUCT_DESCRIPTION = [
   {
@@ -151,7 +151,7 @@ function EcommerceProductDetails(props) {
             ]}
           />
           <Container style={{ direction: 'rtl' }}>
-            <CartWidget />
+            {/* <CartWidget /> */}
           </Container>
           <br />
           <>

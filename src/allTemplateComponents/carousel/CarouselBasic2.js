@@ -5,7 +5,7 @@ import { useState, useRef } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { Box, Card, Typography, CardContent } from '@mui/material';
 // utils
-import mockData from '../../utils/mock-data';
+import mockData from 'src/otherComponents/utils/mock-data';
 //
 import { CarouselControlsArrowsIndex } from './controls';
 
@@ -15,11 +15,11 @@ const MOCK_CAROUSELS = [...Array(5)].map((_, index) => ({
   id: mockData.id(index),
   title: mockData.text.title(index),
   image: mockData.image.feed(index),
-  description: mockData.text.description(index)
+  description: mockData.text.description(index),
 }));
 
 CarouselItem.propTypes = {
-  item: PropTypes.object
+  item: PropTypes.object,
 };
 
 function CarouselItem({ item }) {
@@ -27,7 +27,12 @@ function CarouselItem({ item }) {
 
   return (
     <>
-      <Box component="img" alt={title} src={image} sx={{ width: '100%', height: 370, objectFit: 'cover' }} />
+      <Box
+        component="img"
+        alt={title}
+        src={image}
+        sx={{ width: '100%', height: 370, objectFit: 'cover' }}
+      />
 
       <CardContent sx={{ textAlign: 'left' }}>
         <Typography variant="h6" noWrap gutterBottom>
@@ -55,7 +60,7 @@ export default function CarouselBasic2() {
     initialSlide: currentIndex,
     fade: Boolean(theme.direction !== 'rtl'),
     rtl: Boolean(theme.direction === 'rtl'),
-    beforeChange: (current, next) => setCurrentIndex(next)
+    beforeChange: (current, next) => setCurrentIndex(next),
   };
 
   const handlePrevious = () => {

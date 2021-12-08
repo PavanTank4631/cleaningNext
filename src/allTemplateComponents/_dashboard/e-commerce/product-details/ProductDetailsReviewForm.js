@@ -4,10 +4,17 @@ import { useFormik, Form, FormikProvider } from 'formik';
 import { useSnackbar } from 'notistack';
 // material
 import { styled } from '@mui/material/styles';
-import { Button, Rating, TextField, Typography, FormHelperText, Stack } from '@mui/material';
+import {
+  Button,
+  Rating,
+  TextField,
+  Typography,
+  FormHelperText,
+  Stack,
+} from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // utils
-import fakeRequest from '../../../../utils/fakeRequest';
+import fakeRequest from 'src/otherComponents/utils/fakeRequest';
 
 // ----------------------------------------------------------------------
 
@@ -15,13 +22,13 @@ const RootStyle = styled('div')(({ theme }) => ({
   margin: theme.spacing(3),
   padding: theme.spacing(3),
   borderRadius: theme.shape.borderRadiusMd,
-  backgroundColor: theme.palette.background.neutral
+  backgroundColor: theme.palette.background.neutral,
 }));
 
 // ----------------------------------------------------------------------
 
 ProductDetailsReviewForm.propTypes = {
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
 };
 
 export default function ProductDetailsReviewForm({ onClose, ...other }) {
@@ -31,7 +38,9 @@ export default function ProductDetailsReviewForm({ onClose, ...other }) {
     rating: Yup.mixed().required('Rating is required'),
     review: Yup.string().required('Review is required'),
     name: Yup.string().required('Name is required'),
-    email: Yup.string().email('Email must be a valid email address').required('Email is required')
+    email: Yup.string()
+      .email('Email must be a valid email address')
+      .required('Email is required'),
   });
 
   const formik = useFormik({
@@ -39,7 +48,7 @@ export default function ProductDetailsReviewForm({ onClose, ...other }) {
       rating: null,
       review: '',
       name: '',
-      email: ''
+      email: '',
     },
     validationSchema: ReviewSchema,
     onSubmit: async (values, { resetForm, setSubmitting }) => {
@@ -49,10 +58,18 @@ export default function ProductDetailsReviewForm({ onClose, ...other }) {
       resetForm();
       setSubmitting(false);
       enqueueSnackbar('Verify success', { variant: 'success' });
-    }
+    },
   });
 
-  const { errors, touched, resetForm, handleSubmit, isSubmitting, setFieldValue, getFieldProps } = formik;
+  const {
+    errors,
+    touched,
+    resetForm,
+    handleSubmit,
+    isSubmitting,
+    setFieldValue,
+    getFieldProps,
+  } = formik;
 
   const onCancel = () => {
     onClose();
@@ -68,14 +85,26 @@ export default function ProductDetailsReviewForm({ onClose, ...other }) {
       <FormikProvider value={formik}>
         <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
           <Stack spacing={3}>
-            <Stack direction={{ xs: 'column', sm: 'row' }} alignItems={{ sm: 'center' }} spacing={1.5}>
-              <Typography variant="body2">Your review about this product:</Typography>
+            <Stack
+              direction={{ xs: 'column', sm: 'row' }}
+              alignItems={{ sm: 'center' }}
+              spacing={1.5}
+            >
+              <Typography variant="body2">
+                Your review about this product:
+              </Typography>
               <Rating
                 {...getFieldProps('rating')}
-                onChange={(event) => setFieldValue('rating', Number(event.target.value))}
+                onChange={(event) =>
+                  setFieldValue('rating', Number(event.target.value))
+                }
               />
             </Stack>
-            {errors.rating && <FormHelperText error>{touched.rating && errors.rating}</FormHelperText>}
+            {errors.rating && (
+              <FormHelperText error>
+                {touched.rating && errors.rating}
+              </FormHelperText>
+            )}
 
             <TextField
               fullWidth
@@ -105,10 +134,20 @@ export default function ProductDetailsReviewForm({ onClose, ...other }) {
             />
 
             <Stack direction="row" justifyContent="flex-end">
-              <Button type="button" color="inherit" variant="outlined" onClick={onCancel} sx={{ mr: 1.5 }}>
+              <Button
+                type="button"
+                color="inherit"
+                variant="outlined"
+                onClick={onCancel}
+                sx={{ mr: 1.5 }}
+              >
                 Cancel
               </Button>
-              <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+              <LoadingButton
+                type="submit"
+                variant="contained"
+                loading={isSubmitting}
+              >
                 Post review
               </LoadingButton>
             </Stack>

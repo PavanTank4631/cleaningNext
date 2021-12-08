@@ -39,7 +39,7 @@ import {
   ShopFilterSidebar,
 } from 'src/allTemplateComponents/_dashboard/e-commerce/shop';
 import CarMakeShopProductList from 'src/allTemplateComponents/_dashboard/e-commerce/shop/_carMake_ShopProductList';
-import CartWidget from 'src/allTemplateComponents/_dashboard/e-commerce/CartWidget';
+// import CartWidget from 'src/allTemplateComponents/_dashboard/e-commerce/CartWidget';
 import DashboardLayout from 'src/otherComponents/layouts/dashboard';
 import AuthLayout from 'src/otherComponents/layouts/AuthLayout';
 import GuestGuard from 'src/otherComponents/guards/GuestGuard';
@@ -192,7 +192,7 @@ const MakeNameDynamicPage = (props) => {
         justifyContent="flex-end"
         sx={{ mb: 0, mt: 0, px: 15 }}
       >
-        <CartWidget />
+        {/* <CartWidget /> */}
       </Stack>
 
       {/* <GuestGuard> */}
