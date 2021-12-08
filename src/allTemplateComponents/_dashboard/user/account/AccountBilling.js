@@ -5,9 +5,10 @@ import { useSnackbar } from 'notistack';
 // material
 import { Box, Grid, Card, Button, Typography, Stack } from '@mui/material';
 // redux
-import { useSelector } from '../../../../___redux/store';
+// import { useSelector } from 'react-redux';
+import { useSelector } from 'src/___redux/customStore';
 // utils
-import fakeRequest from '../../../../utils/fakeRequest';
+import fakeRequest from 'src/otherComponents/utils/fakeRequest';
 //
 import AccountBillingAddressBook from './AccountBillingAddressBook';
 import AccountBillingPaymentMethod from './AccountBillingPaymentMethod';
@@ -24,7 +25,7 @@ export default function AccountBilling() {
     cardName: Yup.string().required('Name is required'),
     cardNumber: Yup.string().required('Card number is required'),
     cardExpired: Yup.string().required('Card expired is required'),
-    cardCvv: Yup.string().required('Cvv is required')
+    cardCvv: Yup.string().required('Cvv is required'),
   });
 
   const formik = useFormik({
@@ -32,7 +33,7 @@ export default function AccountBilling() {
       cardName: '',
       cardNumber: '',
       cardExpired: '',
-      cardCvv: ''
+      cardCvv: '',
     },
     validationSchema: NewCardSchema,
     onSubmit: async (values, { setSubmitting, resetForm }) => {
@@ -42,7 +43,7 @@ export default function AccountBilling() {
       setSubmitting(false);
       alert(JSON.stringify(values, null, 2));
       enqueueSnackbar('Add card success', { variant: 'success' });
-    }
+    },
   });
 
   const handleOpenAddCard = () => {
@@ -59,7 +60,10 @@ export default function AccountBilling() {
       <Grid item xs={12} md={8}>
         <Stack spacing={3}>
           <Card sx={{ p: 3 }}>
-            <Typography variant="overline" sx={{ mb: 3, display: 'block', color: 'text.secondary' }}>
+            <Typography
+              variant="overline"
+              sx={{ mb: 3, display: 'block', color: 'text.secondary' }}
+            >
               Your Plan
             </Typography>
             <Typography variant="h4">Premium</Typography>
@@ -68,10 +72,15 @@ export default function AccountBilling() {
                 mt: { xs: 2, sm: 0 },
                 position: { sm: 'absolute' },
                 top: { sm: 24 },
-                right: { sm: 24 }
+                right: { sm: 24 },
               }}
             >
-              <Button size="small" color="inherit" variant="outlined" sx={{ mr: 1 }}>
+              <Button
+                size="small"
+                color="inherit"
+                variant="outlined"
+                sx={{ mr: 1 }}
+              >
                 Cancel plan
               </Button>
               <Button size="small" variant="outlined">

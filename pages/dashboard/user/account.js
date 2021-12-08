@@ -10,7 +10,7 @@ import roundAccountBox from '@iconify/icons-ic/round-account-box';
 import { Container, Tab, Box, Tabs, Stack } from '@mui/material';
 
 // redux
-import { useDispatch } from 'src/___redux/store';
+import { useDispatch } from 'react-redux';
 import {
   getCards,
   getProfile,

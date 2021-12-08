@@ -7,9 +7,9 @@ import { Form, FormikProvider, useFormik } from 'formik';
 import { OutlinedInput, FormHelperText, Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // routes
-import { PATH_DASHBOARD } from '../../../otherComponents/routes/paths';
+import { PATH_DASHBOARD } from 'src/otherComponents/routes/paths';
 // utils
-import fakeRequest from '../../../utils/fakeRequest';
+import fakeRequest from 'src/otherComponents/utils/fakeRequest';
 
 // ----------------------------------------------------------------------
 

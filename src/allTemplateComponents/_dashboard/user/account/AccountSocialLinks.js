@@ -9,29 +9,29 @@ import instagramFilled from '@iconify/icons-ant-design/instagram-filled';
 import { Stack, Card, TextField, InputAdornment } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // redux
-import { useSelector } from '../../../../___redux/store';
+import { useSelector } from 'react-redux';
 // utils
-import fakeRequest from '../../../../utils/fakeRequest';
+import fakeRequest from 'src/otherComponents/utils/fakeRequest';
 
 // ----------------------------------------------------------------------
 
 const SOCIAL_LINKS_OPTIONS = [
   {
     value: 'facebookLink',
-    icon: <Icon icon={facebookFill} height={24} />
+    icon: <Icon icon={facebookFill} height={24} />,
   },
   {
     value: 'instagramLink',
-    icon: <Icon icon={instagramFilled} height={24} />
+    icon: <Icon icon={instagramFilled} height={24} />,
   },
   {
     value: 'linkedinLink',
-    icon: <Icon icon={linkedinFill} height={24} />
+    icon: <Icon icon={linkedinFill} height={24} />,
   },
   {
     value: 'twitterLink',
-    icon: <Icon icon={twitterFill} height={24} />
-  }
+    icon: <Icon icon={twitterFill} height={24} />,
+  },
 ];
 
 // ----------------------------------------------------------------------
@@ -46,14 +46,14 @@ export default function AccountSocialLinks() {
       facebookLink: myProfile.facebookLink,
       instagramLink: myProfile.instagramLink,
       linkedinLink: myProfile.linkedinLink,
-      twitterLink: myProfile.twitterLink
+      twitterLink: myProfile.twitterLink,
     },
     onSubmit: async (values, { setSubmitting }) => {
       await fakeRequest(500);
       setSubmitting(false);
       alert(JSON.stringify(values, null, 2));
       enqueueSnackbar('Save success', { variant: 'success' });
-    }
+    },
   });
 
   const { handleSubmit, isSubmitting, getFieldProps } = formik;
@@ -69,12 +69,20 @@ export default function AccountSocialLinks() {
                 fullWidth
                 {...getFieldProps(link.value)}
                 InputProps={{
-                  startAdornment: <InputAdornment position="start">{link.icon}</InputAdornment>
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      {link.icon}
+                    </InputAdornment>
+                  ),
                 }}
               />
             ))}
 
-            <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+            <LoadingButton
+              type="submit"
+              variant="contained"
+              loading={isSubmitting}
+            >
               Save Changes
             </LoadingButton>
           </Stack>

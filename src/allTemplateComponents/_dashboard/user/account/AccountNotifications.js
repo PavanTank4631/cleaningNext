@@ -1,31 +1,37 @@
 import { useSnackbar } from 'notistack';
 import { useFormik, Form, FormikProvider } from 'formik';
 // material
-import { Card, Stack, Switch, Typography, FormControlLabel } from '@mui/material';
+import {
+  Card,
+  Stack,
+  Switch,
+  Typography,
+  FormControlLabel,
+} from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // redux
-import { useSelector } from '../../../../___redux/store';
+import { useSelector } from 'react-redux';
 // utils
-import fakeRequest from '../../../../utils/fakeRequest';
+import fakeRequest from 'src/otherComponents/utils/fakeRequest';
 
 // ----------------------------------------------------------------------
 
 const ACTIVITY_OPTIONS = [
   {
     value: 'activityComments',
-    label: 'Email me when someone comments onmy article'
+    label: 'Email me when someone comments onmy article',
   },
   {
     value: 'activityAnswers',
-    label: 'Email me when someone answers on my form'
+    label: 'Email me when someone answers on my form',
   },
-  { value: 'activityFollows', label: 'Email me hen someone follows me' }
+  { value: 'activityFollows', label: 'Email me hen someone follows me' },
 ];
 
 const APPLICATION_OPTIONS = [
   { value: 'applicationNews', label: 'News and announcements' },
   { value: 'applicationProduct', label: 'Weekly product updates' },
-  { value: 'applicationBlog', label: 'Weekly blog digest' }
+  { value: 'applicationBlog', label: 'Weekly blog digest' },
 ];
 
 // ----------------------------------------------------------------------
@@ -42,14 +48,14 @@ export default function AccountNotifications() {
       activityFollows: notifications.activityFollows,
       applicationNews: notifications.applicationNews,
       applicationProduct: notifications.applicationProduct,
-      applicationBlog: notifications.applicationBlog
+      applicationBlog: notifications.applicationBlog,
     },
     onSubmit: async (values, { setSubmitting }) => {
       await fakeRequest(500);
       setSubmitting(false);
       alert(JSON.stringify(values, null, 2));
       enqueueSnackbar('Save success', { variant: 'success' });
-    }
+    },
   });
 
   const { values, isSubmitting, handleSubmit, getFieldProps } = formik;
@@ -67,7 +73,12 @@ export default function AccountNotifications() {
                 {ACTIVITY_OPTIONS.map((activity) => (
                   <FormControlLabel
                     key={activity.value}
-                    control={<Switch {...getFieldProps(activity.value)} checked={values[activity.value]} />}
+                    control={
+                      <Switch
+                        {...getFieldProps(activity.value)}
+                        checked={values[activity.value]}
+                      />
+                    }
                     label={activity.label}
                     sx={{ mx: 0 }}
                   />
@@ -83,7 +94,12 @@ export default function AccountNotifications() {
                 {APPLICATION_OPTIONS.map((item) => (
                   <FormControlLabel
                     key={item.value}
-                    control={<Switch {...getFieldProps(item.value)} checked={values[item.value]} />}
+                    control={
+                      <Switch
+                        {...getFieldProps(item.value)}
+                        checked={values[item.value]}
+                      />
+                    }
                     label={item.label}
                     sx={{ mx: 0 }}
                   />
@@ -91,7 +107,11 @@ export default function AccountNotifications() {
               </Stack>
             </Stack>
 
-            <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+            <LoadingButton
+              type="submit"
+              variant="contained"
+              loading={isSubmitting}
+            >
               Save Changes
             </LoadingButton>
           </Stack>

@@ -5,9 +5,9 @@ import { useDropzone } from 'react-dropzone';
 import { alpha, styled } from '@mui/material/styles';
 import { Paper, Box, Typography } from '@mui/material';
 // utils
-import { fData } from '../../utils/formatNumber';
+import { fData } from 'src/otherComponents/utils/formatNumber';
 //
-import { UploadIllustration } from '../../otherComponents/assets';
+import { UploadIllustration } from 'src/otherComponents/assets';
 
 // ----------------------------------------------------------------------
 
@@ -27,9 +27,9 @@ const DropZoneStyle = styled('div')(({ theme }) => ({
   border: `1px dashed ${theme.palette.grey[500_32]}`,
   '&:hover': {
     opacity: 0.72,
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
-  [theme.breakpoints.up('md')]: { textAlign: 'left', flexDirection: 'row' }
+  [theme.breakpoints.up('md')]: { textAlign: 'left', flexDirection: 'row' },
 }));
 
 // ----------------------------------------------------------------------
@@ -37,13 +37,19 @@ const DropZoneStyle = styled('div')(({ theme }) => ({
 UploadSingleFile.propTypes = {
   error: PropTypes.bool,
   file: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  sx: PropTypes.object
+  sx: PropTypes.object,
 };
 
 export default function UploadSingleFile({ error, file, sx, ...other }) {
-  const { getRootProps, getInputProps, isDragActive, isDragReject, fileRejections } = useDropzone({
+  const {
+    getRootProps,
+    getInputProps,
+    isDragActive,
+    isDragReject,
+    fileRejections,
+  } = useDropzone({
     multiple: false,
-    ...other
+    ...other,
   });
 
   const ShowRejectionItems = () => (
@@ -54,7 +60,7 @@ export default function UploadSingleFile({ error, file, sx, ...other }) {
         px: 2,
         mt: 3,
         borderColor: 'error.light',
-        bgcolor: (theme) => alpha(theme.palette.error.main, 0.08)
+        bgcolor: (theme) => alpha(theme.palette.error.main, 0.08),
       }}
     >
       {fileRejections.map(({ file, errors }) => {
@@ -84,9 +90,9 @@ export default function UploadSingleFile({ error, file, sx, ...other }) {
           ...((isDragReject || error) && {
             color: 'error.main',
             borderColor: 'error.light',
-            bgcolor: 'error.lighter'
+            bgcolor: 'error.lighter',
           }),
-          ...(file && { padding: '12% 0' })
+          ...(file && { padding: '12% 0' }),
         }}
       >
         <input {...getInputProps()} />
@@ -100,7 +106,11 @@ export default function UploadSingleFile({ error, file, sx, ...other }) {
 
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             Drop files here or click&nbsp;
-            <Typography variant="body2" component="span" sx={{ color: 'primary.main', textDecoration: 'underline' }}>
+            <Typography
+              variant="body2"
+              component="span"
+              sx={{ color: 'primary.main', textDecoration: 'underline' }}
+            >
               browse
             </Typography>
             &nbsp;thorough your machine
@@ -118,7 +128,7 @@ export default function UploadSingleFile({ error, file, sx, ...other }) {
               objectFit: 'cover',
               position: 'absolute',
               width: 'calc(100% - 16px)',
-              height: 'calc(100% - 16px)'
+              height: 'calc(100% - 16px)',
             }}
           />
         )}

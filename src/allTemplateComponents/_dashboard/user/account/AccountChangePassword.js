@@ -5,7 +5,7 @@ import { useFormik, Form, FormikProvider } from 'formik';
 import { Stack, Card, TextField } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // utils
-import fakeRequest from '../../../../utils/fakeRequest';
+import fakeRequest from 'src/otherComponents/utils/fakeRequest';
 
 // ----------------------------------------------------------------------
 
@@ -14,15 +14,20 @@ export default function AccountChangePassword() {
 
   const ChangePassWordSchema = Yup.object().shape({
     oldPassword: Yup.string().required('Old Password is required'),
-    newPassword: Yup.string().min(6, 'Password must be at least 6 characters').required('New Password is required'),
-    confirmNewPassword: Yup.string().oneOf([Yup.ref('newPassword'), null], 'Passwords must match')
+    newPassword: Yup.string()
+      .min(6, 'Password must be at least 6 characters')
+      .required('New Password is required'),
+    confirmNewPassword: Yup.string().oneOf(
+      [Yup.ref('newPassword'), null],
+      'Passwords must match'
+    ),
   });
 
   const formik = useFormik({
     initialValues: {
       oldPassword: '',
       newPassword: '',
-      confirmNewPassword: ''
+      confirmNewPassword: '',
     },
     validationSchema: ChangePassWordSchema,
     onSubmit: async (values, { setSubmitting }) => {
@@ -30,7 +35,7 @@ export default function AccountChangePassword() {
       setSubmitting(false);
       alert(JSON.stringify(values, null, 2));
       enqueueSnackbar('Save success', { variant: 'success' });
-    }
+    },
   });
 
   const { errors, touched, isSubmitting, handleSubmit, getFieldProps } = formik;
@@ -57,7 +62,10 @@ export default function AccountChangePassword() {
               type="password"
               label="New Password"
               error={Boolean(touched.newPassword && errors.newPassword)}
-              helperText={(touched.newPassword && errors.newPassword) || 'Password must be minimum 6+'}
+              helperText={
+                (touched.newPassword && errors.newPassword) ||
+                'Password must be minimum 6+'
+              }
             />
 
             <TextField
@@ -66,11 +74,19 @@ export default function AccountChangePassword() {
               autoComplete="on"
               type="password"
               label="Confirm New Password"
-              error={Boolean(touched.confirmNewPassword && errors.confirmNewPassword)}
-              helperText={touched.confirmNewPassword && errors.confirmNewPassword}
+              error={Boolean(
+                touched.confirmNewPassword && errors.confirmNewPassword
+              )}
+              helperText={
+                touched.confirmNewPassword && errors.confirmNewPassword
+              }
             />
 
-            <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+            <LoadingButton
+              type="submit"
+              variant="contained"
+              loading={isSubmitting}
+            >
               Save Changes
             </LoadingButton>
           </Stack>

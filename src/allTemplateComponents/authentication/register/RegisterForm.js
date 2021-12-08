@@ -17,10 +17,10 @@ import {
 } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // hooks
-import useAuth from '../../../hooks/useAuth';
-import useIsMountedRef from '../../../hooks/useIsMountedRef';
+import useAuth from 'src/otherComponents/hooks/useAuth';
+import useIsMountedRef from 'src/otherComponents/hooks/useIsMountedRef';
 //
-import GuestGuard from '../../../guards/GuestGuard';
+import GuestGuard from 'src/otherComponents/guards/GuestGuard';
 import { MIconButton } from '../../@material-extend';
 
 // ----------------------------------------------------------------------

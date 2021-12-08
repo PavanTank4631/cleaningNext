@@ -23,13 +23,13 @@ import {
   IconButton,
   AvatarGroup,
   InputAdornment,
-  FormControlLabel
+  FormControlLabel,
 } from '@mui/material';
 // utils
-import { fDate } from '../../../../utils/formatTime';
-import { fShortenNumber } from '../../../../utils/formatNumber';
+import { fDate } from 'src/otherComponents/utils/formatTime';
+import { fShortenNumber } from 'src/otherComponents/utils/formatNumber';
 // hooks
-import useAuth from '../../../../hooks/useAuth';
+import useAuth from 'src/otherComponents/hooks/useAuth';
 //
 import MyAvatar from '../../../MyAvatar';
 import EmojiPicker from '../../../EmojiPicker';
@@ -37,7 +37,7 @@ import EmojiPicker from '../../../EmojiPicker';
 // ----------------------------------------------------------------------
 
 ProfilePostCard.propTypes = {
-  post: PropTypes.object
+  post: PropTypes.object,
 };
 
 export default function ProfilePostCard({ post }) {
@@ -77,12 +77,20 @@ export default function ProfilePostCard({ post }) {
         disableTypography
         avatar={<MyAvatar />}
         title={
-          <Link href="#" variant="subtitle2" color="text.primary" component={RouterLink}>
+          <Link
+            href="#"
+            variant="subtitle2"
+            color="text.primary"
+            component={RouterLink}
+          >
             {user.displayName}
           </Link>
         }
         subheader={
-          <Typography variant="caption" sx={{ display: 'block', color: 'text.secondary' }}>
+          <Typography
+            variant="caption"
+            sx={{ display: 'block', color: 'text.secondary' }}
+          >
             {fDate(post.createdAt)}
           </Typography>
         }
@@ -106,7 +114,7 @@ export default function ProfilePostCard({ post }) {
               height: 1,
               borderRadius: 1,
               objectFit: 'cover',
-              position: 'absolute'
+              position: 'absolute',
             }}
           />
         </Box>
@@ -126,9 +134,16 @@ export default function ProfilePostCard({ post }) {
             label={fShortenNumber(likes)}
             sx={{ minWidth: 72, mr: 0 }}
           />
-          <AvatarGroup max={4} sx={{ '& .MuiAvatar-root': { width: 32, height: 32 } }}>
+          <AvatarGroup
+            max={4}
+            sx={{ '& .MuiAvatar-root': { width: 32, height: 32 } }}
+          >
             {post.personLikes.map((person) => (
-              <Avatar key={person.name} alt={person.name} src={person.avatarUrl} />
+              <Avatar
+                key={person.name}
+                alt={person.name}
+                src={person.avatarUrl}
+              />
             ))}
           </AvatarGroup>
           <Box sx={{ flexGrow: 1 }} />
@@ -144,16 +159,26 @@ export default function ProfilePostCard({ post }) {
           <Stack spacing={1.5}>
             {post.comments.map((comment) => (
               <Stack key={comment.id} direction="row" spacing={2}>
-                <Avatar alt={comment.author.name} src={comment.author.avatarUrl} />
-                <Paper sx={{ p: 1.5, flexGrow: 1, bgcolor: 'background.neutral' }}>
+                <Avatar
+                  alt={comment.author.name}
+                  src={comment.author.avatarUrl}
+                />
+                <Paper
+                  sx={{ p: 1.5, flexGrow: 1, bgcolor: 'background.neutral' }}
+                >
                   <Stack
                     direction={{ xs: 'column', sm: 'row' }}
                     alignItems={{ sm: 'center' }}
                     justifyContent="space-between"
                     sx={{ mb: 0.5 }}
                   >
-                    <Typography variant="subtitle2">{comment.author.name}</Typography>
-                    <Typography variant="caption" sx={{ color: 'text.disabled' }}>
+                    <Typography variant="subtitle2">
+                      {comment.author.name}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{ color: 'text.disabled' }}
+                    >
                       {fDate(comment.createdAt)}
                     </Typography>
                   </Stack>
@@ -179,19 +204,28 @@ export default function ProfilePostCard({ post }) {
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton size="small" onClick={handleClickAttach}>
-                    <Icon icon={roundAddPhotoAlternate} width={24} height={24} />
+                    <Icon
+                      icon={roundAddPhotoAlternate}
+                      width={24}
+                      height={24}
+                    />
                   </IconButton>
-                  <EmojiPicker alignRight value={message} setValue={setMessage} />
+                  <EmojiPicker
+                    alignRight
+                    value={message}
+                    setValue={setMessage}
+                  />
                 </InputAdornment>
-              )
+              ),
             }}
             sx={{
               ml: 2,
               mr: 1,
               '& fieldset': {
                 borderWidth: `1px !important`,
-                borderColor: (theme) => `${theme.palette.grey[500_32]} !important`
-              }
+                borderColor: (theme) =>
+                  `${theme.palette.grey[500_32]} !important`,
+              },
             }}
           />
           <IconButton>

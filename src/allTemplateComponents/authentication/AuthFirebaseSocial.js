@@ -5,7 +5,7 @@ import facebookFill from '@iconify/icons-eva/facebook-fill';
 // material
 import { Stack, Button, Divider, Typography } from '@mui/material';
 // hooks
-import useAuth from '../../hooks/useAuth';
+import useAuth from 'src/otherComponents/hooks/useAuth';
 
 // ----------------------------------------------------------------------
 

@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 // material
 import { Card, Stack, Typography, Divider } from '@mui/material';
 // utils
-import { fNumber } from '../../../../utils/formatNumber';
+import { fNumber } from 'src/otherComponents/utils/formatNumber';
 
 // ----------------------------------------------------------------------
 
 ProfileFollowInfo.propTypes = {
-  profile: PropTypes.object
+  profile: PropTypes.object,
 };
 
 export default function ProfileFollowInfo({ profile }) {
@@ -15,7 +15,10 @@ export default function ProfileFollowInfo({ profile }) {
 
   return (
     <Card sx={{ py: 3 }}>
-      <Stack direction="row" divider={<Divider orientation="vertical" flexItem />}>
+      <Stack
+        direction="row"
+        divider={<Divider orientation="vertical" flexItem />}
+      >
         <Stack width={1} textAlign="center">
           <Typography variant="h4">{fNumber(follower)}</Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>

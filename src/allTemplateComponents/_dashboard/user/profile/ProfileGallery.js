@@ -5,9 +5,16 @@ import { useState } from 'react';
 import moreVerticalFill from '@iconify/icons-eva/more-vertical-fill';
 // material
 import { alpha, styled } from '@mui/material/styles';
-import { Box, Grid, Card, IconButton, Typography, CardContent } from '@mui/material';
+import {
+  Box,
+  Grid,
+  Card,
+  IconButton,
+  Typography,
+  CardContent,
+} from '@mui/material';
 // utils
-import { fDate } from '../../../../utils/formatTime';
+import { fDate } from 'src/otherComponents/utils/formatTime';
 import LightboxModal from '../../../LightboxModal';
 
 // ----------------------------------------------------------------------
@@ -24,7 +31,7 @@ const CaptionStyle = styled(CardContent)(({ theme }) => ({
   color: theme.palette.common.white,
   backgroundColor: alpha(theme.palette.grey[900], 0.72),
   borderBottomLeftRadius: theme.shape.borderRadiusMd,
-  borderBottomRightRadius: theme.shape.borderRadiusMd
+  borderBottomRightRadius: theme.shape.borderRadiusMd,
 }));
 
 const GalleryImgStyle = styled('img')({
@@ -32,21 +39,25 @@ const GalleryImgStyle = styled('img')({
   width: '100%',
   height: '100%',
   objectFit: 'cover',
-  position: 'absolute'
+  position: 'absolute',
 });
 
 // ----------------------------------------------------------------------
 
 GalleryItem.propTypes = {
   image: PropTypes.object,
-  onOpenLightbox: PropTypes.func
+  onOpenLightbox: PropTypes.func,
 };
 
 function GalleryItem({ image, onOpenLightbox }) {
   const { imageUrl, title, postAt } = image;
   return (
     <Card sx={{ pt: '100%', cursor: 'pointer' }}>
-      <GalleryImgStyle alt="gallery image" src={imageUrl} onClick={() => onOpenLightbox(imageUrl)} />
+      <GalleryImgStyle
+        alt="gallery image"
+        src={imageUrl}
+        onClick={() => onOpenLightbox(imageUrl)}
+      />
 
       <CaptionStyle>
         <div>
@@ -64,7 +75,7 @@ function GalleryItem({ image, onOpenLightbox }) {
 }
 
 ProfileGallery.propTypes = {
-  gallery: PropTypes.array.isRequired
+  gallery: PropTypes.array.isRequired,
 };
 
 export default function ProfileGallery({ gallery }) {

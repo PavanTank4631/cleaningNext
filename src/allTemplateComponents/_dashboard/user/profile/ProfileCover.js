@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { alpha, styled } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
 // hooks
-import useAuth from '../../../../hooks/useAuth';
+import useAuth from 'src/otherComponents/hooks/useAuth';
 //
 import MyAvatar from '../../../MyAvatar';
 
@@ -19,8 +19,8 @@ const RootStyle = styled('div')(({ theme }) => ({
     position: 'absolute',
     backdropFilter: 'blur(3px)',
     WebkitBackdropFilter: 'blur(3px)', // Fix on Mobile
-    backgroundColor: alpha(theme.palette.primary.darker, 0.72)
-  }
+    backgroundColor: alpha(theme.palette.primary.darker, 0.72),
+  },
 }));
 
 const InfoStyle = styled('div')(({ theme }) => ({
@@ -34,8 +34,8 @@ const InfoStyle = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     left: theme.spacing(3),
-    bottom: theme.spacing(3)
-  }
+    bottom: theme.spacing(3),
+  },
 }));
 
 const CoverImgStyle = styled('img')({
@@ -43,13 +43,13 @@ const CoverImgStyle = styled('img')({
   width: '100%',
   height: '100%',
   objectFit: 'cover',
-  position: 'absolute'
+  position: 'absolute',
 });
 
 // ----------------------------------------------------------------------
 
 ProfileCover.propTypes = {
-  myProfile: PropTypes.object
+  myProfile: PropTypes.object,
 };
 
 export default function ProfileCover({ myProfile }) {
@@ -66,7 +66,7 @@ export default function ProfileCover({ myProfile }) {
             borderStyle: 'solid',
             borderColor: 'common.white',
             width: { xs: 80, md: 128 },
-            height: { xs: 80, md: 128 }
+            height: { xs: 80, md: 128 },
           }}
         />
         <Box
@@ -74,7 +74,7 @@ export default function ProfileCover({ myProfile }) {
             ml: { md: 3 },
             mt: { xs: 1, md: 0 },
             color: 'common.white',
-            textAlign: { xs: 'center', md: 'left' }
+            textAlign: { xs: 'center', md: 'left' },
           }}
         >
           <Typography variant="h4">{user.displayName}</Typography>

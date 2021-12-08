@@ -5,13 +5,13 @@ import arrowIosForwardFill from '@iconify/icons-eva/arrow-ios-forward-fill';
 // material
 import { Link, Stack, Button, Typography } from '@mui/material';
 // utils
-import { fDate } from '../../../../utils/formatTime';
-import { fCurrency } from '../../../../utils/formatNumber';
+import { fDate } from 'src/otherComponents/utils/formatTime';
+import { fCurrency } from 'src/otherComponents/utils/formatNumber';
 
 // ----------------------------------------------------------------------
 
 AccountBillingInvoiceHistory.propTypes = {
-  invoices: PropTypes.array
+  invoices: PropTypes.array,
 };
 
 export default function AccountBillingInvoiceHistory({ invoices }) {
@@ -23,7 +23,12 @@ export default function AccountBillingInvoiceHistory({ invoices }) {
 
       <Stack spacing={2} sx={{ width: 1 }}>
         {invoices.map((invoice) => (
-          <Stack key={invoice.id} direction="row" justifyContent="space-between" sx={{ width: 1 }}>
+          <Stack
+            key={invoice.id}
+            direction="row"
+            justifyContent="space-between"
+            sx={{ width: 1 }}
+          >
             <Typography variant="body2" sx={{ minWidth: 160 }}>
               {fDate(invoice.createdAt)}
             </Typography>

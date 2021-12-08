@@ -5,14 +5,14 @@ import { Form, FormikProvider, useFormik } from 'formik';
 import { TextField, Alert, Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // hooks
-import useAuth from '../../../hooks/useAuth';
-import useIsMountedRef from '../../../hooks/useIsMountedRef';
+import useAuth from 'src/otherComponents/hooks/useAuth';
+import useIsMountedRef from 'src/otherComponents/hooks/useIsMountedRef';
 
 // ----------------------------------------------------------------------
 
 ResetPasswordForm.propTypes = {
   onSent: PropTypes.func,
-  onGetEmail: PropTypes.func
+  onGetEmail: PropTypes.func,
 };
 
 export default function ResetPasswordForm({ onSent, onGetEmail }) {
@@ -20,12 +20,14 @@ export default function ResetPasswordForm({ onSent, onGetEmail }) {
   const isMountedRef = useIsMountedRef();
 
   const ResetPasswordSchema = Yup.object().shape({
-    email: Yup.string().email('Email must be a valid email address').required('Email is required')
+    email: Yup.string()
+      .email('Email must be a valid email address')
+      .required('Email is required'),
   });
 
   const formik = useFormik({
     initialValues: {
-      email: 'demo@minimals.cc'
+      email: 'demo@minimals.cc',
     },
     validationSchema: ResetPasswordSchema,
     onSubmit: async (values, { setErrors, setSubmitting }) => {
@@ -43,7 +45,7 @@ export default function ResetPasswordForm({ onSent, onGetEmail }) {
           setSubmitting(false);
         }
       }
-    }
+    },
   });
 
   const { errors, touched, isSubmitting, handleSubmit, getFieldProps } = formik;
@@ -52,7 +54,9 @@ export default function ResetPasswordForm({ onSent, onGetEmail }) {
     <FormikProvider value={formik}>
       <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
         <Stack spacing={3}>
-          {errors.afterSubmit && <Alert severity="error">{errors.afterSubmit}</Alert>}
+          {errors.afterSubmit && (
+            <Alert severity="error">{errors.afterSubmit}</Alert>
+          )}
 
           <TextField
             fullWidth
@@ -63,7 +67,13 @@ export default function ResetPasswordForm({ onSent, onGetEmail }) {
             helperText={touched.email && errors.email}
           />
 
-          <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>
+          <LoadingButton
+            fullWidth
+            size="large"
+            type="submit"
+            variant="contained"
+            loading={isSubmitting}
+          >
             Reset Password
           </LoadingButton>
         </Stack>

@@ -10,7 +10,8 @@ import { styled } from '@mui/material/styles';
 import { Tab, Box, Card, Tabs, Container } from '@mui/material';
 
 // redux
-import { useDispatch, useSelector } from 'src/___redux/store';
+// import { useDispatch, useSelector } from 'src/___redux/store';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getPosts,
   getGallery,
@@ -34,7 +35,7 @@ import {
   ProfileGallery,
   ProfileFollowers,
 } from 'src/allTemplateComponents/_dashboard/user/profile';
-import DashboardLayout from '../../../src/layouts/dashboard';
+import DashboardLayout from 'src/otherComponents/layouts/dashboard';
 
 // ----------------------------------------------------------------------
 
