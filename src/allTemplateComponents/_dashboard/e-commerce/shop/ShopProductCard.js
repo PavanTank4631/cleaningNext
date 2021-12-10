@@ -82,19 +82,21 @@ export default function ShopProductCard({ product, from, variants }) {
     } else {
       favouriteIds.push({ id: product.id });
     }
+    // december 61ae9adcbafa87247a0fbf10
+    // pavantnak 61af216778c23d252fdceec2
 
-    axios
-      .put('http://localhost:1337/favorites/61b30bbb3df9c32024fe7bd5', {
-        user: '61af216778c23d252fdceec2',
-        variants: favouriteIds.map((ele) => ele.id),
-      })
-      .then((response) => {
-        console.log('response ===>', response);
-        Router.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // axios
+    //   .post('http://localhost:1337/favorites/616d4fef47d8c489cecf3901', {
+    //     user: '61ae9adcbafa87247a0fbf10',
+    //     variants: favouriteIds.map((ele) => ele.id),
+    //   })
+    //   .then((response) => {
+    //     console.log('response ===>', response);
+    //     Router.reload();
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   return (
