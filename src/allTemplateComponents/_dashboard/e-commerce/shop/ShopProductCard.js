@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { paramCase } from 'change-case';
 // ? replaced already
@@ -13,9 +14,10 @@ import { fCurrency } from 'src/otherComponents/utils/formatNumber';
 import axios from 'axios';
 import Router from 'next/router';
 import useAuth from 'src/otherComponents/hooks/useAuth';
+import { setSnackbar } from 'src/otherContexts/actions';
+import { UserContext, FeedbackContext } from 'src/otherContexts';
 import Label from '../../../Label';
 // import ColorPreview from '../../../ColorPreview';
-
 // ----------------------------------------------------------------------
 
 const ProductImgStyle = styled('img')({
@@ -44,7 +46,9 @@ export default function ShopProductCard({ product, from, variants }) {
     images,
     car_make_name,
   } = product;
-  const { user } = useAuth();
+  // const { user } = useAuth();
+  const { user, dispatchUser } = useContext(UserContext);
+  const { dispatchFeedback } = useContext(FeedbackContext);
   console.log(
     '🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄 This is from ShopProductCard.js, it is the product which is passed in from props and destructured, view at https://bit.ly/next12_18',
     product

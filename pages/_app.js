@@ -53,6 +53,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import GlobalStateProvider from 'src/___global/store/GlobalStateProvider';
 // For carfax form
 import { ContextCarfaxProvider } from 'src/otherComponents/carfax/GlobalContextCarfax';
+import { UserWrapper, FeedbackWrapper, CartWrapper } from 'src/otherContexts';
 import theme from '../theme';
 
 require('dotenv').config();
@@ -68,63 +69,69 @@ const MyApp = (props) => {
 
   return (
     <HelmetProvider>
-      <GlobalStateProvider>
-        {/* <ReduxProvider store={store}> */}
-        <PersistGate
-          // loading={<LoadingScreen />}
-          persistor={persistor}
-        >
-          <ContextCarfaxProvider>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <SettingsProvider>
-                <CollapseDrawerProvider>
-                  {/* <CacheProvider value={emotionCache}> */}
-                  <Head>
-                    <meta
-                      name="viewport"
-                      content="initial-scale=1, width=device-width"
-                    />
-                  </Head>
+      <UserWrapper>
+        <FeedbackWrapper>
+          <CartWrapper>
+            <GlobalStateProvider>
+              {/* <ReduxProvider store={store}> */}
+              <PersistGate
+                // loading={<LoadingScreen />}
+                persistor={persistor}
+              >
+                <ContextCarfaxProvider>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <SettingsProvider>
+                      <CollapseDrawerProvider>
+                        {/* <CacheProvider value={emotionCache}> */}
+                        <Head>
+                          <meta
+                            name="viewport"
+                            content="initial-scale=1, width=device-width"
+                          />
+                        </Head>
 
-                  <ThemeConfig>
-                    <ThemePrimaryColor>
-                      <RtlLayout>
-                        <NoSsr>
-                          <Settings />
-                        </NoSsr>
-                        <ThemeProvider theme={theme}>
-                          <ApolloWrapper>
-                            <NotistackProvider>
-                              <GlobalStyles />
-                              <ProgressBar />
-                              {/* <LoadingScreen /> */}
-                              <BaseOptionChartStyle />
-                              <GoogleAnalytics />
-                              {/* <UserWrapper> */}
-                              {/* <FeedbackWrapper> */}
-                              {/* <CartWrapper> */}
-                              <AuthProvider>
-                                {/* <MainLayout> */}
-                                <Component {...pageProps} />
-                                {/* </MainLayout> */}
-                              </AuthProvider>
-                              {/* </CartWrapper> */}
-                              {/* </FeedbackWrapper> */}
-                              {/* </UserWrapper> */}
-                            </NotistackProvider>
-                          </ApolloWrapper>
-                        </ThemeProvider>
-                      </RtlLayout>
-                    </ThemePrimaryColor>
-                  </ThemeConfig>
-                  {/* </CacheProvider> */}
-                </CollapseDrawerProvider>
-              </SettingsProvider>
-            </LocalizationProvider>
-          </ContextCarfaxProvider>
-        </PersistGate>
-        {/* </ReduxProvider> */}
-      </GlobalStateProvider>
+                        <ThemeConfig>
+                          <ThemePrimaryColor>
+                            <RtlLayout>
+                              <NoSsr>
+                                <Settings />
+                              </NoSsr>
+                              <ThemeProvider theme={theme}>
+                                <ApolloWrapper>
+                                  <NotistackProvider>
+                                    <GlobalStyles />
+                                    <ProgressBar />
+                                    {/* <LoadingScreen /> */}
+                                    <BaseOptionChartStyle />
+                                    <GoogleAnalytics />
+                                    {/* <UserWrapper> */}
+                                    {/* <FeedbackWrapper> */}
+                                    {/* <CartWrapper> */}
+                                    <AuthProvider>
+                                      {/* <MainLayout> */}
+                                      <Component {...pageProps} />
+                                      {/* </MainLayout> */}
+                                    </AuthProvider>
+                                    {/* </CartWrapper> */}
+                                    {/* </FeedbackWrapper> */}
+                                    {/* </UserWrapper> */}
+                                  </NotistackProvider>
+                                </ApolloWrapper>
+                              </ThemeProvider>
+                            </RtlLayout>
+                          </ThemePrimaryColor>
+                        </ThemeConfig>
+                        {/* </CacheProvider> */}
+                      </CollapseDrawerProvider>
+                    </SettingsProvider>
+                  </LocalizationProvider>
+                </ContextCarfaxProvider>
+              </PersistGate>
+              {/* </ReduxProvider> */}
+            </GlobalStateProvider>
+          </CartWrapper>
+        </FeedbackWrapper>
+      </UserWrapper>
     </HelmetProvider>
   );
 };
