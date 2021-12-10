@@ -12,6 +12,7 @@ import { fCurrency } from 'src/otherComponents/utils/formatNumber';
 //
 import axios from 'axios';
 import Router from 'next/router';
+import useAuth from 'src/otherComponents/hooks/useAuth';
 import Label from '../../../Label';
 // import ColorPreview from '../../../ColorPreview';
 
@@ -43,7 +44,7 @@ export default function ShopProductCard({ product, from, variants }) {
     images,
     car_make_name,
   } = product;
-
+  const { user } = useAuth();
   console.log(
     '🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄 This is from ShopProductCard.js, it is the product which is passed in from props and destructured, view at https://bit.ly/next12_18',
     product
@@ -76,7 +77,10 @@ export default function ShopProductCard({ product, from, variants }) {
   const onHeartPress = async () => {
     let favouriteIds = variants.filter((item) => item.isFavourite === true);
     // let notFavouriteIds = variants.filter(item => item.isFavourite === false)
-
+    console.log(
+      'This is user from useAuth hook called within onHeartPress: ',
+      user
+    );
     if (product.isFavourite) {
       favouriteIds = removeElement(favouriteIds, product.id);
     } else {
