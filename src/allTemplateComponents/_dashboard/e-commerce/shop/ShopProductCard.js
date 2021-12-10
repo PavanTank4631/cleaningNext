@@ -10,6 +10,8 @@ import { PATH_DASHBOARD } from 'src/otherComponents/routes/paths';
 // utils
 import { fCurrency } from 'src/otherComponents/utils/formatNumber';
 //
+import axios from 'axios';
+import Router from 'next/router';
 import Label from '../../../Label';
 // import ColorPreview from '../../../ColorPreview';
 
@@ -29,7 +31,7 @@ ShopProductCard.propTypes = {
   product: PropTypes.object,
 };
 
-export default function ShopProductCard({ product }) {
+export default function ShopProductCard({ product, from, variants }) {
   const {
     id,
     name,
@@ -68,8 +70,48 @@ export default function ShopProductCard({ product }) {
   console.log('This is the intPrice: ', intPrice);
   console.log('This is the price: ', price);
   console.log('This is the product.image_url : ', product.image_url);
+
+  const removeElement = (arr, val) => arr.filter((el) => el.id !== val);
+
+  const onHeartPress = async () => {
+    let favouriteIds = variants.filter((item) => item.isFavourite === true);
+    // let notFavouriteIds = variants.filter(item => item.isFavourite === false)
+
+    if (product.isFavourite) {
+      favouriteIds = removeElement(favouriteIds, product.id);
+    } else {
+      favouriteIds.push({ id: product.id });
+    }
+
+    axios
+      .put('http://localhost:1337/favorites/61b30bbb3df9c32024fe7bd5', {
+        user: '61af216778c23d252fdceec2',
+        variants: favouriteIds.map((ele) => ele.id),
+      })
+      .then((response) => {
+        console.log('response ===>', response);
+        Router.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <Card>
+      <Box width="10%" mx="1rem" my="0.5rem">
+        <img
+          src={`/static/icons/${
+            from === 'favourite_page'
+              ? 'heart_filled.svg'
+              : product.isFavourite
+              ? 'heart_filled.svg'
+              : 'heart_empty.svg'
+          }`}
+          className="heart-icon"
+          onClick={() => onHeartPress(product)}
+        />
+      </Box>
       <Box sx={{ pt: '100%', position: 'relative' }}>
         {product.car_make_name && (
           <Label

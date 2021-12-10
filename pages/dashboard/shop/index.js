@@ -37,6 +37,7 @@ import AuthLayout from 'src/otherComponents/layouts/AuthLayout';
 import GuestGuard from 'src/otherComponents/guards/GuestGuard';
 import AuthGuard from 'src/otherComponents/guards/AuthGuard';
 import { wrapperStore } from 'src/___redux/store.js';
+import axios from 'axios';
 
 //* All data here comes from src/___redux/slices/product.js lines 220+ where the getProducts function is being exported!
 //* This then calls an api with Axios which is referencing to localhost:3222/api/products which itself gets data from the graphql server on https://admin.shopcarx.com/graphql which comes back and retrieves data via a graphql setup
@@ -95,13 +96,18 @@ function applyFilter(products, sortBy, filters) {
       return _product.totalRating > convertRating(filters.rating);
     });
   }
-  return products;
+
+  const newData = products.map((item) => ({ ...item, isFavourite: false }));
+
+  return newData;
 }
 
 const EcommerceShop = (props) => {
   const { themeStretch } = useSettings();
   const dispatch = useDispatch();
   const [openFilter, setOpenFilter] = useState(false);
+
+  const [favouriteData, setFavouriteData] = useState([]);
 
   const state_products = useSelector((state) => state.product);
   console.log(
@@ -160,6 +166,31 @@ const EcommerceShop = (props) => {
     );
   }, [dispatch, values]);
 
+  const getFavouritesData = () => {
+    axios
+      .get('http://localhost:1337/favorites')
+      .then((response) => {
+        console.log('INDEX.JS ==>', response, filteredProducts);
+        filteredProducts.forEach((fItem, fIndex) => {
+          response.data[0].variants.forEach((vItem, vIndex) => {
+            if (fItem.id === vItem.id) {
+              return (fItem.isFavourite = true);
+            }
+          });
+        });
+
+        console.log('INDEX.JS ==>', filteredProducts);
+        setFavouriteData(filteredProducts);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getFavouritesData();
+  }, []);
+
   const handleOpenFilter = () => {
     setOpenFilter(true);
   };
@@ -172,7 +203,7 @@ const EcommerceShop = (props) => {
     handleSubmit();
     resetForm();
   };
-
+  console.log('This is favouriteData from index.js', favouriteData);
   return (
     // <AuthGuard>
     <DashboardLayout>
@@ -244,6 +275,7 @@ const EcommerceShop = (props) => {
             </Stack>
 
             <ShopProductList
+              //* below is different from pavan version
               products={filteredProducts}
               isLoad={!filteredProducts && !initialValues}
             />
