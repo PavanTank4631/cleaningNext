@@ -21,7 +21,8 @@ export function UserWrapper({ children }) {
     if (storedUser) {
       setTimeout(() => {
         axios
-          .get(`${process.env.NEXT_STRAPI}/users/me`, {
+          // .get(`${process.env.NEXT_STRAPI}/users/me`, {
+          .get(`http://localhost:1337/users/me`, {
             headers: {
               Authorization: `Bearer ${storedUser.jwt}`,
             },
