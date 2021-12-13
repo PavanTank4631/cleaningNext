@@ -246,27 +246,27 @@ function AuthProvider({ children }) {
 }
 
 export { AuthContext, AuthProvider };
-
-async function myasync() {
-  const user = await firebase.auth().currentUser;
-  if (user) {
-    const { uid, email, displayName, photoURL } = user;
-    const profile = { uid, email, displayName, photoURL };
-    setProfile(profile);
-    dispatch({
-      type: 'INITIALISE',
-      payload: { isAuthenticated: true, user: profile },
-    });
-  } else {
-    setProfile(null);
-    dispatch({
-      type: 'INITIALISE',
-      payload: { isAuthenticated: false, user: null },
-    });
-  }
-}
-myasync();
-console.log('This is myasync', myasync);
+//* IDK below is just tests
+// async function myasync() {
+//   const user = await firebase.auth().currentUser;
+//   if (user) {
+//     const { uid, email, displayName, photoURL } = user;
+//     const profile = { uid, email, displayName, photoURL };
+//     setProfile(profile);
+//     dispatch({
+//       type: 'INITIALISE',
+//       payload: { isAuthenticated: true, user: profile },
+//     });
+//   } else {
+//     setProfile(null);
+//     dispatch({
+//       type: 'INITIALISE',
+//       payload: { isAuthenticated: false, user: null },
+//     });
+//   }
+// }
+// myasync();
+// console.log('This is myasync', myasync);
 
 // firebase.auth().onAuthStateChanged((user) => {
 //   console.log(
