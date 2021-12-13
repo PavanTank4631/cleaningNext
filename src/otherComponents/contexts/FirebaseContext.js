@@ -69,6 +69,7 @@ function AuthProvider({ children }) {
   const [profile, setProfile] = useState(null);
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  //! Below is what links firebase authentication with strapi users I believe...
   useEffect(
     () =>
       firebase.auth().onAuthStateChanged((user) => {
