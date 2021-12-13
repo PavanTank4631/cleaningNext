@@ -152,11 +152,19 @@ function AuthProvider({ children }) {
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
         console.log(
-          ' 🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜 The result.user.uid from FirebaseContext.js is as follows: ',
+          ' 🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜 The result.user.uid from FirebaseContext.js after login is as follows: ',
           result.user.uid
         );
         console.log(
-          ' 🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜 The result.user.getIdTokenResult from FirebaseContext.js is as follows: ',
+          ' 🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜 The result.user from FirebaseContext.js  after login  is as follows: ',
+          result.user
+        );
+        console.log(
+          ' 🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜 The result from FirebaseContext.js  after login  is as follows: ',
+          result
+        );
+        console.log(
+          ' 🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜 The result.user.getIdTokenResult from FirebaseContext.js  after login  is as follows: ',
           result.user.getIdTokenResult()
         );
       })
@@ -194,6 +202,18 @@ function AuthProvider({ children }) {
             email,
             displayName: `${firstName} ${lastName}`,
           });
+        console.log(
+          ' 🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜 The res.user.uid from FirebaseContext.js after register is as follows: ',
+          res.user.uid
+        );
+        console.log(
+          ' 🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜 The res.user from FirebaseContext.js  after register  is as follows: ',
+          res.user
+        );
+        console.log(
+          ' 🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜 The res from FirebaseContext.js  after register  is as follows: ',
+          res
+        );
       });
     console.log(
       'This 💣💣💣💣💣💣💣💣💣 is register functions uid from "src/contexts/FirebaseContext.js : "',
@@ -210,7 +230,7 @@ function AuthProvider({ children }) {
   };
 
   const auth = { ...state.user };
-
+  console.log('This is auth from FirebaseContext.js: ', auth);
   return (
     <AuthContext.Provider
       value={{
