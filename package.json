@@ -1,13 +1,4 @@
 {
-  "name": "next12",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
   "dependencies": {
     "@apollo/client": "^3.4.16",
     "@auth0/auth0-spa-js": "1.18",
@@ -67,7 +58,7 @@
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
     "emoji-mart": "^3.0.0",
-    "firebase": "^9.6.1",
+    "firebase": "^8.10.0",
     "formik": "^2.2.9",
     "framer-motion": "^4.1.17",
     "fs": "^0.0.1-security",
@@ -155,5 +146,14 @@
     "graphql": "latest",
     "prettier": "^2.4.1",
     "typescript": "^4.4.4"
-  }
+  },
+  "name": "next12",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "lint": "next lint",
+    "start": "next start"
+  },
+  "version": "0.1.0"
 }
