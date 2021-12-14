@@ -74,26 +74,12 @@ function AuthProvider({ children }) {
     () =>
       firebase.auth().onAuthStateChanged((user) => {
         console.log(
-          'This is process.env.NEXT_PUBLIC_STRAPI_DEV : ',
-          process.env.NEXT_PUBLIC_STRAPI_DEV
-        );
-
-        console.log(
           'This is process.env.NEXT_PUBLIC_STRAPI : ',
           process.env.NEXT_PUBLIC_STRAPI
-        );
-        console.log(
-          'This is process.env.STRAPI_API : ',
-          process.env.STRAPI_API
         );
         const axiosConfig = {
           headers: {
             'Content-Type': 'application/json;charset=UTF-8',
-            // 'Access-Control-Allow-Origin': '*',
-            // 'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS, POST, PUT',
-            // 'Access-Control-Allow-Methods': 'POST',
-            // 'Access-Control-Allow-Headers':
-            // 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
           },
         };
 
@@ -131,8 +117,8 @@ function AuthProvider({ children }) {
             )
             .then(
               (res) =>
-                console.log('🎉🎉🎉🎉🎉🎉🎀🎀🎀🎀🎀🎀🎀 here is res: ', res),
-              // var strapidata = res.data 
+                console.log('🎉🎉🎉🎉🎉🎉🎀🎀🎀🎀🎀🎀🎀 here is res: ', res)
+              // var strapidata = res.data
               // console.log('🎉🎉🎉🎉🎉🎉🎀🎀🎀🎀🎀🎀🎀 here is strapidata: ', strapidata);
             );
 

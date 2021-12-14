@@ -46,8 +46,8 @@ export default function ShopProductCard({ product, from, variants }) {
     images,
     car_make_name,
   } = product;
-  // const { user } = useAuth();
-  const { user, dispatchUser } = useContext(UserContext);
+  const user = useAuth();
+  // const { user, dispatchUser } = useContext(UserContext);
   const { dispatchFeedback } = useContext(FeedbackContext);
   console.log(
     '🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄 This is from ShopProductCard.js, it is the product which is passed in from props and destructured, view at https://bit.ly/next12_18',
