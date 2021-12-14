@@ -46,7 +46,7 @@ export default function ShopProductCard({ product, from, variants }) {
     images,
     car_make_name,
   } = product;
-  const user = useAuth();
+  const { user } = useAuth();
   // const { user, dispatchUser } = useContext(UserContext);
   const { dispatchFeedback } = useContext(FeedbackContext);
   console.log(
@@ -85,10 +85,21 @@ export default function ShopProductCard({ product, from, variants }) {
       'This is user from useAuth hook called within onHeartPress: ',
       user
     );
+    console.log(product);
+    console.log(variants[0]);
     if (product.isFavourite) {
       favouriteIds = removeElement(favouriteIds, product.id);
     } else {
       favouriteIds.push({ id: product.id });
+      axios.post(
+        `http://localhost:1337/favorites/`,
+        {
+          variant: variants[0].id,
+        },
+        {
+          headers: { Authorization: `Bearer ${localStorage.strapijwt}` },
+        }
+      );
     }
     // december 61ae9adcbafa87247a0fbf10
     // pavantnak 61af216778c23d252fdceec2

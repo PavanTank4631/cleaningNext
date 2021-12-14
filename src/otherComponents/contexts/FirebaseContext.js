@@ -116,10 +116,13 @@ function AuthProvider({ children }) {
               axiosConfig
             )
             .then(
-              (res) =>
-                console.log('🎉🎉🎉🎉🎉🎉🎀🎀🎀🎀🎀🎀🎀 here is res: ', res)
-              // var strapidata = res.data
-              // console.log('🎉🎉🎉🎉🎉🎉🎀🎀🎀🎀🎀🎀🎀 here is strapidata: ', strapidata);
+              (res) =>{
+                console.log('🎉🎉🎉🎉🎉🎉🎀🎀🎀🎀🎀🎀🎀 here is res: ', res);
+              var strapidata = res.data
+              console.log('🎉🎉🎉🎉🎉🎉🎀🎀🎀🎀🎀🎀🎀 here is strapidata: ', strapidata);
+            localStorage['strapijwt'] = strapidata.jwt;
+            }
+      
             );
 
           console.log(
