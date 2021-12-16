@@ -157,7 +157,42 @@ export default function ProductDetailsCarousel(props) {
   const handleNext = () => {
     slider2.current.slickNext();
   };
+  console.log('These are carVariant.images', carVariant.images);
 
+  const imgArray = [];
+  const img1 =
+    carVariant.car_imgSrcUrl_1 === null ? null : carVariant.car_imgSrcUrl_1;
+  const img2 =
+    carVariant.car_imgSrcUrl_2 === null ? null : carVariant.car_imgSrcUrl_2;
+  const img3 =
+    carVariant.car_imgSrcUrl_3 === null ? null : carVariant.car_imgSrcUrl_3;
+  const img4 =
+    carVariant.car_imgSrcUrl_4 === null ? null : carVariant.car_imgSrcUrl_4;
+  const img5 =
+    carVariant.car_imgSrcUrl_5 === null ? null : carVariant.car_imgSrcUrl_5;
+  const img6 =
+    carVariant.car_imgSrcUrl_6 === null ? null : carVariant.car_imgSrcUrl_6;
+
+  img1 !== null && imgArray.push(img1);
+  img2 !== null && imgArray.push(img2);
+  img3 !== null && imgArray.push(img3);
+  img4 !== null && imgArray.push(img4);
+  img5 !== null && imgArray.push(img5);
+  img6 !== null && imgArray.push(img6);
+
+  console.log(
+    'This is if carVariant.car_imgSrcUrl_2 is null or not : ',
+    carVariant.car_imgSrcUrl_2 === null
+  );
+
+  console.log('this is if img2 is null or not : ', img2 === null);
+
+  console.log(
+    'This is json.stringify({})',
+    JSON.stringify({ url: carVariant.car_imgSrcUrl_1 })
+  );
+  console.log('This is imgArray : ', imgArray);
+  console.log('This is imgArray[0] : ', Object.entries(imgArray));
   return (
     <RootStyle>
       <Box sx={{ p: 1 }}>
@@ -170,13 +205,20 @@ export default function ProductDetailsCarousel(props) {
           }}
         >
           <Slider {...settings1} asNavFor={nav2} ref={slider1}>
-            {carVariant.images.map((item) => (
+            {imgArray.map((item) => (
+              <LargeItem
+                // key={item.id}
+                item={item}
+                onOpenLightbox={handleOpenLightbox}
+              />
+            ))}
+            {/* {carVariant.images.map((item) => (
               <LargeItem
                 key={item.id}
                 item={item.url}
                 onOpenLightbox={handleOpenLightbox}
               />
-            ))}
+            ))} */}
           </Slider>
           <CarouselControlsArrowsIndex
             index={currentIndex}
