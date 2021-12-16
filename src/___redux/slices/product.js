@@ -248,6 +248,16 @@ const ALLCARSQUERY = gql`
     variants {
       id
       qty
+      car_odometer
+      car_carFaxUrl
+      car_currentCarURL
+      car_views
+      car_exteriorColor
+      car_samplePayment
+      car_samplePaymentDetails
+      car_samplePaymentDetails_DownPayment
+      car_samplePaymentDetails_APR
+      car_samplePaymentDetails_Months
       # color
       # size
       style
@@ -266,7 +276,12 @@ const ALLCARSQUERY = gql`
       vehicle_status
       image_url
       car_imgSrcUrl_1
-      #car_dealership
+      car_imgSrcUrl_2
+      car_imgSrcUrl_3
+      car_imgSrcUrl_4
+      car_imgSrcUrl_5
+      car_imgSrcUrl_6
+      car_dealership
       car_price
       car_year
       car_special
@@ -365,6 +380,16 @@ const CARSMAKEQUERY = gql`
       # variants {
       id
       qty
+      car_odometer
+      car_carFaxUrl
+      car_currentCarURL
+      car_views
+      car_exteriorColor
+      car_samplePayment
+      car_samplePaymentDetails
+      car_samplePaymentDetails_DownPayment
+      car_samplePaymentDetails_APR
+      car_samplePaymentDetails_Months
       # color
       # size
       style
@@ -383,7 +408,12 @@ const CARSMAKEQUERY = gql`
       vehicle_status
       image_url
       car_imgSrcUrl_1
-      #car_dealership
+      car_imgSrcUrl_2
+      car_imgSrcUrl_3
+      car_imgSrcUrl_4
+      car_imgSrcUrl_5
+      car_imgSrcUrl_6
+      car_dealership
       car_price
       car_year
       car_special
@@ -483,6 +513,17 @@ const MYCARQUERY = gql`
       # variants {
       id
       qty
+      car_odometer
+      car_carFaxUrl
+      car_currentCarURL
+      car_views
+      car_exteriorColor
+      car_samplePayment
+      car_samplePaymentDetails
+      car_samplePaymentDetails_DownPayment
+      car_samplePaymentDetails_APR
+      car_samplePaymentDetails_Months
+
       # color
       # size
       style
@@ -506,7 +547,7 @@ const MYCARQUERY = gql`
       car_imgSrcUrl_4
       car_imgSrcUrl_5
       car_imgSrcUrl_6
-      #car_dealership
+      car_dealership
       car_price
       car_year
       car_special
