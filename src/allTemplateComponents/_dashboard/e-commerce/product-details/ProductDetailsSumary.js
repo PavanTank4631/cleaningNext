@@ -155,7 +155,7 @@ export default function ProductDetailsSumary() {
   console.log('This is product from ProductDetailsSumary', product);
   const colors = carVariant.car_colorLabel;
 
-  const inventoryType = carVariant.car_qty;
+  const vehicleStatus = carVariant.vehicle_status;
   const alreadyProduct = checkout.cart.map((item) => item.id).includes(id);
   const isMaxQuantity =
     checkout.cart
@@ -233,17 +233,18 @@ export default function ProductDetailsSumary() {
               {carVariant.name}
             </Typography>
           </Link>
-          <Typography variant="h5" paragraph>
+
+          <Typography sx={{ mb: '5px' }} variant="h5" paragraph>
             {carVariant.car_vehicleStatus} {carVariant.car_name}
           </Typography>
 
           <Label
             variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
-            color={inventoryType >= 1 ? 'success' : 'error'}
-            sx={{ textTransform: 'uppercase' }}
+            color={vehicleStatus == 'Pre-Owned' ? 'secondary' : 'success'}
+            sx={{ textTransform: 'uppercase', mb: '5px' }}
           >
-            {console.log('THIS IS INVENTORY TYPE: ', inventoryType)}
-            {inventoryType >= 1 ? 'Available Today' : 'Not Available'}
+            {console.log('THIS IS vehicleStatus : ', vehicleStatus)}
+            {vehicleStatus}
           </Label>
           <Typography variant="h4" sx={{ mb: 3 }}>
             <Box
@@ -258,6 +259,27 @@ export default function ProductDetailsSumary() {
           <Divider sx={{ borderStyle: 'dashed' }} />
 
           <Stack spacing={3} sx={{ my: 3 }}>
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <Typography variant="subtitle1" sx={{ mt: 0.5 }}>
+                Vehicle Year
+              </Typography>
+              {/* <ColorSinglePicker
+                {...getFieldProps('color')}
+                colors={colors}
+                // sx={{
+                //   ...(colors.length > 4 && {
+                //     maxWidth: 144,
+                //     justifyContent: 'flex-end',
+                  // }),
+                // }}
+              /> */}
+
+              {carVariant.year}
+            </Stack>
             <Stack
               direction="row"
               alignItems="center"
