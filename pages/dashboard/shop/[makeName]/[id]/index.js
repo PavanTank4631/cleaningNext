@@ -24,7 +24,7 @@ import {
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { useDispatch, useSelector } from 'react-redux';
 import DashboardLayout from 'src/otherComponents/layouts/dashboard';
-import { getProduct, getProductGraphQl } from 'src/___redux/slices/product';
+import { getVariantGraphQl } from 'src/___redux/slices/product';
 // routes
 import { PATH_DASHBOARD } from 'src/otherComponents/routes/paths';
 // hooks
@@ -107,7 +107,7 @@ function EcommerceProductDetails(props) {
   );
   useEffect(() => {
     if (id) {
-      dispatch(getProductGraphQl(id));
+      dispatch(getVariantGraphQl(id));
     }
   }, [dispatch, id]);
   console.log(
@@ -235,7 +235,7 @@ export const getServerSideProps = wrapperStore.getServerSideProps(
   (store) =>
     async ({ params }) => {
       const { id } = params;
-      await store.dispatch(getProductGraphQl(id));
+      await store.dispatch(getVariantGraphQl(id));
       const redux_store = store.getState();
       console.log(
         'This 🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️ is from the wrapper.getServerSideProps() within the redux_store = store.getState() from dashboard/shop/index.js, view https://bit.ly/next12_12 : ',

@@ -19,7 +19,7 @@ import {
 } from 'react-redux';
 import { PATH_DASHBOARD } from 'src/otherComponents/routes/paths';
 import {
-  getProductMakeGraphQl,
+  getVariantMakeGraphQl,
   filterProducts,
 } from 'src/___redux/slices/product';
 import { useRouter } from 'next/router';
@@ -161,7 +161,7 @@ const MakeNameDynamicPage = (props) => {
 
   useEffect(() => {
     if (id === undefined) return;
-    dispatch(getProductMakeGraphQl(id));
+    dispatch(getVariantMakeGraphQl(id));
     // dispatch(getProducts());
   }, [dispatch, id]);
 
@@ -272,7 +272,7 @@ export const getServerSideProps = wrapperStore.getServerSideProps(
         'This is the makeName we have from the params of getServerSideProps within [makeName]/index.js : ',
         regularCaseMakeName
       );
-      await store.dispatch(getProductMakeGraphQl(id));
+      await store.dispatch(getVariantMakeGraphQl(id));
       // }
 
       const redux_store = store.getState();

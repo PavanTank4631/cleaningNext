@@ -17,7 +17,7 @@ import {
   useState as useStateRedux,
 } from 'react-redux';
 import { PATH_DASHBOARD } from 'src/otherComponents/routes/paths';
-import { getProducts, filterProducts } from 'src/___redux/slices/product';
+import { getVariants, filterProducts } from 'src/___redux/slices/product';
 // utils
 import fakeRequest from 'src/otherComponents/utils/fakeRequest';
 // hooks
@@ -39,7 +39,7 @@ import AuthGuard from 'src/otherComponents/guards/AuthGuard';
 import { wrapperStore } from 'src/___redux/store.js';
 import axios from 'axios';
 
-//* All data here comes from src/___redux/slices/product.js lines 220+ where the getProducts function is being exported!
+//* All data here comes from src/___redux/slices/product.js lines 220+ where the getVariants function is being exported!
 //* This then calls an api with Axios which is referencing to localhost:3222/api/products which itself gets data from the graphql server on https://admin.shopcarx.com/graphql which comes back and retrieves data via a graphql setup
 // ----------------------------------------------------------------------
 
@@ -154,8 +154,8 @@ const EcommerceShop = (props) => {
     values.category === 'All';
 
   useEffect(() => {
-    dispatch(getProducts());
-    // dispatch(getProducts());
+    dispatch(getVariants());
+    // dispatch(getVariants());
   }, [dispatch]);
 
   useEffect(() => {
@@ -290,7 +290,7 @@ const EcommerceShop = (props) => {
 export const getServerSideProps = wrapperStore.getServerSideProps(
   (store) =>
     async ({ params }) => {
-      await store.dispatch(getProducts());
+      await store.dispatch(getVariants());
       const redux_store = store.getState();
       console.log(
         'This 🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️🤷‍♂️ is from the wrapper.getServerSideProps() within the redux_store = store.getState() from dashboard/shop/index.js, view https://bit.ly/next12_12 : ',

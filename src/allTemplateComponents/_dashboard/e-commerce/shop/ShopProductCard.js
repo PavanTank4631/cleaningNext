@@ -58,7 +58,7 @@ export default function ShopProductCard({ product, from, variants }) {
   //   product.product.name
   // );
   console.log(
-    '🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄 ShopProductCard.js this is the make name: ',
+    '🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄 ShopProductCard.js this is the product.car_make_name : ',
     product.car_make_name
   );
   // const makeName = product.product.name
@@ -80,13 +80,14 @@ export default function ShopProductCard({ product, from, variants }) {
 
   const onHeartPress = async () => {
     let favouriteIds = variants.filter((item) => item.isFavourite === true);
+    console.log('This is variants : ', variants);
     // let notFavouriteIds = variants.filter(item => item.isFavourite === false)
     console.log(
       'This is user from useAuth hook called within onHeartPress: ',
       user
     );
-    console.log(product);
-    console.log(variants[0]);
+    console.log('This is product : ', product);
+    console.log('This is variants[0] : ', variants[0]);
     if (product.isFavourite) {
       favouriteIds = removeElement(favouriteIds, product.id);
     } else {

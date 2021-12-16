@@ -137,6 +137,7 @@ export default function ProductDetailsSumary() {
   const router = useRouter();
   const dispatch = useDispatch();
   const { product, checkout } = useSelector((state) => state.product);
+  const carVariant = product.variant;
   const {
     id,
     name,
@@ -151,9 +152,10 @@ export default function ProductDetailsSumary() {
     // totalReview,
     // inventoryType,
   } = product;
-  const colors = product.variant.car_colorLabel;
+  console.log('This is product from ProductDetailsSumary', product);
+  const colors = carVariant.car_colorLabel;
 
-  const inventoryType = product.variant.car_qty;
+  const inventoryType = carVariant.car_qty;
   const alreadyProduct = checkout.cart.map((item) => item.id).includes(id);
   const isMaxQuantity =
     checkout.cart
@@ -177,7 +179,7 @@ export default function ProductDetailsSumary() {
       available,
       price,
       // color: colors[0],
-      color: product.variant.car_colorLabel,
+      color: carVariant.car_colorLabel,
       // size: sizes[4],
       quantity: available < 1 ? 0 : 1,
     },
@@ -214,7 +216,8 @@ export default function ProductDetailsSumary() {
         <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
           <Link
             style={{ cursor: 'pointer' }}
-            href={`category/${product.variant.product.name}`}
+            // href={`category/${carVariant.product.name}`}
+            href={`category/${carVariant.name}`}
           >
             <Typography
               variant="overline"
@@ -227,11 +230,11 @@ export default function ProductDetailsSumary() {
                 color: status === 'sale' ? 'error.main' : 'info.main',
               }}
             >
-              {product.variant.product.name}
+              {carVariant.name}
             </Typography>
           </Link>
           <Typography variant="h5" paragraph>
-            {product.variant.car_vehicleStatus} {product.variant.car_name}
+            {carVariant.car_vehicleStatus} {carVariant.car_name}
           </Typography>
 
           <Label
@@ -249,7 +252,7 @@ export default function ProductDetailsSumary() {
             >
               {priceSale && fCurrency(priceSale)}
             </Box>
-            &nbsp;{fCurrency(product.variant.price)}
+            &nbsp;{fCurrency(carVariant.price)}
           </Typography>
 
           <Divider sx={{ borderStyle: 'dashed' }} />
@@ -274,7 +277,7 @@ export default function ProductDetailsSumary() {
                 // }}
               /> */}
 
-              {product.variant.car_exteriorColor}
+              {carVariant.car_exteriorColor}
             </Stack>
             <Stack
               direction="row"
@@ -284,7 +287,7 @@ export default function ProductDetailsSumary() {
               <Typography variant="subtitle1" sx={{ mt: 0.5 }}>
                 Interior Color
               </Typography>
-              {product.variant.car_interiorColor}
+              {carVariant.car_interiorColor}
             </Stack>
 
             <Stack direction="row" justifyContent="space-between">

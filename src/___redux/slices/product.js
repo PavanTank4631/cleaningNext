@@ -54,14 +54,14 @@ const slice = createSlice({
     },
 
     // GET PRODUCTS
-    getProductsSuccess: (state, action) => {
+    getVariantsSuccess: (state, action) => {
       state.isLoading = false;
       state.products = action.payload;
     },
 
     // GET PRODUCT
-    getProductSuccess: (state, action) => {
-      console.log('getProductSuccess 🌜🌜🌜🌜🌜🌜🌜', action);
+    getVariantSuccess: (state, action) => {
+      console.log('getVariantSuccess 🌜🌜🌜🌜🌜🌜🌜', action);
       state.isLoading = false;
       state.product = action.payload;
     },
@@ -273,7 +273,7 @@ const ALLCARSQUERY = gql`
       car_interior_color
       car_transmission
       car_drivetrain
-      car_engine
+      # car_engine
       product {
         id
         name
@@ -388,7 +388,7 @@ const CARSMAKEQUERY = gql`
       car_interior_color
       car_transmission
       car_drivetrain
-      car_engine
+      # car_engine
       product {
         id
         name
@@ -504,7 +504,7 @@ const MYCARQUERY = gql`
       car_interior_color
       car_transmission
       car_drivetrain
-      car_engine
+      # car_engine
       product {
         id
         name
@@ -647,7 +647,7 @@ const client = new ApolloClient({
 
 // ----------------------------------------------------------------------
 
-export async function getProductsJson() {
+export async function getVariantsJson() {
   try {
     const response = await client.query({
       query: ALLCARSQUERY,
@@ -656,7 +656,7 @@ export async function getProductsJson() {
   } catch (error) {}
 }
 
-export function getProducts() {
+export function getVariants() {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
@@ -667,7 +667,7 @@ export function getProducts() {
         query: ALLCARSQUERY,
       });
 
-      dispatch(slice.actions.getProductsSuccess([...response.data.variants]));
+      dispatch(slice.actions.getVariantsSuccess([...response.data.variants]));
     } catch (error) {
       dispatch(slice.actions.hasError(error));
     }
@@ -676,7 +676,7 @@ export function getProducts() {
 
 // ----------------------------------------------------------------------
 
-export function getProduct(id) {
+export function getVariant(id) {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
@@ -687,7 +687,7 @@ export function getProduct(id) {
         }
       );
 
-      dispatch(slice.actions.getProductSuccess(response.data.product));
+      dispatch(slice.actions.getVariantSuccess(response.data.variant));
     } catch (error) {
       console.error(error);
       dispatch(slice.actions.hasError(error));
@@ -695,7 +695,7 @@ export function getProduct(id) {
   };
 }
 
-export function getProductGraphQl(id) {
+export function getVariantGraphQl(id) {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
@@ -704,14 +704,14 @@ export function getProductGraphQl(id) {
         query: MYCARQUERY,
         variables: { id },
       });
-      dispatch(slice.actions.getProductSuccess(response.data));
+      dispatch(slice.actions.getVariantSuccess(response.data));
     } catch (error) {
       console.error(error);
       dispatch(slice.actions.hasError(error));
     }
   };
 }
-export function getProductMakeGraphQl(id) {
+export function getVariantMakeGraphQl(id) {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
@@ -728,7 +728,7 @@ export function getProductMakeGraphQl(id) {
         variables: { where },
       });
 
-      dispatch(slice.actions.getProductSuccess(response.data.variants));
+      dispatch(slice.actions.getVariantSuccess(response.data.variants));
     } catch (error) {
       console.error(error);
       dispatch(slice.actions.hasError(error));
