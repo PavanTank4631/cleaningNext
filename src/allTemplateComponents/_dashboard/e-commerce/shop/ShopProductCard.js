@@ -175,12 +175,25 @@ export default function ShopProductCard({ product, from, variants }) {
                   textDecoration: 'line-through',
                 }}
               />
-
               {/* {product.product.name} */}
               {product.car_make_name}
             </Typography>
           </Link>
         </Stack>
+
+        <Link href={linkToMakeName} color="inherit" component={RouterLink}>
+          <Typography variant="subtitle1">
+            <Typography
+              component="span"
+              variant="body2"
+              sx={{
+                color: 'text.disabled',
+                textDecoration: 'line-through',
+              }}
+            />
+            {product.car_views}
+          </Typography>
+        </Link>
         <Link href={linkTo} color="inherit" component={RouterLink}>
           <Typography variant="subtitle2" noWrap>
             {product.car_name}
