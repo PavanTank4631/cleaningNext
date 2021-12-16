@@ -116,7 +116,6 @@ export default function ProductDetailsCarousel(props) {
     '🚀 🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴   ~ file: ProductDetailsCarousel.js ~ line 102 ~ ProductDetailsCarousel ~ carVariant (which is product.variant) : ',
     carVariant
   );
-  const imagesLightbox = carVariant.images.map((_image) => _image.url);
 
   const handleOpenLightbox = (url) => {
     const selectedImage = findIndex(imagesLightbox, (index) => index === url);
@@ -132,17 +131,6 @@ export default function ProductDetailsCarousel(props) {
     slidesToScroll: 1,
     adaptiveHeight: true,
     beforeChange: (current, next) => setCurrentIndex(next),
-  };
-
-  const settings2 = {
-    dots: false,
-    arrows: false,
-    centerMode: true,
-    swipeToSlide: true,
-    focusOnSelect: true,
-    variableWidth: true,
-    centerPadding: '0px',
-    slidesToShow: carVariant.images.length > 3 ? 3 : carVariant.images.length,
   };
 
   useEffect(() => {
@@ -193,6 +181,18 @@ export default function ProductDetailsCarousel(props) {
   );
   console.log('This is imgArray : ', imgArray);
   console.log('This is imgArray[0] : ', Object.entries(imgArray));
+
+  const imagesLightbox = imgArray.map((_image) => _image);
+  const settings2 = {
+    dots: false,
+    arrows: false,
+    centerMode: true,
+    swipeToSlide: true,
+    focusOnSelect: true,
+    variableWidth: true,
+    centerPadding: '0px',
+    slidesToShow: imgArray.length > 3 ? 3 : imgArray.length,
+  };
   return (
     <RootStyle>
       <Box sx={{ p: 1 }}>
@@ -222,7 +222,7 @@ export default function ProductDetailsCarousel(props) {
           </Slider>
           <CarouselControlsArrowsIndex
             index={currentIndex}
-            total={carVariant.images.length}
+            total={imgArray.length}
             onNext={handleNext}
             onPrevious={handlePrevious}
           />
@@ -234,22 +234,24 @@ export default function ProductDetailsCarousel(props) {
           my: 3,
           mx: 'auto',
           '& .slick-current .isActive': { opacity: 1 },
-          ...(carVariant.images.length === 1 && {
+          ...(imgArray.length === 1 && {
             maxWidth: THUMB_SIZE * 1 + 16,
           }),
-          ...(carVariant.images.length === 2 && {
+
+          ...(imgArray.length === 2 && {
             maxWidth: THUMB_SIZE * 2 + 32,
           }),
-          ...(carVariant.images.length === 3 && {
+          ...(imgArray.length === 3 && {
             maxWidth: THUMB_SIZE * 3 + 48,
           }),
-          ...(carVariant.images.length === 4 && {
-            maxWidth: THUMB_SIZE * 3 + 48,
-          }),
-          ...(carVariant.images.length >= 5 && {
-            maxWidth: THUMB_SIZE * 6,
-          }),
-          ...(carVariant.images.length > 2 && {
+          // ...(carVariant.images.length === 4 && {
+          //   maxWidth: THUMB_SIZE * 3 + 48,
+          // }),
+          // ...(carVariant.images.length >= 5 && {
+          //   maxWidth: THUMB_SIZE * 6,
+          // }),
+
+          ...(imgArray.length > 2 && {
             position: 'relative',
             '&:before, &:after': {
               top: 0,
@@ -269,9 +271,15 @@ export default function ProductDetailsCarousel(props) {
         }}
       >
         <Slider {...settings2} asNavFor={nav1} ref={slider2}>
-          {carVariant.images.map((item) => (
-            <ThumbnailItem key={item.id} item={item.url} />
+          {imgArray.map((item) => (
+            <ThumbnailItem
+              // key={item.id}
+              item={item}
+            />
           ))}
+          {/* {carVariant.images.map((item) => (
+            <ThumbnailItem key={item.id} item={item.url} />
+          ))} */}
         </Slider>
       </Box>
 
