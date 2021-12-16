@@ -265,6 +265,8 @@ const ALLCARSQUERY = gql`
       dealership
       vehicle_status
       image_url
+      car_imgSrcUrl_1
+      #car_dealership
       car_price
       car_year
       car_special
@@ -380,6 +382,8 @@ const CARSMAKEQUERY = gql`
       dealership
       vehicle_status
       image_url
+      car_imgSrcUrl_1
+      #car_dealership
       car_price
       car_year
       car_special
@@ -496,6 +500,13 @@ const MYCARQUERY = gql`
       dealership
       vehicle_status
       image_url
+      car_imgSrcUrl_1
+      car_imgSrcUrl_2
+      car_imgSrcUrl_3
+      car_imgSrcUrl_4
+      car_imgSrcUrl_5
+      car_imgSrcUrl_6
+      #car_dealership
       car_price
       car_year
       car_special
@@ -588,60 +599,10 @@ const MYCARQUERY = gql`
     }
   }
 `;
-const CARQUERY = gql`
-  query Variant($id: ID!) {
-    variant(id: $id) {
-      id
-      price
-      car_name
-      createdAt
-      updatedAt
-      car_qty: qty
-      car_style: style
-      car_url
-      car_colorLabel: colorLabel
-      car_make_name
-      car_vin
-      car_drivetrain
-      car_exteriorColor: car_exterior_color
-      car_fuelEconomy: car_fuel_economy
-      car_info
-      car_info2
-      car_interiorColor: car_interior_color
-      car_price
-      car_special
-      car_stock
-      car_transmission
-      car_dealership: dealership
-      car_description: description
-      car_model: model
-      car_vehicleStatus: vehicle_status
-      car_year: year
 
-      product {
-        id
-        name
-        category {
-          id
-          name
-          description
-        }
-        promo
-        featured
-        description
-      }
-      images {
-        id
-        url
-        height
-        width
-        name
-      }
-    }
-  }
-`;
 const client = new ApolloClient({
-  uri: `https://admin.shopcarx.com/graphql`,
+  // uri: `https://api.shopcarx.com/graphql`,
+  uri: `http://localhost:1337/graphql`,
   cache: new InMemoryCache(),
 });
 

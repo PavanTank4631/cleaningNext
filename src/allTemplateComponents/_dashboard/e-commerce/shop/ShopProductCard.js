@@ -151,7 +151,11 @@ export default function ShopProductCard({ product, from, variants }) {
           </Label>
         )}
         <Link href={linkTo} color="inherit" component={RouterLink}>
-          <ProductImgStyle alt={name} src={product.image_url} />
+          <ProductImgStyle
+            alt={name}
+            // src={product.image_url}
+            src={product.image_url || product.car_imgSrcUrl_1}
+          />
         </Link>
       </Box>
 
