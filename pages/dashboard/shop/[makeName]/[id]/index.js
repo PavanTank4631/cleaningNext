@@ -182,8 +182,9 @@ function EcommerceProductDetails(props) {
                 // sx={{ color: 'text.disabled', textDecoration: 'line-through' }}
               >
                 <Typography sx={{ mb: '5px' }} variant="h5" paragraph>
-                  {carVariant.year} {carVariant.car_make_name}{' '}
-                  {carVariant.car_name}
+                  {product && carVariant.year}{' '}
+                  {product && carVariant.car_make_name}{' '}
+                  {product && carVariant.car_name}
                   <br />
                   Carfax History
                 </Typography>

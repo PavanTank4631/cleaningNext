@@ -170,6 +170,21 @@ const Incrementer = (props) => {
 };
 
 export default function ProductDetailsSumary() {
+  //* This is important, we extract the vin this way  see below:
+  // const changedVIN = Object.values(carVariant.car_vin);
+  // const slicedVIN = changedVIN.slice(5, 22);
+  // console.log('This is changedVIN :', changedVIN);
+  // console.log('This is carVariant.car_vin :', carVariant.car_vin);
+  // console.log('This is slicedVIN :', slicedVIN);
+
+  // let newVIN = '';
+  // slicedVIN.forEach((item) => {
+  //   newVIN += item;
+  // });
+  // console.log('This is newVIN :', newVIN);
+
+  //* This is important, we extract the vin this way  see above^^
+
   const [value, setValue] = useState('1');
   const handleChangeTab = (event, newValue) => {
     setValue(newValue);
@@ -251,6 +266,7 @@ export default function ProductDetailsSumary() {
       subtotal: values.price * values.quantity,
     });
   };
+
   const DescriptionPanelBox = () => (
     <TabContext value={value}>
       <Box sx={{ px: 3, bgcolor: 'background.neutral' }}>
@@ -270,6 +286,10 @@ export default function ProductDetailsSumary() {
         <Box sx={{ p: 3 }}>
           {/* <Markdown children={name} /> */}
           Miles: {carVariant.car_odometer}
+          <br />
+          {carVariant.car_vin}
+          <br />
+          {carVariant.newVIN}
         </Box>
       </TabPanel>
       <TabPanel value="2">

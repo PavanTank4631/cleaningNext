@@ -269,6 +269,8 @@ const ALLCARSQUERY = gql`
       car_stock
       car_url
       car_vin
+      newVIN
+
       model
       year
       description
@@ -401,6 +403,7 @@ const CARSMAKEQUERY = gql`
       car_stock
       car_url
       car_vin
+      newVIN
       model
       year
       description
@@ -535,6 +538,7 @@ const MYCARQUERY = gql`
       car_stock
       car_url
       car_vin
+      newVIN
       model
       year
       description
