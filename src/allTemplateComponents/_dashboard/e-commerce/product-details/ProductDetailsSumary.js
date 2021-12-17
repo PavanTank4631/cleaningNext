@@ -1,24 +1,33 @@
+import { useState } from 'react';
 import { Icon } from '@iconify/react';
-import { sentenceCase } from 'change-case';
+import { paramCase, sentenceCase } from 'change-case';
 // import { useNavigate } from 'react-router-dom';
 import { useRouter } from 'next/router';
 import plusFill from '@iconify/icons-eva/plus-fill';
 import minusFill from '@iconify/icons-eva/minus-fill';
 import twitterFill from '@iconify/icons-eva/twitter-fill';
 import linkedinFill from '@iconify/icons-eva/linkedin-fill';
+import roundVerified from '@iconify/icons-ic/round-verified';
+import roundVerifiedUser from '@iconify/icons-ic/round-verified-user';
+import clockFill from '@iconify/icons-eva/clock-fill';
+import client from 'src/__graphql/apolloClient_and_queries';
 import facebookFill from '@iconify/icons-eva/facebook-fill';
 import instagramFilled from '@iconify/icons-ant-design/instagram-filled';
 import roundAddShoppingCart from '@iconify/icons-ic/round-add-shopping-cart';
+
 import Link from 'next/link';
+import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { useFormik, Form, FormikProvider, useField } from 'formik';
 // material
-import { useTheme, styled } from '@mui/material/styles';
+import { useTheme, styled, alpha } from '@mui/material/styles';
 import {
   Box,
   Link as MuiLink,
   Stack,
   Button,
   Rating,
+  Grid,
+  Tab,
   Tooltip,
   Divider,
   TextField,
@@ -42,7 +51,36 @@ import Label from '../../../Label';
 import ColorSinglePicker from '../../../ColorSinglePicker';
 
 // ----------------------------------------------------------------------
+const PRODUCT_DESCRIPTION = [
+  {
+    title: '100% Original',
+    description: 'Chocolate bar candy canes ice cream toffee cookie halvah.',
+    icon: roundVerified,
+  },
+  {
+    title: '10 Day Replacement',
+    description: 'Marshmallow biscuit donut dragée fruitcake wafer.',
+    icon: clockFill,
+  },
+  {
+    title: 'Year Warranty',
+    description: 'Cotton candy gingerbread cake I love sugar sweet.',
+    icon: roundVerifiedUser,
+  },
+];
 
+const IconWrapperStyle = styled('div')(({ theme }) => ({
+  margin: 'auto',
+  display: 'flex',
+  borderRadius: '50%',
+  alignItems: 'center',
+  width: theme.spacing(8),
+  justifyContent: 'center',
+  height: theme.spacing(8),
+  marginBottom: theme.spacing(3),
+  color: theme.palette.primary.main,
+  backgroundColor: `${alpha(theme.palette.primary.main, 0.08)}`,
+}));
 const SOCIALS = [
   {
     name: 'Facebook',
@@ -132,6 +170,10 @@ const Incrementer = (props) => {
 };
 
 export default function ProductDetailsSumary() {
+  const [value, setValue] = useState('1');
+  const handleChangeTab = (event, newValue) => {
+    setValue(newValue);
+  };
   const theme = useTheme();
   // const navigate = useNavigate();
   const router = useRouter();
@@ -209,6 +251,55 @@ export default function ProductDetailsSumary() {
       subtotal: values.price * values.quantity,
     });
   };
+  const DescriptionPanelBox = () => (
+    <TabContext value={value}>
+      <Box sx={{ px: 3, bgcolor: 'background.neutral' }}>
+        <TabList onChange={handleChangeTab}>
+          <Tab disableRipple value="1" label="Description" />
+          <Tab
+            disableRipple
+            value="2"
+            // label={`Review (${product.reviews.length})`}
+            label="Highlights"
+            sx={{ '& .MuiTab-wrapper': { whiteSpace: 'nowrap' } }}
+          />
+        </TabList>
+      </Box>
+
+      <TabPanel value="1">
+        <Box sx={{ p: 3 }}>
+          {/* <Markdown children={name} /> */}
+          Miles: {carVariant.car_odometer}
+        </Box>
+      </TabPanel>
+      <TabPanel value="2">
+        <Grid container sx={{ my: 8 }}>
+          {PRODUCT_DESCRIPTION.map((item) => (
+            <Grid item xs={12} md={4} key={item.title}>
+              <Box
+                sx={{
+                  my: 2,
+                  mx: 'auto',
+                  maxWidth: 280,
+                  textAlign: 'center',
+                }}
+              >
+                <IconWrapperStyle>
+                  <Icon icon={item.icon} width={36} height={36} />
+                </IconWrapperStyle>
+                <Typography variant="subtitle1" gutterBottom>
+                  {item.title}
+                </Typography>
+                <Typography sx={{ color: 'text.secondary' }}>
+                  {item.description}
+                </Typography>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+      </TabPanel>
+    </TabContext>
+  );
 
   return (
     <RootStyle>
@@ -235,7 +326,7 @@ export default function ProductDetailsSumary() {
           </Link>
 
           <Typography sx={{ mb: '5px' }} variant="h5" paragraph>
-            {carVariant.car_vehicleStatus} {carVariant.car_name}
+            {carVariant.year} {carVariant.car_name}
           </Typography>
 
           <Label
@@ -257,29 +348,11 @@ export default function ProductDetailsSumary() {
           </Typography>
 
           <Divider sx={{ borderStyle: 'dashed' }} />
-
+          {/* <Divider sx={{ borderStyle: 'dashed' }} /> */}
+          {/* <Grid item xs={12} md={6} lg={5}> */}
+          <DescriptionPanelBox />
+          {/* </Grid> */}
           <Stack spacing={3} sx={{ my: 3 }}>
-            <Stack
-              direction="row"
-              alignItems="center"
-              justifyContent="space-between"
-            >
-              <Typography variant="subtitle1" sx={{ mt: 0.5 }}>
-                Vehicle Year
-              </Typography>
-              {/* <ColorSinglePicker
-                {...getFieldProps('color')}
-                colors={colors}
-                // sx={{
-                //   ...(colors.length > 4 && {
-                //     maxWidth: 144,
-                //     justifyContent: 'flex-end',
-                  // }),
-                // }}
-              /> */}
-
-              {carVariant.year}
-            </Stack>
             <Stack
               direction="row"
               alignItems="center"
@@ -312,6 +385,7 @@ export default function ProductDetailsSumary() {
               {carVariant.car_interiorColor}
             </Stack>
 
+            <Divider sx={{ borderStyle: 'dashed' }} />
             <Stack direction="row" justifyContent="space-between">
               <Typography variant="subtitle1" sx={{ mt: 0.5 }}>
                 Size

@@ -125,6 +125,7 @@ function EcommerceProductDetails(props) {
   );
 
   const carmake = product && product.variant && product.variant.car_make_name;
+  const carVariant = product && product.variant;
   const carMakeParamCase = product && paramCase(carmake);
   console.log('From CarDetail.js page, this is checkout: ', checkout);
   return (
@@ -174,16 +175,28 @@ function EcommerceProductDetails(props) {
               </Grid>
             </Card>
 
-            <Card>
+            <Card sx={{ mt: 3 }}>
+              <Box
+                component="div"
+                sx={{ mt: 3, mb: 3, mx: 3, fontSize: '1.5rem' }}
+                // sx={{ color: 'text.disabled', textDecoration: 'line-through' }}
+              >
+                <Typography sx={{ mb: '5px' }} variant="h5" paragraph>
+                  {carVariant.year} {carVariant.car_make_name}{' '}
+                  {carVariant.car_name}
+                  <br />
+                  Carfax History
+                </Typography>
+              </Box>
               <TabContext value={value}>
                 <Box sx={{ px: 3, bgcolor: 'background.neutral' }}>
                   <TabList onChange={handleChangeTab}>
-                    <Tab disableRipple value="1" label="Description" />
+                    <Tab disableRipple value="1" label="Condition" />
                     <Tab
                       disableRipple
                       value="2"
                       // label={`Review (${product.reviews.length})`}
-                      label="Highlights"
+                      label="Ownership History"
                       sx={{ '& .MuiTab-wrapper': { whiteSpace: 'nowrap' } }}
                     />
                   </TabList>
@@ -192,7 +205,10 @@ function EcommerceProductDetails(props) {
                 <Divider />
 
                 <TabPanel value="1">
-                  <Box sx={{ p: 3 }}>{/* <Markdown children={name} /> */}</Box>
+                  <Box sx={{ p: 3 }}>
+                    {/* <Markdown children={name} /> */}
+                    {/* Miles: {carVariant.car_odometer} */}
+                  </Box>
                 </TabPanel>
                 <TabPanel value="2">
                   <Grid container sx={{ my: 8 }}>
