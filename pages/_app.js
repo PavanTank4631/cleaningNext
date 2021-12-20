@@ -48,6 +48,7 @@ import { BaseOptionChartStyle } from 'src/allTemplateComponents/charts/BaseOptio
 import { ApolloWrapper } from 'src/__graphql/ApolloWrapper';
 
 import { ThemeProvider } from '@material-ui/core/styles';
+import MainLayout from 'src/otherComponents/layouts/main';
 // SHOULD PROBABLY INCLUDE import MainLayout from 'src/otherComponents/layouts/navMenu';
 
 import GlobalStateProvider from 'src/___global/store/GlobalStateProvider';
@@ -108,9 +109,9 @@ const MyApp = (props) => {
                                     {/* <FeedbackWrapper> */}
                                     {/* <CartWrapper> */}
                                     <AuthProvider>
-                                      {/* <MainLayout> */}
-                                      <Component {...pageProps} />
-                                      {/* </MainLayout> */}
+                                      <MainLayout>
+                                        <Component {...pageProps} />
+                                      </MainLayout>
                                     </AuthProvider>
                                     {/* </CartWrapper> */}
                                     {/* </FeedbackWrapper> */}

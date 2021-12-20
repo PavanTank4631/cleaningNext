@@ -2,7 +2,7 @@ import { Icon } from '@iconify/react';
 import homeFill from '@iconify/icons-eva/home-fill';
 import fileFill from '@iconify/icons-eva/file-fill';
 // routes
-import { PATH_DASHBOARD } from '../../otherComponents/routes/paths';
+import { PATH_DASHBOARD } from 'src/otherComponents/routes/paths';
 
 // ----------------------------------------------------------------------
 
