@@ -20,7 +20,7 @@ import {
   fetchVinFromLicensePlate,
 } from 'src/otherComponents/carfax/carfaxAPIs/LicensePlateAPI';
 import { ContextCarfax } from 'src/otherComponents/carfax/GlobalContextCarfax';
-import styles from '../../../styles/Home.module.css';
+import styles from '../../../../styles/Home.module.css';
 
 function CarfaxForm() {
   const { chosenVehicle, setChosenVehicle } = useContext(ContextCarfax);

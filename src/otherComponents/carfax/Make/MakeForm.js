@@ -19,7 +19,7 @@ import {
   fetchYears,
 } from 'src/otherComponents/carfax/carfaxAPIs/MakeAPI';
 import { ContextCarfax } from 'src/otherComponents/carfax/GlobalContextCarfax';
-import styles from '../../../styles/Home.module.css';
+import styles from '../../../../styles/Home.module.css';
 
 function CarfaxForm() {
   const { chosenVehicle, setChosenVehicle } = useContext(ContextCarfax);

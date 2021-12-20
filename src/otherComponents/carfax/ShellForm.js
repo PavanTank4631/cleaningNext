@@ -26,7 +26,7 @@ import { ContextCarfax } from 'src/otherComponents/carfax/GlobalContextCarfax';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { MHidden } from 'src/otherComponents/components/@material-extend';
-import styles from '../../styles/Home.module.css';
+import styles from '../../../styles/Home.module.css';
 import MakeForm from './Make/MakeForm';
 import VINForm from './VIN/VINForm';
 import LicensePlateForm from './LicensePlate/LicensePlateForm';

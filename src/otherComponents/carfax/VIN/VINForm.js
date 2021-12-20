@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { Button, TextField, Typography, CardContent } from '@mui/material';
 import { fetchVehicleFromVin } from 'src/otherComponents/carfax/carfaxAPIs/VinAPI';
 import { ContextCarfax } from 'src/otherComponents/carfax/GlobalContextCarfax';
-import styles from '../../../styles/Home.module.css';
+import styles from '../../../../styles/Home.module.css';
 
 function CarfaxForm() {
   const { chosenVehicle, setChosenVehicle } = useContext(ContextCarfax);
