@@ -54,17 +54,17 @@ import ColorSinglePicker from '../../../ColorSinglePicker';
 const PRODUCT_DESCRIPTION = [
   {
     title: '100% Original',
-    description: 'Chocolate bar candy canes ice cream toffee cookie halvah.',
+    // description: 'Chocolate bar candy canes ice cream toffee cookie halvah.',
     icon: roundVerified,
   },
   {
     title: '10 Day Replacement',
-    description: 'Marshmallow biscuit donut dragée fruitcake wafer.',
+    // description: 'Marshmallow biscuit donut dragée fruitcake wafer.',
     icon: clockFill,
   },
   {
     title: 'Year Warranty',
-    description: 'Cotton candy gingerbread cake I love sugar sweet.',
+    // description: 'Cotton candy gingerbread cake I love sugar sweet.',
     icon: roundVerifiedUser,
   },
 ];

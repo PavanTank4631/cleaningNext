@@ -252,6 +252,12 @@ const ALLCARSQUERY = gql`
       car_carFaxUrl
       car_currentCarURL
       car_views
+      int_car_views
+      int_car_odometer
+      int_car_samplePayment
+      int_car_samplePaymentDetails_Months
+      int_car_samplePaymentDetails_APR
+      int_car_samplePaymentDetails_DownPayment
       car_exteriorColor
       car_samplePayment
       car_samplePaymentDetails
@@ -269,7 +275,6 @@ const ALLCARSQUERY = gql`
       car_stock
       car_url
       car_vin
-      newVIN
 
       model
       year
@@ -386,6 +391,12 @@ const CARSMAKEQUERY = gql`
       car_carFaxUrl
       car_currentCarURL
       car_views
+      int_car_views
+      int_car_odometer
+      int_car_samplePayment
+      int_car_samplePaymentDetails_Months
+      int_car_samplePaymentDetails_APR
+      int_car_samplePaymentDetails_DownPayment
       car_exteriorColor
       car_samplePayment
       car_samplePaymentDetails
@@ -403,7 +414,7 @@ const CARSMAKEQUERY = gql`
       car_stock
       car_url
       car_vin
-      newVIN
+
       model
       year
       description
@@ -520,6 +531,12 @@ const MYCARQUERY = gql`
       car_carFaxUrl
       car_currentCarURL
       car_views
+      int_car_views
+      int_car_odometer
+      int_car_samplePayment
+      int_car_samplePaymentDetails_Months
+      int_car_samplePaymentDetails_APR
+      int_car_samplePaymentDetails_DownPayment
       car_exteriorColor
       car_samplePayment
       car_samplePaymentDetails
@@ -538,7 +555,6 @@ const MYCARQUERY = gql`
       car_stock
       car_url
       car_vin
-      newVIN
       model
       year
       description
