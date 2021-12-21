@@ -20,7 +20,7 @@
       <a href="#about-the-project">About The Project</a>
     </li>
     <li>
-      <a href="#getting-started">Getting Up and Running Locally</a>
+      <a href="#getting-started">Getting Up and Running Locally (Updated 12/20!)</a>
     </li>
     <li><a href="#GraphQl">How GraphQl and Redux Toolkit Queries Are Being Made</a></li>
     <li><a href="#Todo">TODO LIST TASKS (Updated 12/20!)</a></li>
@@ -156,6 +156,7 @@ The scraper is still under development, right now the vehicles are just showing 
    ```sh
    git clone https://github.com/seanmodd/jamstack-final-backend.git
    ```
+- UPDATED AS OF 12/20 - you MUST utilize the branch titled december20 !!!!
 - Once you have cloned it locally, run <code>npm install</code> to install all the dependencies.
 - Now run <code>npm run develop</code> to start the server, now the server should be live on localhost:1337!
 

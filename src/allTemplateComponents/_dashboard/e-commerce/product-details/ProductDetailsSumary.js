@@ -266,7 +266,9 @@ export default function ProductDetailsSumary() {
       subtotal: values.price * values.quantity,
     });
   };
-
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
   const DescriptionPanelBox = () => (
     <TabContext value={value}>
       <Box sx={{ px: 3, bgcolor: 'background.neutral' }}>
@@ -283,14 +285,25 @@ export default function ProductDetailsSumary() {
       </Box>
 
       <TabPanel value="1">
-        <Box sx={{ p: 3 }}>
-          {/* <Markdown children={name} /> */}
-          Miles: {carVariant.car_odometer}
-          <br />
-          {carVariant.car_vin}
-          <br />
-          {carVariant.newVIN}
-        </Box>
+        <Divider sx={{ borderStyle: 'dashed' }} />
+        <Stack direction="row" justifyContent="space-around">
+          <Typography variant="subtitle2" sx={{ mt: 0.5 }}>
+            Total Miles
+          </Typography>
+          <Typography variant="subtitle2" sx={{ mt: 0.5, fontWeight: 400 }}>
+            {numberWithCommas(carVariant.int_car_odometer)}
+          </Typography>
+        </Stack>
+        <Divider sx={{ borderStyle: 'dashed' }} />
+        <Stack direction="row" justifyContent="space-around">
+          <Typography variant="subtitle2" sx={{ mt: 0.5 }}>
+            Exterior Color
+          </Typography>
+          <Typography variant="subtitle2" sx={{ mt: 0.5, fontWeight: 400 }}>
+            {carVariant.car_exteriorColor}
+          </Typography>
+        </Stack>
+        <Divider sx={{ borderStyle: 'dashed' }} />
       </TabPanel>
       <TabPanel value="2">
         <Grid container sx={{ my: 8 }}>
@@ -378,66 +391,14 @@ export default function ProductDetailsSumary() {
               alignItems="center"
               justifyContent="space-between"
             >
-              <Typography variant="subtitle1" sx={{ mt: 0.5 }}>
-                Exterior Color
-              </Typography>
-              {/* <ColorSinglePicker
-                {...getFieldProps('color')}
-                colors={colors}
-                // sx={{
-                //   ...(colors.length > 4 && {
-                //     maxWidth: 144,
-                //     justifyContent: 'flex-end',
-                  // }),
-                // }}
-              /> */}
-
-              {carVariant.car_exteriorColor}
-            </Stack>
-            <Stack
-              direction="row"
-              alignItems="center"
-              justifyContent="space-between"
-            >
-              <Typography variant="subtitle1" sx={{ mt: 0.5 }}>
+              {/* <Typography variant="subtitle1" sx={{ mt: 0.5 }}>
                 Interior Color
               </Typography>
-              {carVariant.car_interiorColor}
-            </Stack>
-
-            <Divider sx={{ borderStyle: 'dashed' }} />
-            <Stack direction="row" justifyContent="space-between">
-              <Typography variant="subtitle1" sx={{ mt: 0.5 }}>
-                Size
-              </Typography>
-              <TextField
-                select
-                size="small"
-                {...getFieldProps('size')}
-                SelectProps={{ native: true }}
-                FormHelperTextProps={{
-                  sx: {
-                    textAlign: 'right',
-                    margin: 0,
-                    mt: 1,
-                  },
-                }}
-                helperText={
-                  <MuiLink href="#" underline="always" color="text.primary">
-                    Size Chart
-                  </MuiLink>
-                }
-              >
-                {/* {sizes.map((size) => (
-                  <option key={size} value={size}>
-                    {size}
-                  </option>
-                ))} */}
-              </TextField>
+              {carVariant.car_interiorColor} */}
             </Stack>
 
             <Stack direction="row" justifyContent="space-between">
-              <Typography variant="subtitle1" sx={{ mt: 0.5 }}>
+              {/* <Typography variant="subtitle1" sx={{ mt: 0.5 }}>
                 Quantity
               </Typography>
               <div>
@@ -457,7 +418,7 @@ export default function ProductDetailsSumary() {
                 <FormHelperText error>
                   {touched.quantity && errors.quantity}
                 </FormHelperText>
-              </div>
+              </div> */}
             </Stack>
           </Stack>
           <Divider sx={{ borderStyle: 'dashed' }} />
