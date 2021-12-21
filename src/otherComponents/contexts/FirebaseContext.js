@@ -117,10 +117,11 @@ function AuthProvider({ children }) {
             )
             .then(
               (res) =>{
-                console.log('🎉🎉🎉🎉🎉🎉🎀🎀🎀🎀🎀🎀🎀 here is res: ', res);
+              console.log('🎉🎉🎉🎉🎉🎉🎀🎀🎀🎀🎀🎀🎀 here is res: ', res.data);
+              localStorage['userData'] = JSON.stringify(res.data.user)
               var strapidata = res.data
               console.log('🎉🎉🎉🎉🎉🎉🎀🎀🎀🎀🎀🎀🎀 here is strapidata: ', strapidata);
-            localStorage['strapijwt'] = strapidata.jwt;
+              localStorage['strapijwt'] = strapidata.jwt;
             }
       
             );

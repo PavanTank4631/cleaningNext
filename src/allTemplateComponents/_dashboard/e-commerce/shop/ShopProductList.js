@@ -10,6 +10,7 @@ import ShopProductCard from './ShopProductCard';
 
 export default function ProductList({
   products,
+  updateFavoritesData,
   isLoad,
   from,
   refreshDataList,
@@ -36,7 +37,7 @@ export default function ProductList({
 
         return (
           <Grid key={product.id} item xs={12} sm={6} md={3}>
-            <ShopProductCard product={product} from={from} variants={tempArr} />
+            <ShopProductCard product={product} from={from} updateFavoritesData={updateFavoritesData} />
           </Grid>
         );
       })}
