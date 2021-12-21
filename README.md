@@ -223,8 +223,14 @@ The GraphQl Queries can be made through a playground I have created on **Apollo 
 #### MOST IMPORTANT ACTION ITEM:
 <summary><b>Showing All Likes On User Dashboard</b></summary>
 
-- [ ] Create an option to like a vehicle using THIS repo... cleaningNext
+*Please accept my invite I made to you so you can create your own branch off of THIS repo, cleaningNext!*  
 <img src="https://i.imgur.com/C2iyFC0.jpeg" />
+
+- [x] Create an option to favorite a vehicle with the open heart
+- [x] After click, item will be added to the favorites list
+- [ ] ENSURE THAT THE USER CAN ONLY FAVORITE A VEHICLE ONCE SO IT IS NOT DOUBLE-COUNTED ON THE FAVORITE LIST IN THE BACKEND - NOT COMPLETED
+- [ ] Currently, when user clicks favorite, it doesn't signify it on the frontend, thus, after one click, the heart will turn to FILLED to signify that favorite is true 
+- [ ] After second click, the heart will turn back to EMPTY to signify that favorite is false 
   
 #### SECOND MOST IMPORTANT ACTION ITEM:
 <summary><b>Create Visitor Popup to Retrieve Emails</b></summary>
