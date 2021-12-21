@@ -23,7 +23,7 @@
       <a href="#getting-started">Getting Up and Running Locally</a>
     </li>
     <li><a href="#GraphQl">How GraphQl and Redux Toolkit Queries Are Being Made</a></li>
-    <li><a href="#Todo">TODO LIST TASKS</a></li>
+    <li><a href="#Todo">TODO LIST TASKS (Updated 12/20!)</a></li>
     <li><a href="#Completed">Completed Tasks</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
@@ -223,16 +223,8 @@ The GraphQl Queries can be made through a playground I have created on **Apollo 
 #### MOST IMPORTANT ACTION ITEM:
 <summary><b>Showing All Likes On User Dashboard</b></summary>
 
-- [ ] Create an option to like a vehicle
-  - [ ] Create an option to like a car from the shop page at <code>/dashboard/shop/</code>
-  - [ ] Create an option to like a car from each car's page within the dynamically generated single car page at <code>/dashboard/shop/[makeName]/[id]</code>
-  - [ ] If user is not logged in when they click heart, then show a "login" button to login to their account
-
-- [ ] Reflect all liked vehicles from the user dashboard which already exists
-  - [ ] Here is the UI of <code>/dashboard/app/account</code> aka the current template: <img src="https://i.imgur.com/SeCJfs6.jpeg" alt="Logo" width="200px">
-  - [ ] Create a dashboard from user's home profile page with all the cars they have liked
-  - [ ] If user has liked a car, then show a "liked" button or "heart" that is already filled in
- 
+- [ ] Create an option to like a vehicle using THIS repo... cleaningNext
+<img src="https://i.imgur.com/C2iyFC0.jpeg" />
   
 #### SECOND MOST IMPORTANT ACTION ITEM:
 <summary><b>Create Visitor Popup to Retrieve Emails</b></summary>
