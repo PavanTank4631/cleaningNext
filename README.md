@@ -232,13 +232,18 @@ The GraphQl Queries can be made through a playground I have created on **Apollo 
 - [ ] Currently, when user clicks favorite, it doesn't signify it on the frontend, thus, after one click, the heart will turn to FILLED to signify that favorite is true 
 - [ ] After second click, the heart will turn back to EMPTY to signify that favorite is false 
   
-#### SECOND MOST IMPORTANT ACTION ITEM:
+#### SECOND ACTION ITEM:
+<summary><b>Fix the image quality so it's not pixelated</b></summary>
+
+- [ ] Specifically on the single vehicle page, the image quality is not good 
+  
+#### THIRD MOST IMPORTANT ACTION ITEM:
 <summary><b>Create Visitor Popup to Retrieve Emails</b></summary>
 
 - [ ] For visitors who have been on website for over 5 seconds as guest, create a dialog popup to retrieve email for new announcements and more
 
 
-#### THIRD MOST IMPORTANT ACTION ITEM:
+#### FOURTH MOST IMPORTANT ACTION ITEM:
 <summary><b>Carfax Price Estimator</b></summary>
 
 - [ ] Complete the carfax price estimator page on <code>/dashboard/carfax-value</code> with the 3 approaches to find out your car's value immediately
